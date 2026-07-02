@@ -1,5 +1,0 @@
-{
-  "rewrites": [
-    { "source": "/((?!assets/|uploads/|supabase/|.*\\.(html|png|jpg|jpeg|gif|svg|webp|ico|js|css|json|pdf|txt|md|pptx)).*)", "destination": "/index.html" }
-  ]
-}
