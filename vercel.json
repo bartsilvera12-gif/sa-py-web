@@ -1,7 +1,5 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false,
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/((?!assets/|uploads/|supabase/|.*\\.(html|png|jpg|jpeg|gif|svg|webp|ico|js|css|json|pdf|txt|md|pptx)).*)", "destination": "/index.html" }
   ]
 }
