@@ -25,6 +25,8 @@
   ::selection { background:var(--sa-green-light); color:var(--sa-ink); }
   @keyframes sa-marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
   @keyframes sa-pulse { 0%,100%{transform:scale(1); opacity:1} 50%{transform:scale(1.15); opacity:.7} }
+  @keyframes sa-float { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-14px) rotate(-2deg)} }
+  @keyframes sa-glow { 0%,100%{opacity:.7; transform:scale(1)} 50%{opacity:1; transform:scale(1.12)} }
   .btn-hover-green:hover { background:var(--sa-green-dark) !important; }
   .btn-hover-dark:hover { background:var(--sa-ink) !important; color:#fff !important; }
   .btn-hover-lift:hover { border-color:var(--sa-ink) !important; transform:translateY(-4px); box-shadow:0 16px 40px rgba(14,23,18,.08); }
@@ -38,6 +40,10 @@
   .cat-row:hover .cat-desc { max-height:80px; opacity:1; margin-top:8px; }
   .cat-row:hover .cat-arrow { background:var(--sa-ink); color:#fff; border-color:var(--sa-ink); transform:translateX(4px); }
   .cat-row:hover .cat-icon { transform:scale(1.06) rotate(-3deg); }
+  .territory-card:hover { transform:translateY(-4px); box-shadow:0 16px 36px rgba(14,23,18,.08); border-color:transparent; }
+  .pillar-card:hover { transform:translateY(-4px); box-shadow:0 20px 44px rgba(14,23,18,.08); border-color:transparent; }
+  .sa-select:hover { border-color:var(--sa-ink) !important; }
+  .sa-select:focus { outline:none; border-color:var(--sa-green) !important; box-shadow:0 0 0 3px rgba(61,171,56,.15); }
   @media (max-width: 900px) {
     .cat-editorial { grid-template-columns:1fr !important; }
     .cat-row > div { grid-template-columns:44px 1fr auto !important; gap:12px !important; }
@@ -123,7 +129,7 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
         <button onclick="requestQuote()" class="btn-hover-dark" style="border:1.5px solid var(--sa-ink); background:#fff; color:var(--sa-ink); padding:16.5px 26px; border-radius:999px; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; display:flex; align-items:center; gap:10px;">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074zM12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           Cotizar por WhatsApp
         </button>
       </div>
@@ -275,10 +281,12 @@
 
 <!-- ===================== CATALOG ===================== -->
 <div id="page-catalogo" class="page">
-<section style="padding:60px 40px; border-bottom:1px solid var(--sa-gray-100);">
-  <div style="max-width:1440px; margin:0 auto;">
+<section style="position:relative; padding:80px 40px 60px; border-bottom:1px solid var(--sa-gray-100); overflow:hidden; background:#F5F7F2;">
+  <div style="position:absolute; inset:0; background:url('uploads/hero.png') center/cover no-repeat; transform:scaleX(-1); pointer-events:none;"></div>
+  <div style="position:absolute; inset:0; background:rgba(255,255,255,.65); pointer-events:none;"></div>
+  <div style="position:relative; z-index:2; max-width:1440px; margin:0 auto;">
     <div style="font-size:11px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:var(--sa-green); margin-bottom:16px;">— Catálogo</div>
-    <h1 style="font-size:64px; font-weight:900; line-height:.98; letter-spacing:-.02em; margin:0 0 20px; text-transform:uppercase;">Todos los productos</h1>
+    <h1 style="font-size:40px; font-weight:900; line-height:1.05; letter-spacing:-.02em; margin:0 0 18px; text-transform:uppercase;">Todos los productos</h1>
     <p style="font-size:16px; color:var(--sa-gray-700); max-width:640px; line-height:1.55; margin:0;">Filtrá por categoría, etiqueta o palabra clave. Todos los ítems están disponibles bajo pedido; consultá stock y precios por WhatsApp.</p>
   </div>
 </section>
@@ -403,7 +411,7 @@
 <section style="padding:80px 40px 60px;">
   <div style="max-width:1200px; margin:0 auto;">
     <div style="font-size:11px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:var(--sa-green); margin-bottom:16px;">— Nosotros</div>
-    <h1 style="font-size:80px; font-weight:900; line-height:.94; letter-spacing:-.025em; margin:0 0 32px; text-transform:uppercase; max-width:1000px;">Protegemos la <span style="color:var(--sa-green);">integridad</span> de los alimentos.</h1>
+    <h1 style="font-size:44px; font-weight:900; line-height:1.05; letter-spacing:-.02em; margin:0 0 24px; text-transform:uppercase; max-width:900px;">Protegemos la <span style="color:var(--sa-green);">integridad</span> de los alimentos.</h1>
     <p style="font-size:20px; color:var(--sa-gray-700); max-width:760px; line-height:1.5; margin:0;">Nacimos con el propósito de combatir la contaminación por objetos extraños en la industria alimentaria y farmacéutica de Paraguay, a través de productos detectables por metales y rayos X.</p>
   </div>
 </section>
@@ -424,7 +432,11 @@
         <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; margin-bottom:14px; opacity:.9;">— Nuestra promesa</div>
         <h2 style="font-size:44px; font-weight:900; letter-spacing:-.02em; line-height:1; margin:0; text-transform:uppercase;">Seguridad, trazabilidad y confianza para entornos donde la contaminación no puede ser una opción.</h2>
       </div>
-      <div><img src="assets/isotype.png" alt="" style="width:100%; max-width:200px; filter:brightness(0) invert(1); display:block; margin-left:auto;"></div>
+      <div style="display:flex; justify-content:flex-end;">
+        <div style="width:200px; height:200px; background:#fff; border-radius:24px; display:flex; align-items:center; justify-content:center; padding:24px;">
+          <img src="assets/isotype.png" alt="Seguridad Alimentaria" style="width:100%; height:100%; object-fit:contain;">
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -442,7 +454,7 @@
 <section style="padding:80px 40px 40px;">
   <div style="max-width:1200px; margin:0 auto;">
     <div style="font-size:11px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:var(--sa-green); margin-bottom:16px;">— Seguridad alimentaria</div>
-    <h1 style="font-size:72px; font-weight:900; line-height:.96; letter-spacing:-.02em; margin:0 0 24px; text-transform:uppercase; max-width:1000px;">Qué es la seguridad alimentaria y por qué importa.</h1>
+    <h1 style="font-size:44px; font-weight:900; line-height:1.05; letter-spacing:-.02em; margin:0 0 20px; text-transform:uppercase; max-width:900px;">Qué es la seguridad alimentaria y por qué importa.</h1>
     <p style="font-size:18px; color:var(--sa-gray-700); max-width:720px; line-height:1.55; margin:0;">La detección de cuerpos extraños es sólo el último eslabón de una cadena que empieza mucho antes: en la higiene, la manipulación segura y la trazabilidad.</p>
   </div>
 </section>
@@ -469,11 +481,19 @@
 
 <!-- ===================== CONTACT ===================== -->
 <div id="page-contacto" class="page">
-<section style="padding:80px 40px 60px;">
-  <div style="max-width:1440px; margin:0 auto;">
-    <div style="font-size:11px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:var(--sa-green); margin-bottom:16px;">— Contacto</div>
-    <h1 style="font-size:64px; font-weight:900; line-height:.98; letter-spacing:-.02em; margin:0 0 20px; text-transform:uppercase; max-width:900px;">Contanos qué necesitás y te preparamos una cotización.</h1>
-    <p style="font-size:18px; color:var(--sa-gray-700); max-width:640px; line-height:1.55; margin:0;">Trabajamos con industrias alimentarias, farmacéuticas, laboratorios, restaurantes y supermercados. Respuesta en menos de 24 hs.</p>
+<section style="position:relative; padding:80px 40px 100px; overflow:hidden; background:#F5F7F2;">
+  <div style="position:absolute; inset:0; background:url('uploads/hero.png') center/cover no-repeat; pointer-events:none;"></div>
+  <div style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(255,255,255,.88) 0%, rgba(255,255,255,.75) 60%, rgba(255,255,255,.55) 100%); pointer-events:none;"></div>
+  <div style="position:relative; z-index:2; max-width:1440px; margin:0 auto; display:grid; grid-template-columns:1.4fr 1fr; gap:60px; align-items:center;" class="grid-2">
+    <div>
+      <div style="font-size:11px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:var(--sa-green); margin-bottom:16px;">— Contacto</div>
+      <h1 style="font-size:40px; font-weight:900; line-height:1.05; letter-spacing:-.02em; margin:0 0 18px; text-transform:uppercase; max-width:720px;">Contanos qué necesitás y te preparamos una cotización.</h1>
+      <p style="font-size:18px; color:var(--sa-gray-700); max-width:640px; line-height:1.55; margin:0;">Trabajamos con industrias alimentarias, farmacéuticas, laboratorios, restaurantes y supermercados. Respuesta en menos de 24 hs.</p>
+    </div>
+    <div style="display:flex; justify-content:center; position:relative;">
+      <div style="position:absolute; inset:20%; border-radius:999px; background:radial-gradient(circle, rgba(61,171,56,.18) 0%, transparent 65%); animation:sa-glow 4s ease-in-out infinite;"></div>
+      <img src="assets/isotype.png" alt="Seguridad Alimentaria" style="width:180px; height:180px; object-fit:contain; mix-blend-mode:multiply; animation:sa-float 6s ease-in-out infinite; position:relative;">
+    </div>
   </div>
 </section>
 <section style="padding:0 40px 120px;">
@@ -485,8 +505,14 @@
         <div><label style="font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;">Teléfono*</label><input required name="phone" placeholder="+595 …" style="width:100%; margin-top:6px; border:1px solid var(--sa-gray-100); border-radius:10px; padding:14px; font-size:14px;"></div>
         <div><label style="font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;">Empresa</label><input name="company" placeholder="Nombre de tu empresa" style="width:100%; margin-top:6px; border:1px solid var(--sa-gray-100); border-radius:10px; padding:14px; font-size:14px;"></div>
         <div><label style="font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;">Rubro</label>
-          <select name="industry" style="width:100%; margin-top:6px; border:1px solid var(--sa-gray-100); border-radius:10px; padding:14px; font-size:14px; background:#fff;">
-            <option>Seleccioná uno</option><option>Industria alimentaria</option><option>Farmacéutica</option><option>Gastronomía</option><option>Supermercado / retail</option><option>Otro</option>
+          <select name="industry" class="sa-select" style="width:100%; margin-top:6px; border:1px solid var(--sa-gray-100); border-radius:10px; padding:14px 44px 14px 14px; font-size:14px; background:#fff; color:var(--sa-ink); font-weight:600; cursor:pointer; appearance:none; -webkit-appearance:none; -moz-appearance:none; background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2214%22 height=%2214%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%233DAB38%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><polyline points=%226 9 12 15 18 9%22/></svg>'); background-repeat:no-repeat; background-position:right 16px center;">
+            <option value="">Seleccioná una opción</option>
+            <option>Industria alimentaria</option>
+            <option>Farmacéutica</option>
+            <option>Gastronomía</option>
+            <option>Supermercado / retail</option>
+            <option>Laboratorio</option>
+            <option>Otro</option>
           </select>
         </div>
         <div style="grid-column:1 / span 2;">
@@ -501,7 +527,7 @@
     </form>
     <div style="display:flex; flex-direction:column; gap:12px;">
       <a href="https://wa.me/595982296371" target="_blank" style="cursor:pointer; padding:28px; background:var(--sa-green); color:#fff; border-radius:20px; display:flex; align-items:center; gap:20px;">
-        <div style="width:56px; height:56px; background:rgba(255,255,255,.2); border-radius:14px; display:flex; align-items:center; justify-content:center;"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52z"/></svg></div>
+        <div style="width:56px; height:56px; background:rgba(255,255,255,.2); border-radius:14px; display:flex; align-items:center; justify-content:center;"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
         <div style="flex:1;">
           <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; opacity:.8;">WhatsApp directo</div>
           <div style="font-size:22px; font-weight:900; letter-spacing:-.01em; margin-top:2px;">+595 982 296 371</div>
@@ -514,12 +540,6 @@
       <div style="padding:24px; background:var(--sa-gray-50); border-radius:20px; display:flex; align-items:center; gap:16px;">
         <div style="width:48px; height:48px; background:#fff; border-radius:12px; display:flex; align-items:center; justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
         <div><div style="font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--sa-gray-500);">Showroom & Depósito</div><div style="font-size:14px; font-weight:700; margin-top:2px; line-height:1.4;">Capitán Rigoberto Fontao 335<br>casi Gaspar Zabala · Asunción, Paraguay</div></div>
-      </div>
-      <div style="padding:24px; background:var(--sa-ink); color:#fff; border-radius:20px;">
-        <div style="font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--sa-green-light); margin-bottom:10px;">Horario de atención</div>
-        <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:6px;"><span>Lun – Vie</span><b>08:00 – 17:00</b></div>
-        <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:6px;"><span>Sábado</span><b>08:00 – 12:00</b></div>
-        <div style="display:flex; justify-content:space-between; font-size:13px; color:var(--sa-gray-500);"><span>Domingo</span><span>Cerrado</span></div>
       </div>
     </div>
   </div>
@@ -692,7 +712,7 @@
       <div style="display:flex; justify-content:space-between; margin-bottom:6px; font-size:12px; color:var(--sa-gray-500);"><span>Ítems en el carrito</span><span id="cart-total-count">0</span></div>
       <div style="display:flex; justify-content:space-between; margin-bottom:16px; font-size:15px; font-weight:700;"><span>Total estimado</span><span style="color:var(--sa-green);">A cotizar</span></div>
       <button onclick="sendWhatsApp()" class="btn-hover-green" style="width:100%; border:0; background:var(--sa-green); color:#fff; padding:18px 24px; border-radius:999px; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; display:flex; align-items:center; justify-content:center; gap:10px;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Enviar pedido por WhatsApp
       </button>
       <div style="font-size:11px; color:var(--sa-gray-500); text-align:center; margin-top:12px;">Se abrirá WhatsApp con el mensaje pre-armado.</div>
@@ -812,18 +832,18 @@ const WHY_US = [
 ];
 
 const SAFETY_PILLARS = [
-  { n:1, title:'Higiene', desc:'Guantes, curitas detectables, delantales, dosificadores y kits de sanitización para el equipo.', bg:'#E4EDF7', fg:'#1E5FA8', productsLine:'Guantes · Curitas · Dosificadores' },
-  { n:2, title:'Manipulación', desc:'Cuchillería, herramientas de corte y utensilios con mangos detectables por metales.', bg:'#E7F5E4', fg:'#2E8A2C', productsLine:'Cuchillos · Chairas · Utensilios' },
-  { n:3, title:'Contaminación cruzada', desc:'Bandejas, contenedores y colores diferenciados por área evitan traspaso entre productos.', bg:'#FDE7CC', fg:'#B85E00', productsLine:'Bandejas · Cajas · Delimitadores' },
-  { n:4, title:'Trazabilidad', desc:'Cintillos, cadenas de seguridad y etiquetado permiten seguir cada lote desde su origen.', bg:'#F5F7F2', fg:'#0E1712', productsLine:'Cintillos · Cadenas · Sellos' },
-  { n:5, title:'Buenas prácticas', desc:'Bolígrafos, marcadores, planillas: todo lo que entra a planta debe ser detectable.', bg:'#FEF3D7', fg:'#B77A00', productsLine:'Bolígrafos · Marcadores · Planillas' },
+  { title:'Higiene', desc:'Guantes, curitas detectables, delantales, dosificadores y kits de sanitización para el equipo.', bg:'#E4EDF7', fg:'#1E5FA8', productsLine:'Guantes · Curitas · Dosificadores', icon:'<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>' },
+  { title:'Manipulación', desc:'Cuchillería, herramientas de corte y utensilios con mangos detectables por metales.', bg:'#E7F5E4', fg:'#2E8A2C', productsLine:'Cuchillos · Chairas · Utensilios', icon:'<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.121 15.536a3 3 0 0 1-4.243 0"/><path d="M18 2 6 14l4 4L22 6z"/><path d="M6 14 2 22l8-4"/></svg>' },
+  { title:'Contaminación cruzada', desc:'Bandejas, contenedores y colores diferenciados por área evitan traspaso entre productos.', bg:'#FDE7CC', fg:'#B85E00', productsLine:'Bandejas · Cajas · Delimitadores', icon:'<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><circle cx="16" cy="16" r="6"/></svg>' },
+  { title:'Trazabilidad', desc:'Cintillos, cadenas de seguridad y etiquetado permiten seguir cada lote desde su origen.', bg:'#F5F7F2', fg:'#0E1712', productsLine:'Cintillos · Cadenas · Sellos', icon:'<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="7" y1="7" x2="7" y2="17"/><line x1="12" y1="7" x2="12" y2="17"/><line x1="17" y1="7" x2="17" y2="17"/></svg>' },
+  { title:'Buenas prácticas', desc:'Bolígrafos, marcadores, planillas: todo lo que entra a planta debe ser detectable.', bg:'#FEF3D7', fg:'#B77A00', productsLine:'Bolígrafos · Marcadores · Planillas', icon:'<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' },
 ];
 
 const TERRITORY = [
-  { n:1, title:'Confianza', desc:'Cada producto llega con documentación técnica y certificaciones que respaldan tu operación.' },
-  { n:2, title:'Precisión', desc:'Especificaciones técnicas claras: material, tolerancia, certificación, uso recomendado.' },
-  { n:3, title:'Cercanía', desc:'Atención personal por WhatsApp, showroom en Asunción, tiempos de respuesta cortos.' },
-  { n:4, title:'Compromiso', desc:'Buscamos ser aliados de tu operación, no un proveedor más. Reponemos, avisamos, mejoramos.' },
+  { title:'Confianza', desc:'Cada producto llega con documentación técnica y certificaciones que respaldan tu operación.', bg:'#E7F5E4', fg:'#2E8A2C', icon:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>' },
+  { title:'Precisión', desc:'Especificaciones técnicas claras: material, tolerancia, certificación, uso recomendado.', bg:'#E4EDF7', fg:'#1E5FA8', icon:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/></svg>' },
+  { title:'Cercanía', desc:'Atención personal por WhatsApp, showroom en Asunción, tiempos de respuesta cortos.', bg:'#FDE7CC', fg:'#B85E00', icon:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>' },
+  { title:'Compromiso', desc:'Buscamos ser aliados de tu operación, no un proveedor más. Reponemos, avisamos, mejoramos.', bg:'#FEF3D7', fg:'#B77A00', icon:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>' },
 ];
 
 const TAG_FILTERS = [
@@ -1009,10 +1029,9 @@ function renderHome(){
   setupFeaturedCarousel();
 
   document.getElementById('pillars-grid').innerHTML = SAFETY_PILLARS.map(s => `
-    <div style="background:#fff; border-radius:20px; padding:28px 24px; border:1px solid var(--sa-gray-100); display:flex; flex-direction:column; min-height:280px;">
-      <div style="width:52px; height:52px; border-radius:14px; background:${s.bg}; color:${s.fg}; margin-bottom:20px;"></div>
-      <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--sa-gray-500); letter-spacing:.14em;">0${s.n} /</div>
-      <h3 style="font-size:20px; font-weight:800; line-height:1.15; margin:6px 0 10px; text-transform:uppercase;">${s.title}</h3>
+    <div style="background:#fff; border-radius:20px; padding:32px 26px; border:1px solid var(--sa-gray-100); display:flex; flex-direction:column; min-height:260px;">
+      <div style="width:52px; height:52px; border-radius:14px; background:${s.bg}; color:${s.fg}; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">${s.icon}</div>
+      <h3 style="font-size:20px; font-weight:800; line-height:1.15; margin:0 0 10px; text-transform:uppercase;">${s.title}</h3>
       <p style="font-size:13px; color:var(--sa-gray-700); line-height:1.55; margin:0; flex:1;">${s.desc}</p>
     </div>
   `).join('');
@@ -1037,12 +1056,12 @@ function renderCategories(){
 
 function renderAbout(){
   document.getElementById('territory-grid').innerHTML = TERRITORY.map(t => `
-    <div style="border:1px solid var(--sa-gray-100); border-radius:20px; padding:32px; min-height:220px; display:flex; flex-direction:column; justify-content:space-between;">
-      <div style="width:48px; height:48px; border-radius:12px; background:var(--sa-gray-50); color:var(--sa-green);"></div>
-      <div>
-        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.14em; color:var(--sa-gray-500);">— 0${t.n}</div>
-        <h3 style="font-size:22px; font-weight:900; letter-spacing:-.005em; margin:4px 0 6px; text-transform:uppercase;">${t.title}</h3>
-        <p style="font-size:13px; color:var(--sa-gray-700); line-height:1.5; margin:0;">${t.desc}</p>
+    <div class="territory-card" style="position:relative; border:1px solid var(--sa-gray-100); border-radius:22px; padding:32px 28px; min-height:240px; display:flex; flex-direction:column; gap:24px; background:#fff; overflow:hidden; transition:all .3s;">
+      <div style="position:absolute; top:-40px; right:-40px; width:120px; height:120px; border-radius:999px; background:${t.bg}; opacity:.55;"></div>
+      <div style="position:relative; z-index:2; width:56px; height:56px; border-radius:14px; background:${t.bg}; color:${t.fg}; display:flex; align-items:center; justify-content:center;">${t.icon}</div>
+      <div style="position:relative; z-index:2;">
+        <h3 style="font-size:22px; font-weight:900; letter-spacing:-.005em; margin:0 0 10px; text-transform:uppercase; color:var(--sa-ink);">${t.title}</h3>
+        <p style="font-size:13px; color:var(--sa-gray-700); line-height:1.55; margin:0;">${t.desc}</p>
       </div>
     </div>
   `).join('');
@@ -1050,13 +1069,13 @@ function renderAbout(){
 
 function renderSafety(){
   document.getElementById('safety-pillars-full').innerHTML = SAFETY_PILLARS.map(s => `
-    <div style="background:var(--sa-gray-50); border-radius:24px; padding:40px; display:grid; grid-template-columns:auto 1fr; gap:24px; align-items:start;">
-      <div style="width:64px; height:64px; border-radius:16px; background:${s.bg}; color:${s.fg};"></div>
-      <div>
-        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; color:var(--sa-gray-500);">0${s.n} · Pilar</div>
-        <h3 style="font-size:24px; font-weight:900; letter-spacing:-.005em; margin:4px 0 10px; text-transform:uppercase;">${s.title}</h3>
+    <div class="pillar-card" style="position:relative; background:#fff; border:1px solid var(--sa-gray-100); border-radius:24px; padding:36px; display:grid; grid-template-columns:auto 1fr; gap:24px; align-items:start; overflow:hidden; transition:all .3s;">
+      <div style="position:absolute; top:-50px; right:-50px; width:160px; height:160px; border-radius:999px; background:${s.bg}; opacity:.5;"></div>
+      <div style="position:relative; z-index:2; width:64px; height:64px; border-radius:16px; background:${s.bg}; color:${s.fg}; display:flex; align-items:center; justify-content:center;">${s.icon}</div>
+      <div style="position:relative; z-index:2;">
+        <h3 style="font-size:24px; font-weight:900; letter-spacing:-.005em; margin:0 0 10px; text-transform:uppercase;">${s.title}</h3>
         <p style="font-size:14px; color:var(--sa-gray-700); line-height:1.6; margin:0 0 16px;">${s.desc}</p>
-        <div style="font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--sa-green); padding-top:12px; border-top:1px solid var(--sa-gray-100);">Productos: ${s.productsLine}</div>
+        <div style="font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:${s.fg}; padding-top:14px; border-top:1px solid var(--sa-gray-100);">${s.productsLine}</div>
       </div>
     </div>
   `).join('');
@@ -1233,7 +1252,6 @@ function submitContact(e){
   lines.push('', f.message.value);
   const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
   window.open(url, '_blank');
-  alert('Te redirigimos a WhatsApp para enviar tu consulta. También podés escribirnos a info@laseguridadalimentaria.com');
 }
 
 // ===================== ADMIN =====================
