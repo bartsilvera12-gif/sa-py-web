@@ -1,0 +1,942 @@
+[
+  {
+    "sku": "SA-1001",
+    "code": 1001,
+    "name": "Bolígrafo Detectable",
+    "short": "Bolígrafo de una sola pieza: sin piezas pequeñas, minimiza el riesgo de contaminación. • Fabricado con materiales aprobados por la UE y la FDA para co",
+    "long": "Bolígrafo de una sola pieza: sin piezas pequeñas, minimiza el riesgo de contaminación. • Fabricado con materiales aprobados por la UE y la FDA para contacto con alimentos. • Colores de tinta: Azul y negro",
+    "page": 4,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_35_151613_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Productos detectables",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      },
+      {
+        "label": "FDA · UE",
+        "bg": "#FDE7CC",
+        "fg": "#B85E00"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1003",
+    "code": 1003,
+    "name": "Marcador Permanente Detectable",
+    "short": "Marcadores permanentes robustos, no tóxicos y detectables para escribir en todas las superficies, adecuados para usar en todos los entornos de producc",
+    "long": "Marcadores permanentes robustos, no tóxicos y detectables para escribir en todas las superficies, adecuados para usar en todos los entornos de producción de fábricas de alimentos. • Retráctil: No necesita tapa • Color de tinta: Negro",
+    "page": 4,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_39_151632_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Productos detectables",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1004",
+    "code": 1004,
+    "name": "Marcador De Pizarra Blanca Detectable",
+    "short": "Marcador retráctil para pizarra blanca que viene en una carcasa azul con una punta redonda. • Color de tinta: Azul • Retráctil: No necesita tapa",
+    "long": "Marcador retráctil para pizarra blanca que viene en una carcasa azul con una punta redonda. • Color de tinta: Azul • Retráctil: No necesita tapa",
+    "page": 4,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_38_151627_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Productos detectables",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1005",
+    "code": 1005,
+    "name": "Marcador Para Carne Detectable",
+    "short": "E stos marcadores utilizan tinta apto para carne que se seca rapidamente para evitar que se destiña en el producto. • Color de tinta: Azul, rojo ►MARC",
+    "long": "E stos marcadores utilizan tinta apto para carne que se seca rapidamente para evitar que se destiña en el producto. • Color de tinta: Azul, rojo ►MARCADORES BOLÍGRAFOS",
+    "page": 4,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_37_151622_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Productos detectables",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1006",
+    "code": 1006,
+    "name": "Marcador Para Alimentos Detectable",
+    "short": "Estos marcadores retráctiles para alimento y carne vienen en una carcasa azul . Utilizan tinta apta para alimentos de secado rápido para evitar que se",
+    "long": "Estos marcadores retráctiles para alimento y carne vienen en una carcasa azul . Utilizan tinta apta para alimentos de secado rápido para evitar que se destina. Color de tinta: Negro",
+    "page": 5,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_36_151617_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Productos detectables",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1020",
+    "code": 1020,
+    "name": "Bolígrafo Elefante Detectable",
+    "short": "Los bolígrafos Elephant son fabricados con un polímero detectable, con su inteligente diseño de una sola pieza, reduce significativamente la posibilid",
+    "long": "Los bolígrafos Elephant son fabricados con un polímero detectable, con su inteligente diseño de una sola pieza, reduce significativamente la posibilidad de contaminación por cuerpos extraños. • Color de tinta: Azul y rojo RESALTADOR DETECTABLE",
+    "page": 5,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_40_151636_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Productos detectables",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1021",
+    "code": 1021,
+    "name": "Resaltador Detectable",
+    "short": "Los resaltadores tienen cascara azul y estan disponibles en no retráctil y retractible. • Color de tinta: Amarillo PORTAMINA DETECTABLE",
+    "long": "Los resaltadores tienen cascara azul y estan disponibles en no retráctil y retractible. • Color de tinta: Amarillo PORTAMINA DETECTABLE",
+    "page": 5,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_34_151608_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Productos detectables",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1034",
+    "code": 1034,
+    "name": "Portamina Detectable",
+    "short": "Esta portamina metálica es de color azul, lo que permite su detección visual. • El clip, la punta y el extremo son de metal magnético. Esto los hace p",
+    "long": "Esta portamina metálica es de color azul, lo que permite su detección visual. • El clip, la punta y el extremo son de metal magnético. Esto los hace perfectos para entornos de procesamiento de alimentos. • BOLÍGRAFO RETRÁCTIL 4 EN 1 DETECTABLE",
+    "page": 5,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_33_151605_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Productos detectables",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1036",
+    "code": 1036,
+    "name": "Bolígrafo Retráctil 4 En 1 Detectable",
+    "short": "Este boligrafo retráctil cuatro en uno viene en una carcasa azul estándar y garantizara que siempre tenga la tinta del color correcto para la tarea en",
+    "long": "Este boligrafo retráctil cuatro en uno viene en una carcasa azul estándar y garantizara que siempre tenga la tinta del color correcto para la tarea en cuestion. • Color de tinta: Azul, negro, rojo y verde.",
+    "page": 5,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_32_151600_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Productos detectables",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1011",
+    "code": 1011,
+    "name": "Presilladora Sin Grampa Detectable",
+    "short": "Las presilladoras sin grampa estan hechas de polímero detectable y sujetan de forma segura hasta 5 hojas mediante una técnica única de corte, plegado ",
+    "long": "Las presilladoras sin grampa estan hechas de polímero detectable y sujetan de forma segura hasta 5 hojas mediante una técnica única de corte, plegado y fijación. • Color: Azul • Tamaño: 60 x 40 mm ► OFICINA",
+    "page": 6,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_31_151556_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Corte y manipulación",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1016",
+    "code": 1016,
+    "name": "Tijera De Metal Detectable",
+    "short": "De uso general, tienen hojas fabricadas en metal (acero inoxidable) • Disponible en: 15 cm y 18 cm.",
+    "long": "De uso general, tienen hojas fabricadas en metal (acero inoxidable) • Disponible en: 15 cm y 18 cm.",
+    "page": 6,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_30_151552_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Productos detectables",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1017",
+    "code": 1017,
+    "name": "Regla De Metal Detectable",
+    "short": "De acero inoxidable versátil y resistente, ideal para el uso general diario en almacenes y fábricas, con marcas de medición exactas tanto en cm como e",
+    "long": "De acero inoxidable versátil y resistente, ideal para el uso general diario en almacenes y fábricas, con marcas de medición exactas tanto en cm como en pulgadas. • Disponible en: 30 cm.",
+    "page": 6,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_29_151548_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Soluciones industria",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1023",
+    "code": 1023,
+    "name": "Clips De Papel Detectable",
+    "short": "Fabricado con un polimero detectable, este clip esta disponible en color azul. • Elimina la necesidad de grapas en entornos de procesamiento de alimen",
+    "long": "Fabricado con un polimero detectable, este clip esta disponible en color azul. • Elimina la necesidad de grapas en entornos de procesamiento de alimentos.",
+    "page": 6,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_28_151518_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Packaging gastronómico",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1007",
+    "code": 1007,
+    "name": "Bandas De Gomas Detectables",
+    "short": "Las bandas de Goma detectables de color azul, han sido diseñadas especificamente para su uso en la industria alimentaria y están fabricadas con materi",
+    "long": "Las bandas de Goma detectables de color azul, han sido diseñadas especificamente para su uso en la industria alimentaria y están fabricadas con materiales aprobados como seguros para alimentos. • Tamaño: 80 x 6 x 1 mm",
+    "page": 7,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_27_151513_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Cintillos y cadenas",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1002",
+    "code": 1002,
+    "name": "Plancheta De Aluminio Detectable",
+    "short": "Tapa de placa de aluminio con pinza de metal • Tamano: A4 SIZE : 312 mm x 228 mm • PEGATINA DETECTABLE",
+    "long": "Tapa de placa de aluminio con pinza de metal • Tamano: A4 SIZE : 312 mm x 228 mm • PEGATINA DETECTABLE",
+    "page": 7,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_26_151509_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Soluciones industria",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1035",
+    "code": 1035,
+    "name": "Pegatina Detectable",
+    "short": "Pegatines detectable con tira de aluminio • Color: azul • Cuadrado de 10 mm",
+    "long": "Pegatines detectable con tira de aluminio • Color: azul • Cuadrado de 10 mm",
+    "page": 7,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_25_151505_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Soluciones industria",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1037",
+    "code": 1037,
+    "name": "Regla De Plástico Detectable",
+    "short": "Fabricado con un polimero detectable , tiene medidas métricas y esta disponible en dos tamaños,15 cm y/o 30 cm.",
+    "long": "Fabricado con un polimero detectable , tiene medidas métricas y esta disponible en dos tamaños,15 cm y/o 30 cm.",
+    "page": 7,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_24_151500_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Soluciones industria",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1019",
+    "code": 1019,
+    "name": "Cofia Azul Detectable",
+    "short": "Estos cofias plisados, no tejidos, desechable y detectables con metal ofrecen protección contra la contaminacion del cabello, perfecto para fábricas d",
+    "long": "Estos cofias plisados, no tejidos, desechable y detectables con metal ofrecen protección contra la contaminacion del cabello, perfecto para fábricas de alimentos y entornos de producción.",
+    "page": 8,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_23_151455_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Higiene y control",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      },
+      {
+        "label": "Desechable",
+        "bg": "#FEF3D7",
+        "fg": "#B77A00"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1012",
+    "code": 1012,
+    "name": "Barbijo Detectable",
+    "short": "Barbijos detectables desechables,sin tejer, permiten aplanar el cabello, envolviendolo eficazmente y permitiendo al usuario respirar con facilidad. Ta",
+    "long": "Barbijos detectables desechables,sin tejer, permiten aplanar el cabello, envolviendolo eficazmente y permitiendo al usuario respirar con facilidad. Talle único • Color: Azul",
+    "page": 8,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_22_151450_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Higiene y control",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      },
+      {
+        "label": "Desechable",
+        "bg": "#FEF3D7",
+        "fg": "#B77A00"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1013",
+    "code": 1013,
+    "name": "Curitas Adhesivas Detectables",
+    "short": "Nuestra gama de curitas adhesivas detectables de metal son de color azul y ofrecen un sistema de deteccion dual, lo que los hace detectables tanto por",
+    "long": "Nuestra gama de curitas adhesivas detectables de metal son de color azul y ofrecen un sistema de deteccion dual, lo que los hace detectables tanto por sistemas de inspección de metal como por rayos X.",
+    "page": 8,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_21_151445_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Higiene y control",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1018",
+    "code": 1018,
+    "name": "Cordón De Silicona Para Anteojo Detectable",
+    "short": "Cordón de silicona metal detectable para anteojos. Mantiene los anteojos bien sujetos al cuello. Reutilizable • Color: Azul",
+    "long": "Cordón de silicona metal detectable para anteojos. Mantiene los anteojos bien sujetos al cuello. Reutilizable • Color: Azul",
+    "page": 9,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_20_151438_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Higiene y control",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      },
+      {
+        "label": "Reutilizable",
+        "bg": "#E7F5E4",
+        "fg": "#2E8A2C"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1015",
+    "code": 1015,
+    "name": "Cadena De Seguridad Con Soporte Detectable Para Bolígrafo Detectable",
+    "short": "BOLÍGRAFO POR SEPARADO • Cadena de seguridad de 762 mm con anillo y clip en cada extremo. También con soporte detectable para bolígrafos sin clip. • M",
+    "long": "BOLÍGRAFO POR SEPARADO • Cadena de seguridad de 762 mm con anillo y clip en cada extremo. También con soporte detectable para bolígrafos sin clip. • Material: Acero Inoxidable • TAPONES PARA OÍDOS DETECTABLES",
+    "page": 9,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_19_151433_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Productos detectables",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1025",
+    "code": 1025,
+    "name": "Tapones Para Oídos Detectables",
+    "short": "Los tapones para oídos detectables es una buena opción de proteccion auditiva para su centro de procesamiento. Reutilizable • Color: Azul",
+    "long": "Los tapones para oídos detectables es una buena opción de proteccion auditiva para su centro de procesamiento. Reutilizable • Color: Azul",
+    "page": 9,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_18_151428_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Higiene y control",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      },
+      {
+        "label": "Reutilizable",
+        "bg": "#E7F5E4",
+        "fg": "#2E8A2C"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1026",
+    "code": 1026,
+    "name": "Caja De Almacenamiento Para Tapones De Oídos Detectables",
+    "short": "Fabricado con polímero totalmente detectable, estas cajas de almacenamiento de tapones para los oídos tienen dos secciones para identificar el oído iz",
+    "long": "Fabricado con polímero totalmente detectable, estas cajas de almacenamiento de tapones para los oídos tienen dos secciones para identificar el oído izquierdo y derecho y tres orificios de drenaje, lo que las hace adecuadas para tapones para los oidos recien la",
+    "page": 9,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_17_151423_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Packaging gastronómico",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1024",
+    "code": 1024,
+    "name": "Porta Tarjetas De Identificacion De Doble Cara Detectables",
+    "short": "Mejore la seguridad de su sitio con nuestro porta tarjetas de identificación/deslizador de doble cara, detectable, diseñado para sujetar y proteger do",
+    "long": "Mejore la seguridad de su sitio con nuestro porta tarjetas de identificación/deslizador de doble cara, detectable, diseñado para sujetar y proteger dos tarjetas simultáneamente, lo que lo hace ideal para entornos donde tanto el acceso como la visualización de ",
+    "page": 10,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_16_151417_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Soluciones industria",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1014",
+    "code": 1014,
+    "name": "Cintillo De Seguridad Detectable",
+    "short": "Cintillos reutilizables y detectables son perfectos para asegurar y agrupar artículos en sus instalaciones de procesamiento. • Color: Azul • Tamaño: 2",
+    "long": "Cintillos reutilizables y detectables son perfectos para asegurar y agrupar artículos en sus instalaciones de procesamiento. • Color: Azul • Tamaño: 250 mm x 7.5 mm",
+    "page": 10,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_15_151413_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Cintillos y cadenas",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      },
+      {
+        "label": "Reutilizable",
+        "bg": "#E7F5E4",
+        "fg": "#2E8A2C"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1027",
+    "code": 1027,
+    "name": "Porta Llavero Detectable",
+    "short": "Perfecto para colgar objetos del cuello gracias a la anilla y el clip. El cierre inteligente de seguridad detectable permite al usuario volver a coloc",
+    "long": "Perfecto para colgar objetos del cuello gracias a la anilla y el clip. El cierre inteligente de seguridad detectable permite al usuario volver a colocar el llavero si se rompe. • Color: Azul • Tamaño: 480 mm",
+    "page": 10,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_14_151409_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Soluciones industria",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1031",
+    "code": 1031,
+    "name": "Cinta Adhesiva Doble Faz Detectable",
+    "short": "Cinta adhesiva blanca multiuso ofrece una fuerte adhesión. Esto la hace ideal para la superficies húmedas, rugosas o difíciles que suelen encontrarse ",
+    "long": "Cinta adhesiva blanca multiuso ofrece una fuerte adhesión. Esto la hace ideal para la superficies húmedas, rugosas o difíciles que suelen encontrarse en las industrias alimenticia y farmaceútica.",
+    "page": 10,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_13_151404_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Soluciones industria",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1010",
+    "code": 1010,
+    "name": "Vaso De Muestreo Detectable",
+    "short": "Vasos de muestro de 250 ml estan fabricados con polímero detectable aprobado para contacto con alimentos por la UE y la FDA.",
+    "long": "Vasos de muestro de 250 ml estan fabricados con polímero detectable aprobado para contacto con alimentos por la UE y la FDA.",
+    "page": 11,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_12_151358_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Packaging gastronómico",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      },
+      {
+        "label": "FDA · UE",
+        "bg": "#FDE7CC",
+        "fg": "#B85E00"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1039",
+    "code": 1039,
+    "name": "Cuchara De Plástico Detectable",
+    "short": "Las cucharas de plástico son ideales para una amplia gama de ingredientes y áreas de proceso. • Color: azul • Tamaño: 155 x 50 x 40 mm • Longitud del ",
+    "long": "Las cucharas de plástico son ideales para una amplia gama de ingredientes y áreas de proceso. • Color: azul • Tamaño: 155 x 50 x 40 mm • Longitud del mango: 90 mm",
+    "page": 11,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_11_151354_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Corte y manipulación",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1022",
+    "code": 1022,
+    "name": "Espátula Azul Detectable",
+    "short": "Esta espátula miniatura detectable esta hecha de polipropileno muy duradero y seguro para los alimentos. • Color: Azul • Longitud: 160 mm • Ancho de l",
+    "long": "Esta espátula miniatura detectable esta hecha de polipropileno muy duradero y seguro para los alimentos. • Color: Azul • Longitud: 160 mm • Ancho de la hoja: 17 mm",
+    "page": 11,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_10_151349_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Corte y manipulación",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1009",
+    "code": 1009,
+    "name": "Raspador Manual Detectable",
+    "short": "Raspador manual de polipropileno ofrece una solucion sencilla y práctica para raspar y limpiar. Es una herramienta ideal para cocinas, áreas de prepar",
+    "long": "Raspador manual de polipropileno ofrece una solucion sencilla y práctica para raspar y limpiar. Es una herramienta ideal para cocinas, áreas de preparación de alimentos, talleres e instalaciones de fabricación de alimentos.",
+    "page": 11,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_09_151345_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Corte y manipulación",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1008",
+    "code": 1008,
+    "name": "Navaja Retráctil Detectable",
+    "short": "Detectable, desechable y retráctil con hoja de 13 mm. Apto para uso ambidiestro. Mango de nailon resistente detectable. • Color: Azul • Uso: Cartón • ",
+    "long": "Detectable, desechable y retráctil con hoja de 13 mm. Apto para uso ambidiestro. Mango de nailon resistente detectable. • Color: Azul • Uso: Cartón • Dimensiones: 130 x 25 x 15 mm",
+    "page": 12,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_08_151339_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Corte y manipulación",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      },
+      {
+        "label": "Desechable",
+        "bg": "#FEF3D7",
+        "fg": "#B77A00"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1030",
+    "code": 1030,
+    "name": "Cuchillo Pelador Detectable",
+    "short": "Estos cuchillos pelador detectable son fabricados con acero Sheffield de renombre mundial, lo que ofrece mayor resistencia y durabilidad. • Mango: Erg",
+    "long": "Estos cuchillos pelador detectable son fabricados con acero Sheffield de renombre mundial, lo que ofrece mayor resistencia y durabilidad. • Mango: Ergonómico",
+    "page": 12,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_07_151334_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Corte y manipulación",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1033",
+    "code": 1033,
+    "name": "Termómetro Con Sonda De Temperatura Para Alimentos",
+    "short": "La sonda de temperatura para alimentos, totalmente detectable, mide con precisión la temperatura en un amplio rango de -50 a 300 grados Apagado automá",
+    "long": "La sonda de temperatura para alimentos, totalmente detectable, mide con precisión la temperatura en un amplio rango de -50 a 300 grados Apagado automático Color de Carcasa: Azul",
+    "page": 12,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_06_151329_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Corte y manipulación",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1028",
+    "code": 1028,
+    "name": "Portadocumentos De Acero Inoxidable Detectable",
+    "short": "Este soporte para portapapeles de acero inoxidable para montaje en pared esta disponible en color plata. Admite portapapeles de tamaño A4 Tamaño: 247 ",
+    "long": "Este soporte para portapapeles de acero inoxidable para montaje en pared esta disponible en color plata. Admite portapapeles de tamaño A4 Tamaño: 247 x 243 x 40 mm.",
+    "page": 13,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_05_151323_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Packaging gastronómico",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1029",
+    "code": 1029,
+    "name": "Portadocumento Tipo Sobre Plástico Detectable",
+    "short": "Portapapel de plastic detectable y mountable en la pared. Sostiene portapapeles de A4. • Color: Azul • Tamaño: 220 x 310 x 25 mm • BOLSILLO/",
+    "long": "Portapapel de plastic detectable y mountable en la pared. Sostiene portapapeles de A4. • Color: Azul • Tamaño: 220 x 310 x 25 mm • BOLSILLO/",
+    "page": 13,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_04_151318_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Packaging gastronómico",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1038",
+    "code": 1038,
+    "name": "Bolsillo/soporte Para Archivos Detectable",
+    "short": "Este bolsillo de archivos detectable montado en la pared esta diseñado inteligentemente para permitir almacenar multiples archivos cerca de donde los ",
+    "long": "Este bolsillo de archivos detectable montado en la pared esta diseñado inteligentemente para permitir almacenar multiples archivos cerca de donde los necesita. • Tamaño: A4 • Color: azul",
+    "page": 13,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_03_151313_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Soluciones industria",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1032",
+    "code": 1032,
+    "name": "Dispensador De Bolígrafos Detectable",
+    "short": "Nuestro dispensador de bolígrafos montable en pared mantiene nuestros bolígrafos detectables organizados y accesibles. • Tamaño: 150 x 155 x 95 mm • C",
+    "long": "Nuestro dispensador de bolígrafos montable en pared mantiene nuestros bolígrafos detectables organizados y accesibles. • Tamaño: 150 x 155 x 95 mm • Color: Azul",
+    "page": 13,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_02_151132_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Productos detectables",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1040",
+    "code": 1040,
+    "name": "Dispensador De Tapones Para Oidos Detectables",
+    "short": "Dispensador de tapones para los oidos detectables, capacidad para 30 pares de tapones. Se puede montar en la pared con dos orificios para tornillos en",
+    "long": "Dispensador de tapones para los oidos detectables, capacidad para 30 pares de tapones. Se puede montar en la pared con dos orificios para tornillos en la parte porterior. • Color: Azul • Tamaño: 140 x 105 x 90 mm",
+    "page": 14,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_01_151125_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Higiene y control",
+    "tags": [
+      {
+        "label": "Detectable",
+        "bg": "#E4EDF7",
+        "fg": "#1E5FA8"
+      }
+    ]
+  },
+  {
+    "sku": "SA-1106",
+    "code": 1106,
+    "name": "Set Completo",
+    "short": "LÁMINAS ADHESIVAS •",
+    "long": "LÁMINAS ADHESIVAS •",
+    "page": 17,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_01_152540_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Productos detectables",
+    "tags": []
+  },
+  {
+    "sku": "SA-1107",
+    "code": 1107,
+    "name": "Láminas Adhesivas",
+    "short": "TUBOS FLUORECENTE UV 15 W",
+    "long": "TUBOS FLUORECENTE UV 15 W",
+    "page": 17,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_02_152546_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Soluciones industria",
+    "tags": []
+  },
+  {
+    "sku": "SA-1108",
+    "code": 1108,
+    "name": "Tubos Fluorecente Uv 15 W",
+    "short": "REACTANCIA ELECTRÓNICA CON ZÓCALOS Y CONECTORES",
+    "long": "REACTANCIA ELECTRÓNICA CON ZÓCALOS Y CONECTORES",
+    "page": 17,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_03_152551_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Soluciones industria",
+    "tags": []
+  },
+  {
+    "sku": "SA-1109",
+    "code": 1109,
+    "name": "Reactancia Electrónica Con Zócalos Y Conectores",
+    "short": "",
+    "long": "",
+    "page": 17,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_04_152555_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Soluciones industria",
+    "tags": []
+  },
+  {
+    "sku": "SA-1110",
+    "code": 1110,
+    "name": "Gel Repelente Contra Aves",
+    "short": "Es un producto diseñado para repeler palomas y murciélagos y actúa al contacto, no provoca ningún daño ni consecuencias.",
+    "long": "Es un producto diseñado para repeler palomas y murciélagos y actúa al contacto, no provoca ningún daño ni consecuencias.",
+    "page": 18,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_05_152600_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Soluciones industria",
+    "tags": []
+  },
+  {
+    "sku": "SA-1115",
+    "code": 1115,
+    "name": "Tierra De Diatomeas Bolsa De 20",
+    "short": "Es un insecticida, fungicida y fertilizante ecológico natural compuesto por algas fosilizadas rico en silice. • Actua fisicamente deshidratando plagas",
+    "long": "Es un insecticida, fungicida y fertilizante ecológico natural compuesto por algas fosilizadas rico en silice. • Actua fisicamente deshidratando plagas al cortar su exoesqueleto.",
+    "page": 18,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_06_152607_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Soluciones industria",
+    "tags": []
+  },
+  {
+    "sku": "SA-1102",
+    "code": 1102,
+    "name": "Guantes De Nitrilo Azul",
+    "short": "GUANTES DE LÁTEX",
+    "long": "GUANTES DE LÁTEX",
+    "page": 19,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_07_152612_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Higiene y control",
+    "tags": []
+  },
+  {
+    "sku": "SA-1103",
+    "code": 1103,
+    "name": "Guantes De Látex",
+    "short": "TAPABOCA AZUL",
+    "long": "TAPABOCA AZUL",
+    "page": 19,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_08_152616_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Higiene y control",
+    "tags": []
+  },
+  {
+    "sku": "SA-1104",
+    "code": 1104,
+    "name": "Tapaboca Azul",
+    "short": "COFIA BLANCO",
+    "long": "COFIA BLANCO",
+    "page": 19,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_09_152621_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Higiene y control",
+    "tags": []
+  },
+  {
+    "sku": "SA-1105",
+    "code": 1105,
+    "name": "Cofia Blanco",
+    "short": "INSUMOS DE PRODUCCIÓN",
+    "long": "INSUMOS DE PRODUCCIÓN",
+    "page": 19,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_10_152627_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Higiene y control",
+    "tags": []
+  },
+  {
+    "sku": "SA-1117",
+    "code": 1117,
+    "name": "Absorbente De 1kg",
+    "short": "El absorbente de humedad de 1 kg es una solución eficaz para eliminar el exceso de humedad, moho y malos olores en espacios medianos (hasta 35-40 \\(m^",
+    "long": "El absorbente de humedad de 1 kg es una solución eficaz para eliminar el exceso de humedad, moho y malos olores en espacios medianos (hasta 35-40 \\(m^{2}\\)), comúnmente utilizando cloruro de calcio o sílice gel. • TERMÓGRAFO (DATALOGGER)",
+    "page": 20,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_13_152652_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Soluciones industria",
+    "tags": []
+  },
+  {
+    "sku": "SA-1100",
+    "code": 1100,
+    "name": "Temcoatliner Para Container De 20",
+    "short": "TEMCOATLINER PARA CONTAINER DE 40’",
+    "long": "TEMCOATLINER PARA CONTAINER DE 40’",
+    "page": 20,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_11_152643_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Productos detectables",
+    "tags": []
+  },
+  {
+    "sku": "SA-1101",
+    "code": 1101,
+    "name": "Temcoatliner Para Container De 40",
+    "short": "INSUMOS DE EXPORTACIÓN",
+    "long": "INSUMOS DE EXPORTACIÓN",
+    "page": 20,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_11_152643_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Productos detectables",
+    "tags": []
+  },
+  {
+    "sku": "SA-1113",
+    "code": 1113,
+    "name": "Grado Alimenticio 311g",
+    "short": "LUBRICANTE • GRADO ALIMENTICIO 340G",
+    "long": "LUBRICANTE • GRADO ALIMENTICIO 340G",
+    "page": 21,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_14_152657_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Soluciones industria",
+    "tags": []
+  },
+  {
+    "sku": "SA-1114",
+    "code": 1114,
+    "name": "Grado Alimenticio 340g",
+    "short": "",
+    "long": "",
+    "page": 21,
+    "image": "uploads/imagenes_sin_fondo_png_v2/producto_15_152700_sin_fondo.png",
+    "priceLabel": "Consultar",
+    "category": "Productos detectables",
+    "tags": []
+  }
+]

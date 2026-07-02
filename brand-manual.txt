@@ -1,0 +1,49 @@
+
+
+===== ppt/slides/slide1.xml =====
+Manual de marca | Sistema visual, criterios de uso y aplicaciones institucionales | Primera edición · 2026
+
+===== ppt/slides/slide2.xml =====
+Índice del manual | Una guía rápida para mantener consistencia en piezas impresas, digitales y comerciales. | 01 | ADN de marca | Misión, visión, promesa y tono. | 02 | Logo | Versiones, área de seguridad y tamaños mínimos. | 03 | Color | Paleta principal, CMYK, RGB, HEX y proporciones de uso. | 04 | Tipografía | Jerarquías recomendadas y estilo editorial. | 05 | Aplicaciones | Catálogos, presentaciones, redes y papelería. | SEGURIDAD ALIMENTARIA · MANUAL DE MARCA | 02
+
+===== ppt/slides/slide3.xml =====
+ADN de marca | La identidad visual nace del propósito de proteger la integridad de los alimentos. | MISIÓN | Combatir la contaminación por objetos extraños en la industria alimentaria y farmacéutica a través de innovación, calidad y productos detectables por metales y rayos X. | VISIÓN | Ser el proveedor líder en Paraguay de productos detectables por metales y rayos X, confiables y de alta calidad; fortaleciendo sistemas como HACCP, ISO y BRCGS. | Promesa de marca: seguridad, trazabilidad y confianza para entornos donde la contaminación no puede ser una opción. | SEGURIDAD ALIMENTARIA · MANUAL DE MARCA | 03
+
+===== ppt/slides/slide4.xml =====
+Territorio de marca | Seguridad Alimentaria se comunica desde un espacio técnico, limpio y confiable. | La marca debe sentirse: | Técnica | Precisa, clara y orientada a normas de inocuidad. | Preventiva | Enfocada en evitar riesgos antes de que ocurran. | Confiable | Lenguaje sobrio, directo y profesional. | Limpia | Mucho blanco, orden visual y fotografías nítidas. | Contexto visual: productos detectables, industria alimentaria, limpieza, control, producción segura y trazabilidad. | SEGURIDAD ALIMENTARIA · MANUAL DE MARCA | 04
+
+===== ppt/slides/slide5.xml =====
+Logo maestro | La versión principal debe utilizarse siempre que el espacio y el fondo lo permitan. | Composición | 1. Isotipo orgánico de dos hojas: representa protección, inocuidad y control en entornos productivos. | 2. Punto naranja: funciona como acento de alerta positiva, control y verificación. | 3. Logotipo en caja alta: aporta solidez, lectura rápida y presencia institucional. | 4. Tagline: “Ensuring Food Integrity”. | Uso recomendado: fondos blancos, claros o con fotografías suavizadas para garantizar máxima legibilidad. | SEGURIDAD ALIMENTARIA · MANUAL DE MARCA | 05
+
+===== ppt/slides/slide6.xml =====
+Versiones permitidas | Seleccionar la versión según contraste, espacio y objetivo de la pieza. | Principal color | Uso preferente en documentos, presentaciones y piezas comerciales. | Isotipo | Uso como favicon, avatar, sello o recurso gráfico secundario. | Monocromo negro | Uso en impresiones de una tinta o piezas sobrias. | Negativo blanco | Uso sobre fondos verdes oscuros o fotografías con buen contraste. | SEGURIDAD ALIMENTARIA · MANUAL DE MARCA | 06
+
+===== ppt/slides/slide7.xml =====
+Área de seguridad | Mantener aire alrededor del logo protege su lectura y evita ruido visual. | X | Regla práctica | La separación mínima debe equivaler a 1× el diámetro del punto naranja del isotipo alrededor de todos los lados del logo. | En piezas pequeñas, aumentar el margen visual antes de reducir demasiado el tamaño del logo. | No colocar textos, fotos, bordes, sellos ni íconos dentro del área punteada. | SEGURIDAD ALIMENTARIA · MANUAL DE MARCA | 07
+
+===== ppt/slides/slide8.xml =====
+Tamaños mínimos | La reducción no debe comprometer la legibilidad del nombre ni del tagline. | Impreso recomendado | 45 mm de ancho | Impreso mínimo | 30 mm de ancho | Digital recomendado | 180 px de ancho | Digital mínimo | 120 px de ancho | Cuando el espacio sea extremadamente reducido, utilizar solo el isotipo y reservar el logo completo para piezas con lectura suficiente. | SEGURIDAD ALIMENTARIA · MANUAL DE MARCA | 08
+
+===== ppt/slides/slide9.xml =====
+Paleta cromática principal | CMYK oficial de la referencia + valores digitales sugeridos para pantalla. | Verde seguridad | CMYK 75 · 0 · 99 · 0 | RGB 61 · 171 · 56 | #3DAB38 | Color principal de confianza, salud e inocuidad. | Verde lima | CMYK 53 · 0 · 97 · 0 | RGB 141 · 191 · 40 | #8DBF28 | Color secundario para frescura y dinamismo. | Naranja control | CMYK 0 · 50 · 100 · 0 | RGB 241 · 145 · 0 | #F19100 | Acento de alerta positiva y puntos de atención. | Nota: para imprenta priorizar CMYK. Para web, redes y presentaciones utilizar HEX/RGB y validar contraste sobre blanco. | SEGURIDAD ALIMENTARIA · MANUAL DE MARCA | 09
+
+===== ppt/slides/slide10.xml =====
+Uso proporcional del color | El verde lidera la identidad; el naranja debe actuar como acento, no como color dominante. | 60% · identidad principal | 18% · limpieza y aire visual | 14% · frescura y apoyo | 6% · énfasis y llamadas | 2% · texto e institucionalidad | Recomendación: mantener fondos blancos o verdes claros, usar naranja solo para resaltar botones, bullets, puntos de control o detalles de navegación. | SEGURIDAD ALIMENTARIA · MANUAL DE MARCA | 10
+
+===== ppt/slides/slide11.xml =====
+Tipografía sugerida | Una familia geométrica sostiene el carácter técnico, limpio y moderno de la marca. | Montserrat ExtraBold | TÍTULOS PRINCIPALES EN CAJA ALTA | Montserrat SemiBold | Subtítulos, categorías y destacados comerciales. | Montserrat Regular | Textos descriptivos, fichas técnicas, presentaciones y piezas institucionales. Usar interlineado amplio y párrafos cortos para mantener lectura rápida. | Alternativas seguras: Poppins, Arial o Helvetica cuando Montserrat no esté disponible. | SEGURIDAD ALIMENTARIA · MANUAL DE MARCA | 11
+
+===== ppt/slides/slide12.xml =====
+Estilo visual | Fotografía limpia + curvas orgánicas + alto contraste de lectura. | 1. Fondos blancos o claros para transmitir higiene y orden. | 2. Curvas verdes como recurso gráfico de continuidad con el catálogo. | 3. Naranja únicamente para puntos de énfasis o llamadas importantes. | 4. Fotografías de producto sobre fondo limpio; evitar saturación visual. | SEGURIDAD ALIMENTARIA · MANUAL DE MARCA | 12
+
+===== ppt/slides/slide13.xml =====
+Aplicaciones institucionales | El sistema debe verse consistente desde una tarjeta hasta un catálogo técnico. | Nombre Apellido | Asesor comercial | +595 982 296 371 | Tarjeta | Membrete | INSUMOS | DE PRODUCCIÓN | Post para redes | Regla general: mismo logo, misma paleta, mucho aire y títulos breves. | SEGURIDAD ALIMENTARIA · MANUAL DE MARCA | 13
+
+===== ppt/slides/slide14.xml =====
+Usos incorrectos | Evitar cualquier modificación que debilite reconocimiento, contraste o profesionalismo. | No deformar | No cambiar colores | No agregar sombras fuertes | No usar sobre fondos ruidosos | Principio: el logo nunca debe competir con fondos, efectos o elementos que le quiten claridad. | SEGURIDAD ALIMENTARIA · MANUAL DE MARCA | 14
+
+===== ppt/slides/slide15.xml =====
+Plantilla editorial para catálogos | Estructura recomendada para sostener consistencia en fichas técnicas y presentaciones de productos. | Estructura base | Logo pequeño en esquina superior derecha. | Título de categoría en mayúsculas y negro. | Producto + código con peso tipográfico alto. | Bullets cortos; evitar párrafos extensos. | Imagen de producto recortada sobre fondo limpio. | Curvas o franjas verdes/naranjas en margen superior o inferior. | Resultado esperado: páginas técnicas, limpias y rápidas de escanear, manteniendo una identidad reconocible. | SEGURIDAD ALIMENTARIA · MANUAL DE MARCA | 15
+
+===== ppt/slides/slide16.xml =====
+Cierre del manual | Este documento establece la base visual para comunicaciones comerciales, catálogos, presentaciones y piezas digitales. | +595 982 296 371  ·  info@laseguridadalimentaria.com | Capitán Rigoberto Fontao 335 casi Gaspar Zabala · Asunción, Paraguay

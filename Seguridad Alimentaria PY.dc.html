@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="description" content="Seguridad Alimentaria PY — Productos detectables, insumos y herramientas para higiene, control y trazabilidad en la manipulación de alimentos. Cintillos, packaging gastronómico, corte profesional. Cotización por WhatsApp.">
+<meta name="keywords" content="seguridad alimentaria Paraguay, productos detectables, cintillos de seguridad, packaging gastronómico, higiene alimentaria, inocuidad, HACCP, ISO, BRCGS, industria alimentaria Paraguay">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; padding:0; }
+  body { font-family: 'Montserrat', system-ui, sans-serif; color:#0E1712; background:#FFFFFF; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  * { box-sizing: border-box; }
+  a { color:inherit; text-decoration:none; }
+  button { font-family:inherit; cursor:pointer; }
+  input, select, textarea { font-family:inherit; }
+  ::selection { background:#8DBF28; color:#0E1712; }
+  @keyframes sa-marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  @keyframes sa-pulse { 0%,100%{transform:scale(1); opacity:1} 50%{transform:scale(1.15); opacity:.7} }
+</style>
+</helmet>
+
+<div style="min-height:100vh; background:#FFFFFF; font-family:'Montserrat',system-ui,sans-serif; color:#0E1712; overflow-x:hidden;">
+
+<!-- DEV SCREEN SWITCHER -->
+<div style="position:fixed; bottom:16px; left:50%; transform:translateX(-50%); z-index:1000; background:#0E1712; color:#fff; border-radius:999px; padding:6px; display:flex; gap:2px; box-shadow:0 8px 32px rgba(14,23,18,.3);">
+  <sc-for list="{{ views }}" as="v" hint-placeholder-count="10">
+    <button onClick="{{ v.go }}" style="border:0; background:{{ v.bg }}; color:{{ v.fg }}; padding:8px 14px; border-radius:999px; font-family:inherit; font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;">{{ v.label }}</button>
+  </sc-for>
+</div>
+
+<!-- HEADER -->
+<sc-if value="{{ isPublic }}" hint-placeholder-val="{{ true }}">
+<header style="position:sticky; top:0; z-index:60; background:rgba(255,255,255,.94); backdrop-filter:blur(12px); border-bottom:1px solid #E3E7E1;">
+  <div style="max-width:1440px; margin:0 auto; padding:0 40px; height:78px; display:flex; align-items:center; justify-content:space-between; gap:32px;">
+    <a onClick="{{ goHome }}" style="display:flex; align-items:center; gap:12px; cursor:pointer;">
+      <img src="assets/isotype.png" alt="Seguridad Alimentaria" style="width:44px; height:44px; object-fit:contain; display:block;">
+      <div style="display:flex; flex-direction:column; line-height:1;">
+        <span style="font-weight:800; font-size:14px; letter-spacing:.02em;">SEGURIDAD ALIMENTARIA</span>
+        <span style="font-weight:500; font-size:9px; letter-spacing:.28em; color:#3DAB38; margin-top:4px;">· ENSURING FOOD INTEGRITY ·</span>
+      </div>
+    </a>
+    <nav style="display:flex; align-items:center; gap:2px;">
+      <sc-for list="{{ navLinks }}" as="n" hint-placeholder-count="6">
+        <a onClick="{{ n.go }}" style="padding:10px 16px; font-size:13px; font-weight:600; cursor:pointer; border-radius:6px; color:{{ n.color }};" style-hover="background:#F5F7F2;">{{ n.label }}</a>
+      </sc-for>
+    </nav>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <button onClick="{{ requestQuote }}" style="border:0; background:#3DAB38; color:#fff; padding:12px 20px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; display:flex; align-items:center; gap:8px;" style-hover="background:#2E8A2C;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        Solicitar cotización
+      </button>
+      <button onClick="{{ toggleCart }}" style="position:relative; border:1px solid #E3E7E1; background:#fff; padding:11px 14px; border-radius:999px; display:flex; align-items:center; gap:8px;" style-hover="border-color:#0E1712;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span style="font-size:12px; font-weight:700;">{{ cartCount }}</span>
+      </button>
+    </div>
+  </div>
+  <div style="background:#0E1712; color:#EDEFEA;">
+    <div style="max-width:1440px; margin:0 auto; padding:0 40px; height:34px; display:flex; align-items:center; justify-content:space-between; font-size:10.5px; font-weight:500; letter-spacing:.14em; text-transform:uppercase;">
+      <div style="display:flex; align-items:center; gap:22px;">
+        <span style="display:flex; align-items:center; gap:8px;"><span style="width:6px; height:6px; background:#3DAB38; border-radius:999px; display:inline-block; animation:sa-pulse 2s infinite;"></span>Envíos Asunción & Interior</span>
+        <span style="color:#78827B;">·</span>
+        <span>HACCP · ISO · BRCGS</span>
+        <span style="color:#78827B;">·</span>
+        <span>Detectables por metales y rayos X</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:22px;">
+        <span style="color:#8DBF28; font-family:'JetBrains Mono',monospace; letter-spacing:.06em; text-transform:none; font-size:11px;">+595 982 296 371</span>
+        <a onClick="{{ goContact }}" style="color:#fff; cursor:pointer; text-decoration:underline; text-underline-offset:3px;">info@laseguridadalimentaria.com</a>
+      </div>
+    </div>
+  </div>
+</header>
+</sc-if>
+
+<!-- HOME -->
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+
+<section style="position:relative; padding:80px 40px 100px; overflow:hidden;">
+  <div style="max-width:1440px; margin:0 auto; display:grid; grid-template-columns:1.15fr 1fr; gap:80px; align-items:center; position:relative; z-index:2;">
+    <div>
+      <div style="display:inline-flex; align-items:center; gap:10px; padding:8px 14px; background:#F5F7F2; border:1px solid #E3E7E1; border-radius:999px; font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#2E8A2C; margin-bottom:32px;">
+        <span style="width:6px; height:6px; background:#F19100; border-radius:999px;"></span>
+        Ensuring food integrity · desde Paraguay
+      </div>
+      <h1 style="font-size:72px; font-weight:900; line-height:0.96; letter-spacing:-0.02em; margin:0 0 28px; text-transform:uppercase;">
+        Soluciones profesionales para la <span style="color:#3DAB38;">seguridad alimentaria</span>.
+      </h1>
+      <p style="font-size:18px; line-height:1.55; color:#4A5348; max-width:560px; margin:0 0 40px;">
+        Productos, insumos y herramientas para higiene, control, trazabilidad y buenas prácticas en la manipulación de alimentos. Detectables por metales y rayos X para plantas HACCP, ISO y BRCGS.
+      </p>
+      <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap;">
+        <button onClick="{{ goCatalog }}" style="border:0; background:#0E1712; color:#fff; padding:18px 28px; border-radius:999px; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; display:flex; align-items:center; gap:12px;" style-hover="background:#2E8A2C;">
+          Ver productos
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <button onClick="{{ requestQuote }}" style="border:1.5px solid #0E1712; background:#fff; color:#0E1712; padding:16.5px 26px; border-radius:999px; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; display:flex; align-items:center; gap:10px;" style-hover="background:#0E1712; color:#fff;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Cotizar por WhatsApp
+        </button>
+      </div>
+      <div style="display:flex; gap:32px; margin-top:56px; padding-top:32px; border-top:1px solid #E3E7E1;">
+        <div>
+          <div style="font-size:32px; font-weight:900; letter-spacing:-.02em;">200+</div>
+          <div style="font-size:11px; font-weight:600; color:#78827B; letter-spacing:.1em; text-transform:uppercase; margin-top:4px;">Productos detectables</div>
+        </div>
+        <div>
+          <div style="font-size:32px; font-weight:900; letter-spacing:-.02em;">FDA · UE</div>
+          <div style="font-size:11px; font-weight:600; color:#78827B; letter-spacing:.1em; text-transform:uppercase; margin-top:4px;">Aprobados contacto directo</div>
+        </div>
+        <div>
+          <div style="font-size:32px; font-weight:900; letter-spacing:-.02em;">100%</div>
+          <div style="font-size:11px; font-weight:600; color:#78827B; letter-spacing:.1em; text-transform:uppercase; margin-top:4px;">Cotización personalizada</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="position:relative; height:620px;">
+      <svg viewBox="0 0 600 620" style="position:absolute; inset:0; width:100%; height:100%;" preserveAspectRatio="xMidYMid meet">
+        <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3DAB38"/><stop offset="1" stop-color="#8DBF28"/></linearGradient></defs>
+        <circle cx="380" cy="310" r="260" fill="url(#g1)"/>
+        <circle cx="380" cy="310" r="220" fill="#FFFFFF"/>
+      </svg>
+      <div style="position:absolute; top:80px; left:100px; right:60px; bottom:100px; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr 1fr; gap:14px;">
+        <div style="grid-column:1; grid-row:1; background:#fff; border-radius:16px; box-shadow:0 8px 32px rgba(14,23,18,.08); border:1px solid #E3E7E1; padding:16px; display:flex; flex-direction:column; justify-content:space-between; transform:rotate(-4deg);">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.14em; color:#78827B;">SA-CIN-002</div>
+          <div style="height:60px; background:repeating-linear-gradient(90deg,#1E5FA8 0 8px,#2A6FBB 8px 16px); border-radius:6px; position:relative;">
+            <div style="position:absolute; right:6px; top:50%; transform:translateY(-50%); width:16px; height:16px; background:#0E1712; border-radius:999px;"></div>
+          </div>
+          <div>
+            <div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.02em; line-height:1.2;">Cintillos detectables</div>
+            <div style="font-size:10px; color:#78827B; margin-top:2px;">Reutilizables · Azul</div>
+          </div>
+        </div>
+        <div style="grid-column:2; grid-row:1; background:#3DAB38; color:#fff; border-radius:16px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; transform:rotate(3deg); box-shadow:0 12px 40px rgba(61,171,56,.35);">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <div>
+            <div style="font-size:22px; font-weight:900; letter-spacing:-.01em; line-height:1;">HACCP<br>Ready</div>
+            <div style="font-size:10px; font-weight:500; opacity:.85; letter-spacing:.14em; text-transform:uppercase; margin-top:8px;">ISO · BRCGS</div>
+          </div>
+        </div>
+        <div style="grid-column:1 / span 2; grid-row:2; background:#F5F7F2; border-radius:20px; padding:20px; display:flex; align-items:center; gap:20px; border:1px solid #E3E7E1;">
+          <div style="width:90px; height:90px; background:#0E1712; border-radius:12px; flex-shrink:0; display:flex; align-items:center; justify-content:center;">
+            <div style="width:70px; height:14px; background:#1E5FA8; border-radius:3px; position:relative;">
+              <div style="position:absolute; left:6px; top:50%; transform:translateY(-50%); width:6px; height:6px; background:#F19100; border-radius:999px;"></div>
+              <div style="position:absolute; right:6px; top:50%; transform:translateY(-50%); width:8px; height:6px; background:#8DBF28; border-radius:2px;"></div>
+            </div>
+          </div>
+          <div style="flex:1;">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.14em; color:#78827B;">SA-BOL-014</div>
+            <div style="font-size:15px; font-weight:800; text-transform:uppercase; letter-spacing:.01em; margin-top:2px;">Bolígrafo Elephant detectable</div>
+            <div style="display:flex; gap:6px; margin-top:8px;">
+              <span style="font-size:9px; font-weight:700; padding:3px 8px; border-radius:999px; background:#E4EDF7; color:#1E5FA8; letter-spacing:.06em; text-transform:uppercase;">Detectable</span>
+              <span style="font-size:9px; font-weight:700; padding:3px 8px; border-radius:999px; background:#FDE7CC; color:#B85E00; letter-spacing:.06em; text-transform:uppercase;">FDA · UE</span>
+            </div>
+          </div>
+        </div>
+        <div style="grid-column:1; grid-row:3; background:#fff; border-radius:16px; box-shadow:0 8px 32px rgba(14,23,18,.08); border:1px solid #E3E7E1; padding:16px; transform:rotate(4deg);">
+          <div style="display:flex; align-items:center; justify-content:space-between;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E5FA8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:9px; color:#78827B; letter-spacing:.14em;">SA-TMP-001</span>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:600; margin-top:12px; letter-spacing:-.02em;">-4.2°C</div>
+          <div style="font-size:10px; color:#78827B; margin-top:2px;">Sonda detectable · rango -50 a 300°C</div>
+          <div style="height:6px; background:#F5F7F2; border-radius:999px; margin-top:10px; overflow:hidden;">
+            <div style="width:38%; height:100%; background:linear-gradient(90deg,#3DAB38,#8DBF28); border-radius:999px;"></div>
+          </div>
+        </div>
+        <div style="grid-column:2; grid-row:3; background:#0E1712; color:#fff; border-radius:16px; padding:16px; display:flex; flex-direction:column; justify-content:space-between; transform:rotate(-3deg);">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.14em; color:#8DBF28;">CONTROL</div>
+          <div style="width:36px; height:36px; background:#F19100; border-radius:999px; align-self:flex-end; box-shadow:0 0 0 6px rgba(241,145,0,.18);"></div>
+          <div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.02em;">Cotización rápida<br>por WhatsApp</div>
+        </div>
+      </div>
+      <div style="position:absolute; top:20px; right:0; background:#F19100; color:#fff; padding:12px 18px; border-radius:14px; font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; box-shadow:0 12px 30px rgba(241,145,0,.35); display:flex; align-items:center; gap:10px; transform:rotate(6deg);">
+        <span style="width:8px; height:8px; background:#fff; border-radius:999px; animation:sa-pulse 1.6s infinite;"></span>
+        Detectable
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<section style="background:#F5F7F2; padding:24px 0; border-top:1px solid #E3E7E1; border-bottom:1px solid #E3E7E1; overflow:hidden;">
+  <div style="display:flex; gap:60px; white-space:nowrap; animation:sa-marquee 40s linear infinite; font-size:14px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#4A5348;">
+    <sc-for list="{{ marqueeItems }}" as="item" hint-placeholder-count="12">
+      <span style="display:flex; align-items:center; gap:60px;"><span>{{ item }}</span><span style="width:6px; height:6px; background:#F19100; border-radius:999px;"></span></span>
+    </sc-for>
+  </div>
+</section>
+
+<!-- Categorías -->
+<section style="padding:120px 40px 60px;">
+  <div style="max-width:1440px; margin:0 auto;">
+    <div style="display:flex; align-items:end; justify-content:space-between; margin-bottom:60px; gap:40px;">
+      <div style="max-width:640px;">
+        <div style="font-size:11px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#3DAB38; margin-bottom:16px;">— 01 · Catálogo</div>
+        <h2 style="font-size:52px; font-weight:900; line-height:1; letter-spacing:-.02em; margin:0 0 20px; text-transform:uppercase;">Categorías por proceso</h2>
+        <p style="font-size:16px; color:#4A5348; line-height:1.6; margin:0;">Soluciones organizadas por punto crítico: desde el ingreso a planta hasta el empaque final.</p>
+      </div>
+      <button onClick="{{ goCatalog }}" style="border:1.5px solid #0E1712; background:#fff; padding:14px 22px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; white-space:nowrap;" style-hover="background:#0E1712; color:#fff;">Ver todo el catálogo →</button>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;">
+      <sc-for list="{{ categories }}" as="cat" hint-placeholder-count="6">
+        <a onClick="{{ cat.go }}" style="display:block; padding:32px; background:#fff; border:1px solid #E3E7E1; border-radius:20px; cursor:pointer;" style-hover="border-color:#0E1712; transform:translateY(-4px); box-shadow:0 16px 40px rgba(14,23,18,.08);">
+          <div style="display:flex; align-items:start; justify-content:space-between; margin-bottom:60px;">
+            <div style="width:56px; height:56px; border-radius:14px; background:#F5F7F2; display:flex; align-items:center; justify-content:center; color:#3DAB38;" innerHTML="{{ cat.icon }}"></div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.14em; color:#78827B;">{{ cat.code }}</div>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#78827B; letter-spacing:.12em;">— {{ cat.count }} productos</div>
+          <h3 style="font-size:22px; font-weight:800; line-height:1.1; margin:6px 0 12px; text-transform:uppercase; letter-spacing:-.005em;">{{ cat.name }}</h3>
+          <p style="font-size:14px; color:#4A5348; line-height:1.55; margin:0 0 24px;">{{ cat.desc }}</p>
+          <div style="display:flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;">
+            Ver productos
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- Productos destacados -->
+<section style="padding:120px 40px; background:#0E1712; color:#fff; position:relative; overflow:hidden;">
+  <svg viewBox="0 0 1440 200" preserveAspectRatio="none" style="position:absolute; top:0; left:0; width:100%; height:180px; opacity:.14;"><path d="M0,100 Q360,20 720,100 T1440,100 L1440,0 L0,0 Z" fill="#3DAB38"/></svg>
+  <div style="max-width:1440px; margin:0 auto; position:relative;">
+    <div style="display:flex; align-items:end; justify-content:space-between; margin-bottom:60px; gap:40px;">
+      <div style="max-width:640px;">
+        <div style="font-size:11px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#8DBF28; margin-bottom:16px;">— 02 · Destacados</div>
+        <h2 style="font-size:52px; font-weight:900; line-height:1; letter-spacing:-.02em; margin:0 0 20px; text-transform:uppercase; color:#fff;">Los que más se piden esta temporada</h2>
+        <p style="font-size:16px; color:#B9C0BA; line-height:1.6; margin:0;">Selección curada por nuestro equipo técnico. Cotización inmediata por WhatsApp.</p>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:20px;">
+      <sc-for list="{{ featuredProducts }}" as="p" hint-placeholder-count="4">
+        <div style="background:#fff; border-radius:20px; overflow:hidden; color:#0E1712; display:flex; flex-direction:column;">
+          <div style="position:relative; aspect-ratio:1/1; background:#F5F7F2; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+            <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(45deg, transparent 0 12px, rgba(14,23,18,.03) 12px 13px);"></div>
+            <div style="position:relative; z-index:2; width:70%; height:60%; display:flex; align-items:center; justify-content:center;" innerHTML="{{ p.visual }}"></div>
+            <div style="position:absolute; top:14px; left:14px; display:flex; gap:6px; flex-wrap:wrap;">
+              <sc-for list="{{ p.tags }}" as="tag" hint-placeholder-count="2">
+                <span style="font-size:9px; font-weight:700; padding:4px 8px; border-radius:999px; background:{{ tag.bg }}; color:{{ tag.fg }}; letter-spacing:.06em; text-transform:uppercase;">{{ tag.label }}</span>
+              </sc-for>
+            </div>
+            <div style="position:absolute; top:14px; right:14px; font-family:'JetBrains Mono',monospace; font-size:10px; color:#78827B; letter-spacing:.14em; background:#fff; padding:4px 8px; border-radius:6px;">{{ p.sku }}</div>
+            <button onClick="{{ p.addToCart }}" style="position:absolute; bottom:14px; right:14px; border:0; background:#0E1712; color:#fff; width:44px; height:44px; border-radius:999px; display:flex; align-items:center; justify-content:center;" style-hover="background:#3DAB38;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+          <div style="padding:20px; display:flex; flex-direction:column; gap:6px; flex:1;">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.14em; color:#78827B; text-transform:uppercase;">{{ p.category }}</div>
+            <h3 style="font-size:16px; font-weight:800; line-height:1.2; margin:0; text-transform:uppercase; letter-spacing:-.005em;">{{ p.name }}</h3>
+            <p style="font-size:13px; color:#4A5348; line-height:1.5; margin:2px 0 0; flex:1;">{{ p.short }}</p>
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-top:14px; padding-top:14px; border-top:1px solid #E3E7E1;">
+              <div>
+                <div style="font-size:10px; color:#78827B; font-weight:600; letter-spacing:.06em; text-transform:uppercase;">Precio</div>
+                <div style="font-size:15px; font-weight:800;">{{ p.priceLabel }}</div>
+              </div>
+              <button onClick="{{ p.view }}" style="border:1.5px solid #0E1712; background:transparent; padding:10px 14px; border-radius:999px; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase;" style-hover="background:#0E1712; color:#fff;">Ver ficha</button>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- Por qué elegirnos -->
+<section style="padding:120px 40px;">
+  <div style="max-width:1440px; margin:0 auto; display:grid; grid-template-columns:1fr 1.5fr; gap:80px; align-items:start;">
+    <div style="position:sticky; top:120px;">
+      <div style="font-size:11px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#3DAB38; margin-bottom:16px;">— 03 · Por qué elegirnos</div>
+      <h2 style="font-size:52px; font-weight:900; line-height:1; letter-spacing:-.02em; margin:0 0 24px; text-transform:uppercase;">Un aliado técnico para tu operación.</h2>
+      <p style="font-size:16px; color:#4A5348; line-height:1.6; margin:0 0 32px;">No vendemos productos aislados: acompañamos a cada cliente en la selección según sus puntos críticos de control.</p>
+      <button onClick="{{ requestQuote }}" style="border:0; background:#3DAB38; color:#fff; padding:16px 24px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;" style-hover="background:#2E8A2C;">Hablemos por WhatsApp</button>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px; background:#E3E7E1; border-radius:20px; overflow:hidden; border:1px solid #E3E7E1;">
+      <sc-for list="{{ whyUs }}" as="w" hint-placeholder-count="6">
+        <div style="background:#fff; padding:36px 32px;">
+          <div style="width:44px; height:44px; border-radius:12px; background:#F5F7F2; display:flex; align-items:center; justify-content:center; color:#3DAB38; margin-bottom:24px;" innerHTML="{{ w.icon }}"></div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:#78827B; letter-spacing:.14em; text-transform:uppercase; margin-bottom:8px;">— {{ w.n }}</div>
+          <h3 style="font-size:19px; font-weight:800; line-height:1.15; margin:0 0 10px; text-transform:uppercase; letter-spacing:-.005em;">{{ w.title }}</h3>
+          <p style="font-size:14px; color:#4A5348; line-height:1.55; margin:0;">{{ w.desc }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- Educativa -->
+<section style="padding:120px 40px; background:#F5F7F2;">
+  <div style="max-width:1440px; margin:0 auto;">
+    <div style="text-align:center; max-width:720px; margin:0 auto 80px;">
+      <div style="font-size:11px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#3DAB38; margin-bottom:16px;">— 04 · Conocimiento</div>
+      <h2 style="font-size:52px; font-weight:900; line-height:1; letter-spacing:-.02em; margin:0 0 20px; text-transform:uppercase;">Seguridad alimentaria en cada proceso.</h2>
+      <p style="font-size:16px; color:#4A5348; line-height:1.6; margin:0;">Cinco pilares que sostienen las buenas prácticas de manufactura.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:16px;">
+      <sc-for list="{{ safetyPillars }}" as="s" hint-placeholder-count="5">
+        <div style="background:#fff; border-radius:20px; padding:28px 24px; border:1px solid #E3E7E1; display:flex; flex-direction:column; min-height:280px;">
+          <div style="width:52px; height:52px; border-radius:14px; background:{{ s.bg }}; display:flex; align-items:center; justify-content:center; color:{{ s.fg }}; margin-bottom:20px;" innerHTML="{{ s.icon }}"></div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#78827B; letter-spacing:.14em;">0{{ s.n }} /</div>
+          <h3 style="font-size:20px; font-weight:800; line-height:1.15; margin:6px 0 10px; text-transform:uppercase; letter-spacing:-.005em;">{{ s.title }}</h3>
+          <p style="font-size:13px; color:#4A5348; line-height:1.55; margin:0; flex:1;">{{ s.desc }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- CTA final -->
+<section style="padding:100px 40px; background:#3DAB38; color:#fff; position:relative; overflow:hidden;">
+  <svg viewBox="0 0 1440 400" preserveAspectRatio="xMidYMid slice" style="position:absolute; inset:0; width:100%; height:100%; opacity:.15;"><circle cx="200" cy="200" r="180" fill="#fff"/><circle cx="1300" cy="100" r="120" fill="#F19100"/><circle cx="1200" cy="350" r="200" fill="#8DBF28"/></svg>
+  <div style="max-width:1200px; margin:0 auto; position:relative; text-align:center;">
+    <div style="font-size:11px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; margin-bottom:24px; opacity:.8;">— Cotización en menos de 24 hs</div>
+    <h2 style="font-size:64px; font-weight:900; line-height:1; letter-spacing:-.02em; margin:0 0 24px; text-transform:uppercase;">Contanos qué necesitás<br>y lo preparamos para vos.</h2>
+    <p style="font-size:18px; opacity:.9; max-width:620px; margin:0 auto 40px; line-height:1.5;">Empresa, industria, gastronomía, farmacéutica: si trabajás con alimentos, tenemos la solución detectable que buscás.</p>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <button onClick="{{ requestQuote }}" style="border:0; background:#fff; color:#0E1712; padding:18px 28px; border-radius:999px; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;" style-hover="background:#0E1712; color:#fff;">Cotizar por WhatsApp →</button>
+      <button onClick="{{ goContact }}" style="border:1.5px solid #fff; background:transparent; color:#fff; padding:16.5px 26px; border-radius:999px; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;" style-hover="background:#fff; color:#0E1712;">Enviar consulta</button>
+    </div>
+  </div>
+</section>
+
+</sc-if>
+
+<!-- CATALOG -->
+<sc-if value="{{ isCatalog }}">
+<section style="padding:60px 40px; border-bottom:1px solid #E3E7E1;">
+  <div style="max-width:1440px; margin:0 auto;">
+    <div style="font-size:11px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#3DAB38; margin-bottom:16px;">— Catálogo</div>
+    <h1 style="font-size:64px; font-weight:900; line-height:.98; letter-spacing:-.02em; margin:0 0 20px; text-transform:uppercase;">Todos los productos</h1>
+    <p style="font-size:16px; color:#4A5348; max-width:640px; line-height:1.55; margin:0;">Filtrá por categoría, etiqueta o palabra clave. Todos los ítems están disponibles bajo pedido; consultá stock y precios por WhatsApp.</p>
+  </div>
+</section>
+<section style="padding:0 40px 120px;">
+  <div style="max-width:1440px; margin:0 auto; display:grid; grid-template-columns:280px 1fr; gap:40px; padding-top:40px;">
+    <aside style="position:sticky; top:130px; height:fit-content; padding:28px 24px; border:1px solid #E3E7E1; border-radius:20px; background:#FBFCF9;">
+      <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; margin-bottom:20px; display:flex; justify-content:space-between;">
+        <span>Filtros</span><a style="color:#3DAB38; cursor:pointer;">Limpiar</a>
+      </div>
+      <div style="position:relative; margin-bottom:28px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#78827B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; left:14px; top:50%; transform:translateY(-50%);"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="Buscar producto…" style="width:100%; border:1px solid #E3E7E1; background:#fff; border-radius:10px; padding:11px 14px 11px 40px; font-size:13px;">
+      </div>
+      <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#78827B; margin-bottom:12px;">Categorías</div>
+      <div style="display:flex; flex-direction:column; gap:2px; margin-bottom:28px;">
+        <sc-for list="{{ categories }}" as="cat" hint-placeholder-count="6">
+          <label style="display:flex; align-items:center; gap:10px; padding:8px 10px; border-radius:8px; cursor:pointer; font-size:13px;" style-hover="background:#F5F7F2;">
+            <input type="checkbox" style="accent-color:#3DAB38; width:16px; height:16px;">
+            <span style="flex:1;">{{ cat.name }}</span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#78827B;">{{ cat.count }}</span>
+          </label>
+        </sc-for>
+      </div>
+      <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#78827B; margin-bottom:12px;">Etiquetas técnicas</div>
+      <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:28px;">
+        <sc-for list="{{ tagFilters }}" as="tag" hint-placeholder-count="6">
+          <span style="font-size:11px; font-weight:600; padding:6px 12px; border-radius:999px; background:{{ tag.bg }}; color:{{ tag.fg }}; cursor:pointer; border:1px solid {{ tag.border }};">{{ tag.label }}</span>
+        </sc-for>
+      </div>
+      <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#78827B; margin-bottom:12px;">Mostrar</div>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <label style="display:flex; align-items:center; gap:10px; font-size:13px; cursor:pointer;"><input type="checkbox" checked="checked" style="accent-color:#3DAB38;">Con precio visible</label>
+        <label style="display:flex; align-items:center; gap:10px; font-size:13px; cursor:pointer;"><input type="checkbox" checked="checked" style="accent-color:#3DAB38;">En stock</label>
+        <label style="display:flex; align-items:center; gap:10px; font-size:13px; cursor:pointer;"><input type="checkbox" style="accent-color:#3DAB38;">Novedades</label>
+      </div>
+    </aside>
+    <div>
+      <div style="display:flex; align-items:center; justify-content:space-between; padding:14px 20px; background:#F5F7F2; border-radius:14px; margin-bottom:24px;">
+        <div style="font-size:13px; color:#4A5348;">Mostrando <b>{{ productsCount }} de {{ productsCount }}</b> productos</div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="font-size:12px; color:#78827B; letter-spacing:.04em; text-transform:uppercase; font-weight:600;">Ordenar</div>
+          <select style="border:1px solid #E3E7E1; border-radius:8px; padding:8px 32px 8px 12px; font-size:13px; background:#fff; font-weight:600;">
+            <option>Más recientes</option><option>Nombre A→Z</option><option>Categoría</option>
+          </select>
+          <div style="display:flex; border:1px solid #E3E7E1; border-radius:8px; overflow:hidden;">
+            <button style="border:0; background:#0E1712; color:#fff; padding:8px 10px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></button>
+            <button style="border:0; background:#fff; color:#78827B; padding:8px 10px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;">
+        <sc-for list="{{ allProducts }}" as="p" hint-placeholder-count="12">
+          <div style="background:#fff; border-radius:20px; overflow:hidden; border:1px solid #E3E7E1; display:flex; flex-direction:column;" style-hover="border-color:#0E1712;">
+            <div style="position:relative; aspect-ratio:1/1; background:#F5F7F2; display:flex; align-items:center; justify-content:center;">
+              <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(45deg, transparent 0 12px, rgba(14,23,18,.03) 12px 13px);"></div>
+              <div style="position:relative; z-index:2; width:70%; height:60%;" innerHTML="{{ p.visual }}"></div>
+              <div style="position:absolute; top:12px; left:12px; display:flex; gap:4px; flex-wrap:wrap;">
+                <sc-for list="{{ p.tags }}" as="tag" hint-placeholder-count="2">
+                  <span style="font-size:9px; font-weight:700; padding:3px 7px; border-radius:999px; background:{{ tag.bg }}; color:{{ tag.fg }}; letter-spacing:.06em; text-transform:uppercase;">{{ tag.label }}</span>
+                </sc-for>
+              </div>
+              <div style="position:absolute; top:12px; right:12px; font-family:'JetBrains Mono',monospace; font-size:9px; color:#78827B; letter-spacing:.14em; background:#fff; padding:3px 7px; border-radius:5px;">{{ p.sku }}</div>
+            </div>
+            <div style="padding:18px; display:flex; flex-direction:column; gap:4px; flex:1;">
+              <div style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.14em; color:#78827B; text-transform:uppercase;">{{ p.category }}</div>
+              <h3 style="font-size:15px; font-weight:800; line-height:1.2; margin:0; text-transform:uppercase; cursor:pointer;" onClick="{{ p.view }}">{{ p.name }}</h3>
+              <p style="font-size:12.5px; color:#4A5348; line-height:1.5; margin:2px 0 0; flex:1;">{{ p.short }}</p>
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-top:12px; padding-top:12px; border-top:1px solid #E3E7E1;">
+                <div style="font-size:14px; font-weight:800;">{{ p.priceLabel }}</div>
+                <div style="display:flex; gap:6px;">
+                  <button onClick="{{ p.addToCart }}" style="border:1px solid #E3E7E1; background:#fff; padding:8px 10px; border-radius:8px; font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;" style-hover="border-color:#0E1712;">+ Carrito</button>
+                  <button onClick="{{ p.view }}" style="border:0; background:#3DAB38; color:#fff; padding:8px 12px; border-radius:8px; font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;">Ver</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex; justify-content:center; align-items:center; gap:6px; margin-top:60px;">
+        <button style="width:40px; height:40px; border:1px solid #E3E7E1; background:#fff; border-radius:8px; color:#78827B;">‹</button>
+        <button style="width:40px; height:40px; border:0; background:#0E1712; color:#fff; border-radius:8px; font-weight:700;">1</button>
+        <button style="width:40px; height:40px; border:1px solid #E3E7E1; background:#fff; border-radius:8px; font-weight:600;">2</button>
+        <button style="width:40px; height:40px; border:1px solid #E3E7E1; background:#fff; border-radius:8px; font-weight:600;">3</button>
+        <span style="padding:0 6px; color:#78827B;">…</span>
+        <button style="width:40px; height:40px; border:1px solid #E3E7E1; background:#fff; border-radius:8px; font-weight:600;">8</button>
+        <button style="width:40px; height:40px; border:1px solid #E3E7E1; background:#fff; border-radius:8px;">›</button>
+      </div>
+    </div>
+  </div>
+</section>
+</sc-if>
+<!-- PRODUCT DETAIL -->
+<sc-if value="{{ isProduct }}">
+<section style="padding:32px 40px 20px; border-bottom:1px solid #E3E7E1;">
+  <div style="max-width:1440px; margin:0 auto; display:flex; align-items:center; gap:10px; font-size:12px; color:#78827B;">
+    <a onClick="{{ goHome }}" style="cursor:pointer;">Inicio</a><span>/</span>
+    <a onClick="{{ goCatalog }}" style="cursor:pointer;">Catálogo</a><span>/</span>
+    <span>{{ activeProduct.category }}</span><span>/</span>
+    <span style="color:#0E1712; font-weight:600;">{{ activeProduct.name }}</span>
+  </div>
+</section>
+<section style="padding:40px 40px 80px;">
+  <div style="max-width:1440px; margin:0 auto; display:grid; grid-template-columns:1.15fr 1fr; gap:60px;">
+    <div>
+      <div style="position:relative; aspect-ratio:1/1; background:#F5F7F2; border-radius:24px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+        <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(45deg, transparent 0 16px, rgba(14,23,18,.03) 16px 17px);"></div>
+        <div style="position:relative; z-index:2; width:60%; height:50%;" innerHTML="{{ activeProduct.visual }}"></div>
+        <div style="position:absolute; top:20px; left:20px; display:flex; gap:8px;">
+          <sc-for list="{{ activeProduct.tags }}" as="tag" hint-placeholder-count="3">
+            <span style="font-size:10px; font-weight:700; padding:5px 10px; border-radius:999px; background:{{ tag.bg }}; color:{{ tag.fg }}; letter-spacing:.06em; text-transform:uppercase;">{{ tag.label }}</span>
+          </sc-for>
+        </div>
+        <div style="position:absolute; top:20px; right:20px; font-family:'JetBrains Mono',monospace; font-size:11px; color:#78827B; letter-spacing:.14em; background:#fff; padding:5px 10px; border-radius:6px;">{{ activeProduct.sku }}</div>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:12px; margin-top:12px;">
+        <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="4">
+          <div style="aspect-ratio:1/1; border-radius:12px; border:1.5px solid {{ g.border }}; background:#F5F7F2; display:flex; align-items:center; justify-content:center; cursor:pointer;">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.14em; color:#78827B;">{{ g.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="padding:8px 0;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; color:#3DAB38; text-transform:uppercase; margin-bottom:12px;">{{ activeProduct.category }}</div>
+      <h1 style="font-size:44px; font-weight:900; line-height:1; letter-spacing:-.015em; margin:0 0 20px; text-transform:uppercase;">{{ activeProduct.name }}</h1>
+      <p style="font-size:16px; color:#4A5348; line-height:1.55; margin:0 0 32px;">{{ activeProduct.long }}</p>
+      <div style="border-top:1px solid #E3E7E1; border-bottom:1px solid #E3E7E1; padding:20px 0; margin-bottom:32px; display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+        <sc-for list="{{ activeProduct.specs }}" as="spec" hint-placeholder-count="4">
+          <div>
+            <div style="font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#78827B; margin-bottom:4px;">{{ spec.label }}</div>
+            <div style="font-size:14px; font-weight:700;">{{ spec.value }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-bottom:32px;">
+        <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#78827B; margin-bottom:14px;">Beneficios</div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <sc-for list="{{ activeProduct.benefits }}" as="b" hint-placeholder-count="4">
+            <div style="display:flex; align-items:start; gap:12px; font-size:14px; line-height:1.5;">
+              <div style="width:20px; height:20px; border-radius:999px; background:#F5F7F2; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; color:#3DAB38;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <span>{{ b }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="background:#F5F7F2; border-radius:16px; padding:20px 22px; margin-bottom:32px;">
+        <div style="display:flex; align-items:center; gap:10px; font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#3DAB38; margin-bottom:10px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          Uso recomendado
+        </div>
+        <div style="font-size:14px; color:#4A5348; line-height:1.55;">{{ activeProduct.usage }}</div>
+      </div>
+      <div style="display:flex; align-items:end; justify-content:space-between; padding:24px 0; border-top:1.5px solid #0E1712; margin-bottom:24px;">
+        <div>
+          <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#78827B;">Precio unitario</div>
+          <div style="font-size:36px; font-weight:900; letter-spacing:-.02em; line-height:1; margin-top:6px;">Consultar</div>
+          <div style="font-size:12px; color:#78827B; margin-top:6px;">Descuentos por volumen · Stock: <b style="color:#3DAB38;">240 uds.</b></div>
+        </div>
+        <div style="display:flex; align-items:center; border:1px solid #E3E7E1; border-radius:999px; padding:4px;">
+          <button style="border:0; background:#fff; width:34px; height:34px; border-radius:999px; font-size:18px;">−</button>
+          <span style="padding:0 16px; font-weight:800; font-size:15px;">1</span>
+          <button style="border:0; background:#0E1712; color:#fff; width:34px; height:34px; border-radius:999px; font-size:18px;">+</button>
+        </div>
+      </div>
+      <div style="display:flex; gap:12px;">
+        <button onClick="{{ addActiveToCart }}" style="flex:1; border:0; background:#0E1712; color:#fff; padding:18px 24px; border-radius:999px; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; display:flex; align-items:center; justify-content:center; gap:10px;" style-hover="background:#3DAB38;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          Agregar al carrito
+        </button>
+        <button onClick="{{ requestQuote }}" style="flex:1; border:0; background:#3DAB38; color:#fff; padding:18px 24px; border-radius:999px; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;" style-hover="background:#2E8A2C;">Solicitar por WhatsApp</button>
+      </div>
+      <div style="display:flex; align-items:center; gap:20px; margin-top:24px; padding:16px 20px; background:#FBFCF9; border:1px dashed #C7CDC2; border-radius:12px; font-size:12px; color:#4A5348;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DAB38" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        Envíos a Asunción e Interior · Retiro en Capitán Rigoberto Fontao 335 · Facturación empresarial (RUC)
+      </div>
+    </div>
+  </div>
+</section>
+<section style="padding:80px 40px; background:#F5F7F2;">
+  <div style="max-width:1440px; margin:0 auto;">
+    <div style="display:flex; align-items:end; justify-content:space-between; margin-bottom:40px;">
+      <div>
+        <div style="font-size:11px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#3DAB38; margin-bottom:12px;">— También podría interesarte</div>
+        <h2 style="font-size:36px; font-weight:900; line-height:1; letter-spacing:-.015em; margin:0; text-transform:uppercase;">Productos relacionados</h2>
+      </div>
+      <a onClick="{{ goCatalog }}" style="font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; cursor:pointer; border-bottom:2px solid #3DAB38; padding-bottom:2px;">Ver toda la categoría →</a>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:20px;">
+      <sc-for list="{{ featuredProducts }}" as="p" hint-placeholder-count="4">
+        <div style="background:#fff; border-radius:20px; overflow:hidden; border:1px solid #E3E7E1; cursor:pointer;" onClick="{{ p.view }}">
+          <div style="position:relative; aspect-ratio:1/1; background:#F5F7F2; display:flex; align-items:center; justify-content:center;">
+            <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(45deg, transparent 0 12px, rgba(14,23,18,.03) 12px 13px);"></div>
+            <div style="position:relative; z-index:2; width:65%; height:55%;" innerHTML="{{ p.visual }}"></div>
+            <div style="position:absolute; top:12px; right:12px; font-family:'JetBrains Mono',monospace; font-size:9px; color:#78827B; background:#fff; padding:3px 7px; border-radius:5px; letter-spacing:.14em;">{{ p.sku }}</div>
+          </div>
+          <div style="padding:16px;">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.14em; color:#78827B; text-transform:uppercase;">{{ p.category }}</div>
+            <div style="font-size:14px; font-weight:800; margin-top:2px; text-transform:uppercase; line-height:1.2;">{{ p.name }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+</sc-if>
+<!-- CART DRAWER -->
+<sc-if value="{{ cartOpen }}">
+<div style="position:fixed; inset:0; z-index:200; display:flex; justify-content:flex-end;">
+  <div onClick="{{ toggleCart }}" style="position:absolute; inset:0; background:rgba(14,23,18,.5); backdrop-filter:blur(4px);"></div>
+  <div style="position:relative; width:520px; max-width:100%; background:#fff; height:100vh; display:flex; flex-direction:column; box-shadow:-30px 0 60px rgba(0,0,0,.15);">
+    <div style="padding:24px 28px; border-bottom:1px solid #E3E7E1; display:flex; align-items:center; justify-content:space-between;">
+      <div>
+        <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#3DAB38;">— Tu pedido</div>
+        <h2 style="font-size:24px; font-weight:900; letter-spacing:-.01em; margin:4px 0 0; text-transform:uppercase;">Carrito de cotización</h2>
+      </div>
+      <button onClick="{{ toggleCart }}" style="border:1px solid #E3E7E1; background:#fff; width:40px; height:40px; border-radius:999px; display:flex; align-items:center; justify-content:center;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div style="flex:1; overflow-y:auto; padding:20px 28px;">
+      <sc-for list="{{ cart }}" as="item" hint-placeholder-count="3">
+        <div style="display:grid; grid-template-columns:80px 1fr auto; gap:14px; padding:16px 0; border-bottom:1px solid #E3E7E1;">
+          <div style="width:80px; height:80px; background:#F5F7F2; border-radius:10px; display:flex; align-items:center; justify-content:center;" innerHTML="{{ item.visual }}"></div>
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.14em; color:#78827B;">{{ item.sku }}</div>
+            <div style="font-size:14px; font-weight:800; text-transform:uppercase; line-height:1.2; margin-top:2px;">{{ item.name }}</div>
+            <div style="font-size:12px; color:#78827B; margin-top:4px;">{{ item.priceLabel }}</div>
+            <div style="display:flex; align-items:center; gap:8px; margin-top:10px;">
+              <button onClick="{{ item.decrement }}" style="border:1px solid #E3E7E1; background:#fff; width:26px; height:26px; border-radius:6px; font-size:14px;">−</button>
+              <span style="font-size:13px; font-weight:700; min-width:20px; text-align:center;">{{ item.qty }}</span>
+              <button onClick="{{ item.increment }}" style="border:1px solid #E3E7E1; background:#fff; width:26px; height:26px; border-radius:6px; font-size:14px;">+</button>
+            </div>
+          </div>
+          <button onClick="{{ item.remove }}" style="border:0; background:transparent; color:#78827B; font-size:11px; letter-spacing:.06em; text-transform:uppercase; font-weight:600;">Quitar</button>
+        </div>
+      </sc-for>
+    </div>
+    <div style="padding:20px 28px; border-top:1px solid #E3E7E1; background:#FBFCF9;">
+      <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#78827B; margin-bottom:14px;">Datos para la cotización</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <input placeholder="Nombre y apellido" style="border:1px solid #E3E7E1; border-radius:8px; padding:11px 12px; font-size:13px; background:#fff;">
+        <input placeholder="Teléfono / WhatsApp" style="border:1px solid #E3E7E1; border-radius:8px; padding:11px 12px; font-size:13px; background:#fff;">
+        <input placeholder="Empresa" style="border:1px solid #E3E7E1; border-radius:8px; padding:11px 12px; font-size:13px; background:#fff;">
+        <input placeholder="RUC (opcional)" style="border:1px solid #E3E7E1; border-radius:8px; padding:11px 12px; font-size:13px; background:#fff;">
+        <input placeholder="Ciudad" style="border:1px solid #E3E7E1; border-radius:8px; padding:11px 12px; font-size:13px; background:#fff; grid-column:1 / span 2;">
+        <textarea placeholder="Observaciones (opcional): cantidades, entrega, uso previsto…" style="border:1px solid #E3E7E1; border-radius:8px; padding:11px 12px; font-size:13px; background:#fff; grid-column:1 / span 2; min-height:70px; resize:vertical;"></textarea>
+      </div>
+    </div>
+    <div style="padding:20px 28px 28px; border-top:1px solid #E3E7E1; background:#fff;">
+      <div style="display:flex; justify-content:space-between; margin-bottom:6px; font-size:12px; color:#78827B;">
+        <span>Ítems en el carrito</span><span>{{ cartCount }}</span>
+      </div>
+      <div style="display:flex; justify-content:space-between; margin-bottom:16px; font-size:15px; font-weight:700;">
+        <span>Total estimado</span><span style="color:#3DAB38;">A cotizar</span>
+      </div>
+      <button onClick="{{ sendWhatsApp }}" style="width:100%; border:0; background:#3DAB38; color:#fff; padding:18px 24px; border-radius:999px; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; display:flex; align-items:center; justify-content:center; gap:10px;" style-hover="background:#2E8A2C;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372z"/></svg>
+        Enviar pedido por WhatsApp
+      </button>
+      <div style="font-size:11px; color:#78827B; text-align:center; margin-top:12px;">Mensaje pre-armado con tus datos y productos. También guardamos el pedido como <b>pendiente</b> en el sistema.</div>
+    </div>
+  </div>
+</div>
+</sc-if>
+<!-- CONTACT -->
+<sc-if value="{{ isContact }}">
+<section style="padding:80px 40px 60px;">
+  <div style="max-width:1440px; margin:0 auto;">
+    <div style="font-size:11px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#3DAB38; margin-bottom:16px;">— Contacto</div>
+    <h1 style="font-size:64px; font-weight:900; line-height:.98; letter-spacing:-.02em; margin:0 0 20px; text-transform:uppercase; max-width:900px;">Contanos qué necesitás y te preparamos una cotización.</h1>
+    <p style="font-size:18px; color:#4A5348; max-width:640px; line-height:1.55; margin:0;">Trabajamos con industrias alimentarias, farmacéuticas, laboratorios, restaurantes y supermercados. Respuesta en menos de 24 hs.</p>
+  </div>
+</section>
+<section style="padding:0 40px 120px;">
+  <div style="max-width:1440px; margin:0 auto; display:grid; grid-template-columns:1.3fr 1fr; gap:60px;">
+    <div style="background:#fff; border:1px solid #E3E7E1; border-radius:24px; padding:40px;">
+      <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#78827B; margin-bottom:24px;">Formulario</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div><label style="font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;">Nombre*</label><input placeholder="Tu nombre completo" style="width:100%; margin-top:6px; border:1px solid #E3E7E1; border-radius:10px; padding:14px; font-size:14px;"></div>
+        <div><label style="font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;">Teléfono*</label><input placeholder="+595 …" style="width:100%; margin-top:6px; border:1px solid #E3E7E1; border-radius:10px; padding:14px; font-size:14px;"></div>
+        <div><label style="font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;">Empresa</label><input placeholder="Nombre de tu empresa" style="width:100%; margin-top:6px; border:1px solid #E3E7E1; border-radius:10px; padding:14px; font-size:14px;"></div>
+        <div><label style="font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;">Rubro</label>
+          <select style="width:100%; margin-top:6px; border:1px solid #E3E7E1; border-radius:10px; padding:14px; font-size:14px; background:#fff;">
+            <option>Seleccioná uno</option><option>Industria alimentaria</option><option>Farmacéutica</option><option>Gastronomía</option><option>Supermercado / retail</option><option>Otro</option>
+          </select>
+        </div>
+        <div style="grid-column:1 / span 2;">
+          <label style="font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;">Contame qué necesitás*</label>
+          <textarea placeholder="Ej: necesito cotización de cintillos detectables y curitas azules para una planta de procesamiento cárnico de 40 operarios…" style="width:100%; margin-top:6px; border:1px solid #E3E7E1; border-radius:10px; padding:14px; font-size:14px; min-height:140px; resize:vertical;"></textarea>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-top:28px; flex-wrap:wrap; gap:16px;">
+        <label style="display:flex; align-items:center; gap:10px; font-size:12px; color:#4A5348;">
+          <input type="checkbox" style="accent-color:#3DAB38;">Autorizo el uso de mis datos para responder esta consulta.
+        </label>
+        <button style="border:0; background:#0E1712; color:#fff; padding:16px 24px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;" style-hover="background:#3DAB38;">Enviar consulta →</button>
+      </div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <a onClick="{{ requestQuote }}" style="cursor:pointer; padding:28px; background:#3DAB38; color:#fff; border-radius:20px; display:flex; align-items:center; gap:20px;">
+        <div style="width:56px; height:56px; background:rgba(255,255,255,.2); border-radius:14px; display:flex; align-items:center; justify-content:center;"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52z"/></svg></div>
+        <div style="flex:1;">
+          <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; opacity:.8;">WhatsApp directo</div>
+          <div style="font-size:22px; font-weight:900; letter-spacing:-.01em; margin-top:2px;">+595 982 296 371</div>
+        </div>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </a>
+      <div style="padding:24px; background:#F5F7F2; border-radius:20px; display:flex; align-items:center; gap:16px;">
+        <div style="width:48px; height:48px; background:#fff; border-radius:12px; display:flex; align-items:center; justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div>
+          <div style="font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#78827B;">Email comercial</div>
+          <div style="font-size:15px; font-weight:800; margin-top:2px;">info@laseguridadalimentaria.com</div>
+        </div>
+      </div>
+      <div style="padding:24px; background:#F5F7F2; border-radius:20px; display:flex; align-items:center; gap:16px;">
+        <div style="width:48px; height:48px; background:#fff; border-radius:12px; display:flex; align-items:center; justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div>
+          <div style="font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#78827B;">Showroom & Depósito</div>
+          <div style="font-size:14px; font-weight:700; margin-top:2px; line-height:1.4;">Capitán Rigoberto Fontao 335<br>casi Gaspar Zabala · Asunción, Paraguay</div>
+        </div>
+      </div>
+      <div style="padding:24px; background:#0E1712; color:#fff; border-radius:20px;">
+        <div style="font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#8DBF28; margin-bottom:10px;">Horario de atención</div>
+        <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:6px;"><span>Lun – Vie</span><b>08:00 – 17:00</b></div>
+        <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:6px;"><span>Sábado</span><b>08:00 – 12:00</b></div>
+        <div style="display:flex; justify-content:space-between; font-size:13px; color:#78827B;"><span>Domingo</span><span>Cerrado</span></div>
+        <div style="margin-top:16px; padding-top:16px; border-top:1px solid #2A342D; display:flex; gap:8px; align-items:center;">
+          <a style="display:flex; align-items:center; justify-content:center; width:38px; height:38px; background:#2A342D; border-radius:10px;" style-hover="background:#3DAB38;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/></svg></a>
+          <div style="font-size:12px; color:#B9C0BA; flex:1;">
+            <div style="font-weight:700; color:#fff;">@seguridadalimentariapy</div>
+            <div>Novedades semanales</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</sc-if>
+<!-- ABOUT -->
+<sc-if value="{{ isAbout }}">
+<section style="padding:80px 40px 60px;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div style="font-size:11px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#3DAB38; margin-bottom:16px;">— Nosotros</div>
+    <h1 style="font-size:80px; font-weight:900; line-height:.94; letter-spacing:-.025em; margin:0 0 32px; text-transform:uppercase; max-width:1000px;">Protegemos la <span style="color:#3DAB38;">integridad</span> de los alimentos.</h1>
+    <p style="font-size:20px; color:#4A5348; max-width:760px; line-height:1.5; margin:0;">Nacimos con el propósito de combatir la contaminación por objetos extraños en la industria alimentaria y farmacéutica de Paraguay, a través de productos detectables por metales y rayos X.</p>
+  </div>
+</section>
+<section style="padding:60px 40px 120px;">
+  <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+    <div style="background:#F5F7F2; border-radius:24px; padding:40px;">
+      <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#F19100; margin-bottom:14px;">— Misión</div>
+      <h2 style="font-size:32px; font-weight:900; letter-spacing:-.015em; margin:0 0 16px; text-transform:uppercase;">Combatir la contaminación.</h2>
+      <p style="font-size:15px; color:#4A5348; line-height:1.6; margin:0;">Ofrecemos innovación, calidad y productos detectables por metales y rayos X para blindar cada punto crítico de una operación alimentaria o farmacéutica.</p>
+    </div>
+    <div style="background:#0E1712; color:#fff; border-radius:24px; padding:40px;">
+      <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#8DBF28; margin-bottom:14px;">— Visión</div>
+      <h2 style="font-size:32px; font-weight:900; letter-spacing:-.015em; margin:0 0 16px; text-transform:uppercase;">Ser el proveedor líder en Paraguay.</h2>
+      <p style="font-size:15px; color:#B9C0BA; line-height:1.6; margin:0;">De productos detectables confiables y de alta calidad, fortaleciendo sistemas HACCP, ISO y BRCGS en cada cliente.</p>
+    </div>
+    <div style="grid-column:1 / span 2; background:#3DAB38; color:#fff; border-radius:24px; padding:48px; display:grid; grid-template-columns:2fr 1fr; gap:40px; align-items:center;">
+      <div>
+        <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; margin-bottom:14px; opacity:.9;">— Nuestra promesa</div>
+        <h2 style="font-size:44px; font-weight:900; letter-spacing:-.02em; line-height:1; margin:0; text-transform:uppercase;">Seguridad, trazabilidad y confianza para entornos donde la contaminación no puede ser una opción.</h2>
+      </div>
+      <div><img src="assets/isotype.png" alt="" style="width:100%; max-width:200px; filter:brightness(0) invert(1); display:block; margin-left:auto;"></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 40px 120px;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div style="font-size:11px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#3DAB38; margin-bottom:16px;">— Territorio de marca</div>
+    <h2 style="font-size:52px; font-weight:900; line-height:1; letter-spacing:-.02em; margin:0 0 48px; text-transform:uppercase;">Cómo se siente trabajar con nosotros.</h2>
+    <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:16px;">
+      <sc-for list="{{ territory }}" as="t" hint-placeholder-count="4">
+        <div style="border:1px solid #E3E7E1; border-radius:20px; padding:32px; min-height:220px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div style="width:48px; height:48px; border-radius:12px; background:#F5F7F2; display:flex; align-items:center; justify-content:center; color:#3DAB38;" innerHTML="{{ t.icon }}"></div>
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.14em; color:#78827B;">— 0{{ t.n }}</div>
+            <h3 style="font-size:22px; font-weight:900; letter-spacing:-.005em; margin:4px 0 6px; text-transform:uppercase;">{{ t.title }}</h3>
+            <p style="font-size:13px; color:#4A5348; line-height:1.5; margin:0;">{{ t.desc }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+</sc-if>
+<!-- SAFETY -->
+<sc-if value="{{ isSafety }}">
+<section style="padding:80px 40px 40px;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div style="font-size:11px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#3DAB38; margin-bottom:16px;">— Seguridad alimentaria</div>
+    <h1 style="font-size:72px; font-weight:900; line-height:.96; letter-spacing:-.02em; margin:0 0 24px; text-transform:uppercase; max-width:1000px;">Qué es la seguridad alimentaria y por qué importa.</h1>
+    <p style="font-size:18px; color:#4A5348; max-width:720px; line-height:1.55; margin:0;">La detección de cuerpos extraños es sólo el último eslabón de una cadena que empieza mucho antes: en la higiene, la manipulación segura y la trazabilidad.</p>
+  </div>
+</section>
+<section style="padding:60px 40px 120px;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:20px;">
+      <sc-for list="{{ safetyPillars }}" as="s" hint-placeholder-count="5">
+        <div style="background:#F5F7F2; border-radius:24px; padding:40px; display:grid; grid-template-columns:auto 1fr; gap:24px; align-items:start;">
+          <div style="width:64px; height:64px; border-radius:16px; background:{{ s.bg }}; display:flex; align-items:center; justify-content:center; color:{{ s.fg }};" innerHTML="{{ s.icon }}"></div>
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; color:#78827B;">0{{ s.n }} · Pilar</div>
+            <h3 style="font-size:24px; font-weight:900; letter-spacing:-.005em; margin:4px 0 10px; text-transform:uppercase;">{{ s.title }}</h3>
+            <p style="font-size:14px; color:#4A5348; line-height:1.6; margin:0 0 16px;">{{ s.desc }}</p>
+            <div style="font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#3DAB38; padding-top:12px; border-top:1px solid #E3E7E1;">Productos: {{ s.productsLine }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="margin-top:80px; padding:48px; background:#0E1712; color:#fff; border-radius:24px; display:grid; grid-template-columns:1.2fr 1fr; gap:60px; align-items:center;">
+      <div>
+        <div style="font-size:11px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#8DBF28; margin-bottom:14px;">— Estándares que respetamos</div>
+        <h2 style="font-size:42px; font-weight:900; letter-spacing:-.015em; margin:0 0 20px; text-transform:uppercase;">Diseñados para plantas HACCP · ISO · BRCGS.</h2>
+        <p style="font-size:15px; color:#B9C0BA; line-height:1.6; margin:0 0 24px;">Nuestros productos detectables cumplen con los principales frameworks internacionales de inocuidad alimentaria.</p>
+        <button onClick="{{ requestQuote }}" style="border:0; background:#3DAB38; color:#fff; padding:16px 24px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;">Solicitar documentación</button>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <div style="border:1px solid #2A342D; border-radius:16px; padding:20px; text-align:center;">
+          <div style="font-size:32px; font-weight:900; letter-spacing:-.02em; color:#8DBF28;">HACCP</div>
+          <div style="font-size:11px; color:#B9C0BA; margin-top:4px;">Puntos críticos</div>
+        </div>
+        <div style="border:1px solid #2A342D; border-radius:16px; padding:20px; text-align:center;">
+          <div style="font-size:32px; font-weight:900; letter-spacing:-.02em; color:#8DBF28;">ISO</div>
+          <div style="font-size:11px; color:#B9C0BA; margin-top:4px;">22000 · 9001</div>
+        </div>
+        <div style="border:1px solid #2A342D; border-radius:16px; padding:20px; text-align:center;">
+          <div style="font-size:32px; font-weight:900; letter-spacing:-.02em; color:#8DBF28;">BRCGS</div>
+          <div style="font-size:11px; color:#B9C0BA; margin-top:4px;">Global Standards</div>
+        </div>
+        <div style="border:1px solid #2A342D; border-radius:16px; padding:20px; text-align:center;">
+          <div style="font-size:32px; font-weight:900; letter-spacing:-.02em; color:#F19100;">FDA · UE</div>
+          <div style="font-size:11px; color:#B9C0BA; margin-top:4px;">Contacto alimentos</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</sc-if>
+<!-- CATEGORIES OVERVIEW -->
+<sc-if value="{{ isCategories }}">
+<section style="padding:80px 40px 40px;">
+  <div style="max-width:1440px; margin:0 auto;">
+    <div style="font-size:11px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#3DAB38; margin-bottom:16px;">— Categorías</div>
+    <h1 style="font-size:72px; font-weight:900; line-height:.96; letter-spacing:-.02em; margin:0 0 24px; text-transform:uppercase; max-width:1100px;">Organizadas por punto crítico de tu operación.</h1>
+    <p style="font-size:18px; color:#4A5348; max-width:720px; line-height:1.55; margin:0;">Explorá el catálogo agrupado por tipo de riesgo o proceso. Cada categoría lista productos verificados y compatibles entre sí.</p>
+  </div>
+</section>
+<section style="padding:40px 40px 120px;">
+  <div style="max-width:1440px; margin:0 auto; display:grid; grid-template-columns:repeat(2, 1fr); gap:20px;">
+    <sc-for list="{{ categories }}" as="cat" hint-placeholder-count="6">
+      <a onClick="{{ cat.go }}" style="display:block; padding:48px; background:#fff; border:1px solid #E3E7E1; border-radius:24px; cursor:pointer; min-height:280px; display:flex; flex-direction:column; justify-content:space-between;" style-hover="border-color:#0E1712; box-shadow:0 16px 40px rgba(14,23,18,.08);">
+        <div style="display:flex; align-items:start; justify-content:space-between;">
+          <div style="width:72px; height:72px; border-radius:18px; background:#F5F7F2; display:flex; align-items:center; justify-content:center; color:#3DAB38;" innerHTML="{{ cat.icon }}"></div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; color:#78827B;">{{ cat.code }}</div>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#78827B; letter-spacing:.12em; margin-bottom:6px;">— {{ cat.count }} productos disponibles</div>
+          <h3 style="font-size:32px; font-weight:900; line-height:1.05; margin:0 0 14px; text-transform:uppercase; letter-spacing:-.01em;">{{ cat.name }}</h3>
+          <p style="font-size:15px; color:#4A5348; line-height:1.55; margin:0 0 24px; max-width:520px;">{{ cat.desc }}</p>
+          <div style="display:flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:#3DAB38;">Ver categoría completa <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        </div>
+      </a>
+    </sc-for>
+  </div>
+</section>
+</sc-if>
+<!-- ADMIN LOGIN -->
+<sc-if value="{{ isAdminLogin }}">
+<div style="min-height:100vh; background:#F5F7F2; display:grid; grid-template-columns:1fr 1fr;">
+  <div style="background:#0E1712; color:#fff; padding:60px; display:flex; flex-direction:column; justify-content:space-between; position:relative; overflow:hidden;">
+    <svg viewBox="0 0 600 800" style="position:absolute; inset:0; width:100%; height:100%; opacity:.1;"><circle cx="300" cy="200" r="200" fill="#3DAB38"/><circle cx="500" cy="600" r="180" fill="#F19100"/></svg>
+    <div style="position:relative;">
+      <a onClick="{{ goHome }}" style="display:flex; align-items:center; gap:12px; cursor:pointer;">
+        <img src="assets/isotype.png" alt="" style="width:44px; height:44px; filter:brightness(0) invert(1);">
+        <div>
+          <div style="font-weight:800; font-size:14px;">SEGURIDAD ALIMENTARIA</div>
+          <div style="font-weight:500; font-size:9px; letter-spacing:.24em; color:#8DBF28; margin-top:2px;">· ADMIN CONSOLE ·</div>
+        </div>
+      </a>
+    </div>
+    <div style="position:relative;">
+      <div style="font-size:11px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#8DBF28; margin-bottom:14px;">— Panel interno</div>
+      <h1 style="font-size:56px; font-weight:900; line-height:1; letter-spacing:-.02em; margin:0 0 20px; text-transform:uppercase;">Administrá tu catálogo con seguridad.</h1>
+      <p style="font-size:15px; color:#B9C0BA; line-height:1.55; margin:0; max-width:400px;">Productos, categorías, imágenes y pedidos. Acceso restringido al equipo de Seguridad Alimentaria PY.</p>
+    </div>
+    <div style="position:relative; font-size:11px; color:#78827B; letter-spacing:.06em;">v1.0 · Powered by Supabase self-host</div>
+  </div>
+  <div style="display:flex; align-items:center; justify-content:center; padding:60px;">
+    <div style="width:100%; max-width:400px;">
+      <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#3DAB38; margin-bottom:14px;">— Ingresar</div>
+      <h2 style="font-size:36px; font-weight:900; letter-spacing:-.015em; margin:0 0 40px; text-transform:uppercase;">Bienvenido de nuevo.</h2>
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        <div><label style="font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;">Email</label>
+          <input type="email" value="admin@laseguridadalimentaria.com" style="width:100%; margin-top:6px; border:1px solid #E3E7E1; border-radius:10px; padding:14px; font-size:14px; background:#fff;">
+        </div>
+        <div><label style="font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;">Contraseña</label>
+          <input type="password" value="•••••••••••" style="width:100%; margin-top:6px; border:1px solid #E3E7E1; border-radius:10px; padding:14px; font-size:14px; background:#fff;">
+        </div>
+        <div style="display:flex; align-items:center; justify-content:space-between; font-size:12px;">
+          <label style="display:flex; align-items:center; gap:8px; cursor:pointer;"><input type="checkbox" style="accent-color:#3DAB38;">Recordarme</label>
+          <a style="color:#3DAB38; font-weight:600; cursor:pointer;">¿Olvidaste tu contraseña?</a>
+        </div>
+        <button onClick="{{ goAdmin }}" style="border:0; background:#0E1712; color:#fff; padding:16px 24px; border-radius:10px; font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; margin-top:8px;" style-hover="background:#3DAB38;">Entrar al panel →</button>
+      </div>
+      <div style="margin-top:40px; padding:16px 20px; background:#F5F7F2; border-radius:12px; font-size:11px; color:#78827B; line-height:1.5;">
+        <b style="color:#0E1712;">Supabase Auth</b> · Sólo usuarios con rol <code style="font-family:'JetBrains Mono',monospace; background:#fff; padding:1px 6px; border-radius:4px;">admin</code> tienen acceso.
+      </div>
+    </div>
+  </div>
+</div>
+</sc-if>
+<!-- ADMIN DASHBOARD -->
+<sc-if value="{{ isAdmin }}">
+<div style="display:grid; grid-template-columns:240px 1fr; min-height:100vh; background:#FAFAF7;">
+  <aside style="background:#0E1712; color:#fff; padding:24px 20px; display:flex; flex-direction:column; gap:8px; position:sticky; top:0; height:100vh;">
+    <a onClick="{{ goHome }}" style="display:flex; align-items:center; gap:10px; padding:10px 4px; margin-bottom:20px; cursor:pointer;">
+      <img src="assets/isotype.png" alt="" style="width:34px; height:34px; filter:brightness(0) invert(1);">
+      <div>
+        <div style="font-weight:800; font-size:11px; letter-spacing:.02em;">SEGURIDAD ALIMENTARIA</div>
+        <div style="font-weight:600; font-size:8px; letter-spacing:.24em; color:#8DBF28; margin-top:2px;">ADMIN CONSOLE</div>
+      </div>
+    </a>
+    <div style="font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#78827B; padding:12px 4px 6px;">Catálogo</div>
+    <sc-for list="{{ adminNav }}" as="n" hint-placeholder-count="6">
+      <a onClick="{{ n.go }}" style="display:flex; align-items:center; gap:12px; padding:10px 12px; border-radius:8px; cursor:pointer; font-size:13px; font-weight:600; color:{{ n.color }}; background:{{ n.bg }};" style-hover="background:#2A342D;">
+        <span style="width:16px; display:inline-flex; align-items:center; justify-content:center;" innerHTML="{{ n.icon }}"></span>
+        <span style="flex:1;">{{ n.label }}</span>
+        <sc-if value="{{ n.badge }}"><span style="font-size:10px; font-weight:700; background:#F19100; color:#fff; padding:2px 6px; border-radius:999px;">{{ n.badge }}</span></sc-if>
+      </a>
+    </sc-for>
+    <div style="margin-top:auto; padding:16px 12px; background:#1a2620; border-radius:12px; display:flex; align-items:center; gap:12px;">
+      <div style="width:36px; height:36px; border-radius:999px; background:#3DAB38; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:13px;">SA</div>
+      <div style="flex:1; overflow:hidden;">
+        <div style="font-size:12px; font-weight:700;">Admin SA</div>
+        <div style="font-size:10px; color:#78827B;">admin@laseguridad…</div>
+      </div>
+      <a onClick="{{ goHome }}" style="border:0; background:transparent; color:#78827B; cursor:pointer;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      </a>
+    </div>
+  </aside>
+
+  <main style="padding:32px 40px 60px;">
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:32px;">
+      <div>
+        <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#3DAB38;">— {{ adminTitleEyebrow }}</div>
+        <h1 style="font-size:32px; font-weight:900; letter-spacing:-.015em; margin:4px 0 0; text-transform:uppercase;">{{ adminTitle }}</h1>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="position:relative;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#78827B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; left:14px; top:50%; transform:translateY(-50%);"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input placeholder="Buscar…" style="width:280px; border:1px solid #E3E7E1; background:#fff; border-radius:10px; padding:10px 12px 10px 40px; font-size:13px;">
+        </div>
+        <button style="border:1px solid #E3E7E1; background:#fff; padding:10px; border-radius:10px; position:relative;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span style="position:absolute; top:8px; right:8px; width:8px; height:8px; background:#F19100; border-radius:999px;"></span>
+        </button>
+        <button style="border:0; background:#3DAB38; color:#fff; padding:11px 16px; border-radius:10px; font-size:12px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; display:flex; align-items:center; gap:6px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          {{ adminCta }}
+        </button>
+      </div>
+    </div>
+
+    <!-- KPIs -->
+    <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; margin-bottom:24px;">
+      <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
+        <div style="background:#fff; border:1px solid #E3E7E1; border-radius:16px; padding:24px;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;">
+            <div style="width:40px; height:40px; border-radius:10px; background:{{ k.bg }}; color:{{ k.fg }}; display:flex; align-items:center; justify-content:center;" innerHTML="{{ k.icon }}"></div>
+            <div style="font-size:10px; font-weight:700; padding:4px 8px; border-radius:999px; background:{{ k.deltaBg }}; color:{{ k.deltaFg }};">{{ k.delta }}</div>
+          </div>
+          <div style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#78827B; margin-bottom:6px;">{{ k.label }}</div>
+          <div style="font-size:32px; font-weight:900; letter-spacing:-.02em;">{{ k.value }}</div>
+          <div style="font-size:11px; color:#78827B; margin-top:4px;">{{ k.sub }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- Two-column: Orders table + Sidebar -->
+    <div style="display:grid; grid-template-columns:1.6fr 1fr; gap:16px; margin-bottom:24px;">
+      <div style="background:#fff; border:1px solid #E3E7E1; border-radius:16px; padding:24px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
+          <div>
+            <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#3DAB38;">— Pedidos</div>
+            <h3 style="font-size:20px; font-weight:900; letter-spacing:-.005em; margin:2px 0 0; text-transform:uppercase;">Últimos pedidos recibidos</h3>
+          </div>
+          <div style="display:flex; gap:6px;">
+            <button style="border:1px solid #E3E7E1; background:#0E1712; color:#fff; padding:6px 12px; border-radius:999px; font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;">Todos</button>
+            <button style="border:1px solid #E3E7E1; background:#fff; padding:6px 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:.04em; text-transform:uppercase;">Pendiente</button>
+            <button style="border:1px solid #E3E7E1; background:#fff; padding:6px 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:.04em; text-transform:uppercase;">Cotizado</button>
+            <button style="border:1px solid #E3E7E1; background:#fff; padding:6px 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:.04em; text-transform:uppercase;">Cerrado</button>
+          </div>
+        </div>
+        <div style="border-radius:12px; overflow:hidden; border:1px solid #F0F2ED;">
+          <div style="display:grid; grid-template-columns:0.8fr 2fr 1.5fr 1fr 0.9fr 0.4fr; padding:12px 16px; background:#F5F7F2; font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#78827B;">
+            <div>ID</div><div>Cliente</div><div>Empresa</div><div>Ítems</div><div>Estado</div><div></div>
+          </div>
+          <div style="display:grid; grid-template-columns:0.8fr 2fr 1.5fr 1fr 0.9fr 0.4fr; padding:14px 16px; border-top:1px solid #F0F2ED; font-size:13px; align-items:center;">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#78827B;">#0142</div>
+            <div><b>Juan Villalba</b><div style="font-size:11px; color:#78827B;">+595 981 …</div></div>
+            <div>Frigorífico Alameda</div>
+            <div>7 ítems</div>
+            <div><span style="font-size:10px; font-weight:700; padding:4px 8px; border-radius:999px; background:#FDE7CC; color:#B85E00; letter-spacing:.06em; text-transform:uppercase;">Pendiente</span></div>
+            <div style="text-align:right;">›</div>
+          </div>
+          <div style="display:grid; grid-template-columns:0.8fr 2fr 1.5fr 1fr 0.9fr 0.4fr; padding:14px 16px; border-top:1px solid #F0F2ED; font-size:13px; align-items:center;">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#78827B;">#0141</div>
+            <div><b>M. Benítez</b><div style="font-size:11px; color:#78827B;">+595 971 …</div></div>
+            <div>Panadería La Espiga</div>
+            <div>3 ítems</div>
+            <div><span style="font-size:10px; font-weight:700; padding:4px 8px; border-radius:999px; background:#E4EDF7; color:#1E5FA8; letter-spacing:.06em; text-transform:uppercase;">Contactado</span></div>
+            <div style="text-align:right;">›</div>
+          </div>
+          <div style="display:grid; grid-template-columns:0.8fr 2fr 1.5fr 1fr 0.9fr 0.4fr; padding:14px 16px; border-top:1px solid #F0F2ED; font-size:13px; align-items:center;">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#78827B;">#0140</div>
+            <div><b>Cintia Ozuna</b><div style="font-size:11px; color:#78827B;">+595 985 …</div></div>
+            <div>Lácteos del Este</div>
+            <div>12 ítems</div>
+            <div><span style="font-size:10px; font-weight:700; padding:4px 8px; border-radius:999px; background:#E7F5E4; color:#2E8A2C; letter-spacing:.06em; text-transform:uppercase;">Cotizado</span></div>
+            <div style="text-align:right;">›</div>
+          </div>
+          <div style="display:grid; grid-template-columns:0.8fr 2fr 1.5fr 1fr 0.9fr 0.4fr; padding:14px 16px; border-top:1px solid #F0F2ED; font-size:13px; align-items:center;">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#78827B;">#0139</div>
+            <div><b>R. Ferreira</b><div style="font-size:11px; color:#78827B;">+595 982 …</div></div>
+            <div>Supermercado Norte</div>
+            <div>5 ítems</div>
+            <div><span style="font-size:10px; font-weight:700; padding:4px 8px; border-radius:999px; background:#F0F2ED; color:#4A5348; letter-spacing:.06em; text-transform:uppercase;">Cerrado</span></div>
+            <div style="text-align:right;">›</div>
+          </div>
+          <div style="display:grid; grid-template-columns:0.8fr 2fr 1.5fr 1fr 0.9fr 0.4fr; padding:14px 16px; border-top:1px solid #F0F2ED; font-size:13px; align-items:center;">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#78827B;">#0138</div>
+            <div><b>P. Cañete</b><div style="font-size:11px; color:#78827B;">+595 984 …</div></div>
+            <div>Farma Central S.A.</div>
+            <div>9 ítems</div>
+            <div><span style="font-size:10px; font-weight:700; padding:4px 8px; border-radius:999px; background:#FDE7CC; color:#B85E00; letter-spacing:.06em; text-transform:uppercase;">Pendiente</span></div>
+            <div style="text-align:right;">›</div>
+          </div>
+          <div style="display:grid; grid-template-columns:0.8fr 2fr 1.5fr 1fr 0.9fr 0.4fr; padding:14px 16px; border-top:1px solid #F0F2ED; font-size:13px; align-items:center;">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#78827B;">#0137</div>
+            <div><b>L. Aquino</b><div style="font-size:11px; color:#78827B;">+595 986 …</div></div>
+            <div>Restaurante Ykuá</div>
+            <div>2 ítems</div>
+            <div><span style="font-size:10px; font-weight:700; padding:4px 8px; border-radius:999px; background:#FEE2E2; color:#B91C1C; letter-spacing:.06em; text-transform:uppercase;">Cancelado</span></div>
+            <div style="text-align:right;">›</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        <div style="background:#0E1712; color:#fff; border-radius:16px; padding:24px;">
+          <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#8DBF28; margin-bottom:14px;">— Acciones rápidas</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <a style="display:flex; align-items:center; gap:12px; padding:12px 14px; background:#1a2620; border-radius:10px; cursor:pointer; font-size:13px;" style-hover="background:#2A342D;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3DAB38" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Nuevo producto
+            </a>
+            <a style="display:flex; align-items:center; gap:12px; padding:12px 14px; background:#1a2620; border-radius:10px; cursor:pointer; font-size:13px;" style-hover="background:#2A342D;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3DAB38" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Importar CSV masivo
+            </a>
+            <a style="display:flex; align-items:center; gap:12px; padding:12px 14px; background:#1a2620; border-radius:10px; cursor:pointer; font-size:13px;" style-hover="background:#2A342D;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3DAB38" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg>
+              Editar textos del home
+            </a>
+            <a style="display:flex; align-items:center; gap:12px; padding:12px 14px; background:#1a2620; border-radius:10px; cursor:pointer; font-size:13px;" style-hover="background:#2A342D;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3DAB38" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/></svg>
+              Exportar pedidos
+            </a>
+          </div>
+        </div>
+        <div style="background:#fff; border:1px solid #E3E7E1; border-radius:16px; padding:24px;">
+          <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#3DAB38; margin-bottom:14px;">— Actividad</div>
+          <div style="display:flex; flex-direction:column; gap:14px;">
+            <div style="display:flex; gap:12px; align-items:start;"><div style="width:8px; height:8px; background:#3DAB38; border-radius:999px; margin-top:6px;"></div><div><div style="font-size:13px; font-weight:700;">Nuevo pedido #0142</div><div style="font-size:11px; color:#78827B;">Hace 12 min · Juan Villalba · Frigorífico Alameda</div></div></div>
+            <div style="display:flex; gap:12px; align-items:start;"><div style="width:8px; height:8px; background:#1E5FA8; border-radius:999px; margin-top:6px;"></div><div><div style="font-size:13px; font-weight:700;">Producto actualizado</div><div style="font-size:11px; color:#78827B;">Hace 1 h · Cintillos SA-CIN-002 · Stock +50</div></div></div>
+            <div style="display:flex; gap:12px; align-items:start;"><div style="width:8px; height:8px; background:#F19100; border-radius:999px; margin-top:6px;"></div><div><div style="font-size:13px; font-weight:700;">Consulta de contacto</div><div style="font-size:11px; color:#78827B;">Hace 2 h · Panificadora Sur · Nueva</div></div></div>
+            <div style="display:flex; gap:12px; align-items:start;"><div style="width:8px; height:8px; background:#8DBF28; border-radius:999px; margin-top:6px;"></div><div><div style="font-size:13px; font-weight:700;">Pedido cerrado #0139</div><div style="font-size:11px; color:#78827B;">Hoy 09:14 · Supermercado Norte</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products table preview -->
+    <div style="background:#fff; border:1px solid #E3E7E1; border-radius:16px; padding:24px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
+        <div>
+          <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#3DAB38;">— Catálogo</div>
+          <h3 style="font-size:20px; font-weight:900; letter-spacing:-.005em; margin:2px 0 0; text-transform:uppercase;">Productos publicados</h3>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button style="border:1px solid #E3E7E1; background:#fff; padding:8px 14px; border-radius:8px; font-size:12px; font-weight:600;">Filtros</button>
+          <button style="border:0; background:#3DAB38; color:#fff; padding:8px 14px; border-radius:8px; font-size:12px; font-weight:700;">+ Nuevo producto</button>
+        </div>
+      </div>
+      <div style="border-radius:12px; overflow:hidden; border:1px solid #F0F2ED;">
+        <div style="display:grid; grid-template-columns:56px 2.2fr 1fr 1fr 0.8fr 0.8fr 0.6fr; padding:12px 16px; background:#F5F7F2; font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#78827B;">
+          <div></div><div>Producto</div><div>SKU</div><div>Categoría</div><div>Stock</div><div>Estado</div><div></div>
+        </div>
+        <sc-for list="{{ allProducts }}" as="p" hint-placeholder-count="6">
+          <div style="display:grid; grid-template-columns:56px 2.2fr 1fr 1fr 0.8fr 0.8fr 0.6fr; padding:14px 16px; border-top:1px solid #F0F2ED; font-size:13px; align-items:center;">
+            <div style="width:40px; height:40px; background:#F5F7F2; border-radius:8px; display:flex; align-items:center; justify-content:center;" innerHTML="{{ p.visual }}"></div>
+            <div><b style="font-size:13px;">{{ p.name }}</b><div style="font-size:11px; color:#78827B; margin-top:2px;">{{ p.short }}</div></div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#78827B;">{{ p.sku }}</div>
+            <div style="font-size:12px;">{{ p.category }}</div>
+            <div><span style="font-size:12px; font-weight:700; color:#2E8A2C;">240</span></div>
+            <div><span style="font-size:10px; font-weight:700; padding:4px 8px; border-radius:999px; background:#E7F5E4; color:#2E8A2C; letter-spacing:.06em; text-transform:uppercase;">Activo</span></div>
+            <div style="display:flex; gap:4px; justify-content:flex-end;">
+              <button style="border:1px solid #E3E7E1; background:#fff; padding:6px; border-radius:6px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+              <button style="border:1px solid #E3E7E1; background:#fff; padding:6px; border-radius:6px; color:#B91C1C;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg></button>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <!-- Product form (edit) preview -->
+    <div style="background:#fff; border:1px solid #E3E7E1; border-radius:16px; padding:32px; margin-top:16px; display:grid; grid-template-columns:1fr 1fr; gap:32px;">
+      <div>
+        <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#3DAB38; margin-bottom:6px;">— Editando producto</div>
+        <h3 style="font-size:22px; font-weight:900; letter-spacing:-.005em; margin:0 0 20px; text-transform:uppercase;">Cintillos detectables</h3>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div><label style="font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;">Nombre</label><input value="Cintillos de seguridad detectables" style="width:100%; margin-top:6px; border:1px solid #E3E7E1; border-radius:8px; padding:12px; font-size:13px;"></div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div><label style="font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;">SKU</label><input value="SA-CIN-002" style="width:100%; margin-top:6px; border:1px solid #E3E7E1; border-radius:8px; padding:12px; font-size:13px; font-family:'JetBrains Mono',monospace;"></div>
+            <div><label style="font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;">Slug</label><input value="cintillos-detectables" style="width:100%; margin-top:6px; border:1px solid #E3E7E1; border-radius:8px; padding:12px; font-size:13px; font-family:'JetBrains Mono',monospace;"></div>
+          </div>
+          <div><label style="font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;">Categoría</label>
+            <select style="width:100%; margin-top:6px; border:1px solid #E3E7E1; border-radius:8px; padding:12px; font-size:13px; background:#fff;">
+              <option>Cintillos y cadenas de seguridad</option><option>Productos detectables</option><option>Corte y manipulación</option>
+            </select>
+          </div>
+          <div><label style="font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;">Descripción corta</label><textarea style="width:100%; margin-top:6px; border:1px solid #E3E7E1; border-radius:8px; padding:12px; font-size:13px; min-height:60px; resize:vertical;">Bandas de cierre para bolsas y calzado, reutilizables y detectables por metales / rayos X.</textarea></div>
+          <div><label style="font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;">Descripción larga</label><textarea style="width:100%; margin-top:6px; border:1px solid #E3E7E1; border-radius:8px; padding:12px; font-size:13px; min-height:100px; resize:vertical;">Cintillos de seguridad fabricados en material detectable por metales y rayos X…</textarea></div>
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
+            <div><label style="font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;">Precio (₲)</label><input placeholder="15.000" style="width:100%; margin-top:6px; border:1px solid #E3E7E1; border-radius:8px; padding:12px; font-size:13px;"></div>
+            <div><label style="font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;">Stock</label><input value="240" style="width:100%; margin-top:6px; border:1px solid #E3E7E1; border-radius:8px; padding:12px; font-size:13px;"></div>
+            <div><label style="font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;">Orden</label><input value="10" style="width:100%; margin-top:6px; border:1px solid #E3E7E1; border-radius:8px; padding:12px; font-size:13px;"></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#3DAB38; margin-bottom:6px;">— Publicación</div>
+        <h3 style="font-size:22px; font-weight:900; letter-spacing:-.005em; margin:0 0 20px; text-transform:uppercase;">Etiquetas & imágenes</h3>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div>
+            <label style="font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;">Etiquetas técnicas</label>
+            <div style="margin-top:6px; padding:10px; border:1px solid #E3E7E1; border-radius:8px; background:#fff; display:flex; flex-wrap:wrap; gap:6px;">
+              <span style="font-size:11px; font-weight:600; padding:5px 10px; border-radius:999px; background:#E4EDF7; color:#1E5FA8; display:flex; align-items:center; gap:4px;">Detectable <span style="cursor:pointer;">×</span></span>
+              <span style="font-size:11px; font-weight:600; padding:5px 10px; border-radius:999px; background:#E7F5E4; color:#2E8A2C; display:flex; align-items:center; gap:4px;">Reutilizable <span style="cursor:pointer;">×</span></span>
+              <span style="font-size:11px; font-weight:600; padding:5px 10px; border-radius:999px; background:#FDE7CC; color:#B85E00; display:flex; align-items:center; gap:4px;">HACCP <span style="cursor:pointer;">×</span></span>
+              <input placeholder="+ agregar" style="border:0; outline:0; background:transparent; font-size:12px; min-width:80px;">
+            </div>
+          </div>
+          <div>
+            <label style="font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;">Imágenes</label>
+            <div style="margin-top:6px; display:grid; grid-template-columns:repeat(3, 1fr); gap:8px;">
+              <div style="aspect-ratio:1/1; background:#F5F7F2; border-radius:8px; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:10px; color:#78827B; letter-spacing:.1em; position:relative;">
+                MAIN
+                <div style="position:absolute; top:6px; right:6px; background:#3DAB38; color:#fff; font-size:8px; padding:2px 6px; border-radius:4px; font-weight:700;">1</div>
+              </div>
+              <div style="aspect-ratio:1/1; background:#F5F7F2; border-radius:8px; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:10px; color:#78827B; letter-spacing:.1em; position:relative;">
+                DETAIL
+                <div style="position:absolute; top:6px; right:6px; background:#78827B; color:#fff; font-size:8px; padding:2px 6px; border-radius:4px; font-weight:700;">2</div>
+              </div>
+              <div style="aspect-ratio:1/1; border:2px dashed #C7CDC2; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#78827B; cursor:pointer;" style-hover="border-color:#3DAB38; color:#3DAB38;">
+                <div style="text-align:center;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:2px;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  <div style="font-size:10px;">Subir</div>
+                </div>
+              </div>
+            </div>
+            <div style="font-size:11px; color:#78827B; margin-top:8px;">Se guardan en Supabase Storage · bucket <code style="font-family:'JetBrains Mono',monospace; background:#F5F7F2; padding:1px 5px; border-radius:4px;">product-images</code></div>
+          </div>
+          <div>
+            <label style="font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;">Estado</label>
+            <div style="margin-top:6px; display:flex; gap:6px;">
+              <label style="flex:1; padding:12px; border:1.5px solid #3DAB38; background:#E7F5E4; border-radius:8px; font-size:12px; font-weight:700; text-align:center; cursor:pointer; color:#2E8A2C;">Activo</label>
+              <label style="flex:1; padding:12px; border:1px solid #E3E7E1; background:#fff; border-radius:8px; font-size:12px; font-weight:600; text-align:center; cursor:pointer;">Borrador</label>
+              <label style="flex:1; padding:12px; border:1px solid #E3E7E1; background:#fff; border-radius:8px; font-size:12px; font-weight:600; text-align:center; cursor:pointer;">Archivado</label>
+            </div>
+          </div>
+          <label style="display:flex; align-items:center; gap:10px; font-size:13px; padding:12px; background:#F5F7F2; border-radius:8px; cursor:pointer;">
+            <input type="checkbox" checked="checked" style="accent-color:#3DAB38;">
+            Destacar en home (is_featured)
+          </label>
+          <label style="display:flex; align-items:center; gap:10px; font-size:13px; padding:12px; background:#F5F7F2; border-radius:8px; cursor:pointer;">
+            <input type="checkbox" style="accent-color:#3DAB38;">
+            Mostrar precio en la ficha pública
+          </label>
+        </div>
+        <div style="display:flex; gap:10px; margin-top:20px;">
+          <button style="flex:1; border:1px solid #E3E7E1; background:#fff; padding:14px; border-radius:10px; font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;">Descartar</button>
+          <button style="flex:2; border:0; background:#0E1712; color:#fff; padding:14px; border-radius:10px; font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;">Guardar cambios</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order detail card -->
+    <div style="margin-top:16px; background:#fff; border:1px solid #E3E7E1; border-radius:16px; padding:24px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
+        <div>
+          <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#3DAB38;">— Detalle de pedido</div>
+          <h3 style="font-size:22px; font-weight:900; letter-spacing:-.005em; margin:2px 0 0; text-transform:uppercase;">Pedido #0142 · Juan Villalba</h3>
+          <div style="font-size:12px; color:#78827B; margin-top:4px;">Recibido hace 12 minutos · Frigorífico Alameda · Asunción</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <div style="font-size:11px; color:#78827B; font-weight:600; letter-spacing:.06em; text-transform:uppercase;">Estado</div>
+          <select style="border:1px solid #E3E7E1; border-radius:8px; padding:8px 12px; font-size:13px; font-weight:700; background:#FDE7CC; color:#B85E00;">
+            <option>Pendiente</option><option>Contactado</option><option>Cotizado</option><option>Cerrado</option><option>Cancelado</option>
+          </select>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:2fr 1fr; gap:24px;">
+        <div>
+          <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#78827B; margin-bottom:10px;">Productos solicitados</div>
+          <div style="border-radius:8px; overflow:hidden; border:1px solid #F0F2ED;">
+            <div style="display:grid; grid-template-columns:2.5fr 0.8fr 1fr 1fr; padding:10px 14px; background:#F5F7F2; font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#78827B;">
+              <div>Producto</div><div>Cant.</div><div>P. Unit.</div><div>Subtotal</div>
+            </div>
+            <div style="display:grid; grid-template-columns:2.5fr 0.8fr 1fr 1fr; padding:12px 14px; border-top:1px solid #F0F2ED; font-size:13px;">
+              <div><b>Cintillos detectables</b><div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#78827B;">SA-CIN-002</div></div>
+              <div>2 cajas</div><div>Consultar</div><div>—</div>
+            </div>
+            <div style="display:grid; grid-template-columns:2.5fr 0.8fr 1fr 1fr; padding:12px 14px; border-top:1px solid #F0F2ED; font-size:13px;">
+              <div><b>Cadena de seguridad</b><div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#78827B;">SA-CAD-014</div></div>
+              <div>1</div><div>Consultar</div><div>—</div>
+            </div>
+            <div style="display:grid; grid-template-columns:2.5fr 0.8fr 1fr 1fr; padding:12px 14px; border-top:1px solid #F0F2ED; font-size:13px;">
+              <div><b>Bolígrafo Elephant detectable</b><div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#78827B;">SA-BOL-014</div></div>
+              <div>50</div><div>Consultar</div><div>—</div>
+            </div>
+            <div style="display:grid; grid-template-columns:2.5fr 0.8fr 1fr 1fr; padding:12px 14px; border-top:1px solid #F0F2ED; font-size:13px;">
+              <div><b>Curitas azules detectables</b><div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#78827B;">SA-CUR-007</div></div>
+              <div>4 cajas</div><div>Consultar</div><div>—</div>
+            </div>
+          </div>
+          <div style="margin-top:16px; padding:14px 16px; background:#F5F7F2; border-radius:8px; font-size:13px; color:#4A5348;">
+            <div style="font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#78827B; margin-bottom:6px;">Observaciones</div>
+            Necesitamos entrega urgente para próxima auditoría BRCGS. Facturar a RUC 80098765-4.
+          </div>
+        </div>
+        <div>
+          <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#78827B; margin-bottom:10px;">Datos del cliente</div>
+          <div style="display:flex; flex-direction:column; gap:10px; padding:16px; background:#F5F7F2; border-radius:12px; font-size:13px;">
+            <div><div style="font-size:10px; color:#78827B; letter-spacing:.08em; text-transform:uppercase; font-weight:600;">Nombre</div><div style="font-weight:700; margin-top:2px;">Juan Villalba</div></div>
+            <div><div style="font-size:10px; color:#78827B; letter-spacing:.08em; text-transform:uppercase; font-weight:600;">WhatsApp</div><div style="font-family:'JetBrains Mono',monospace; margin-top:2px;">+595 981 245 178</div></div>
+            <div><div style="font-size:10px; color:#78827B; letter-spacing:.08em; text-transform:uppercase; font-weight:600;">Empresa</div><div style="margin-top:2px;">Frigorífico Alameda</div></div>
+            <div><div style="font-size:10px; color:#78827B; letter-spacing:.08em; text-transform:uppercase; font-weight:600;">RUC</div><div style="font-family:'JetBrains Mono',monospace; margin-top:2px;">80098765-4</div></div>
+            <div><div style="font-size:10px; color:#78827B; letter-spacing:.08em; text-transform:uppercase; font-weight:600;">Ciudad</div><div style="margin-top:2px;">Asunción</div></div>
+          </div>
+          <button style="width:100%; margin-top:12px; border:0; background:#3DAB38; color:#fff; padding:14px; border-radius:10px; font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; display:flex; align-items:center; justify-content:center; gap:8px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164z"/></svg>
+            Responder por WhatsApp
+          </button>
+          <button style="width:100%; margin-top:8px; border:1px solid #E3E7E1; background:#fff; padding:14px; border-radius:10px; font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;">Generar cotización PDF</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+</sc-if>
+
+<!-- FOOTER -->
+<sc-if value="{{ isPublic }}" hint-placeholder-val="{{ true }}">
+<footer style="background:#0E1712; color:#EDEFEA; padding:80px 40px 32px;">
+  <div style="max-width:1440px; margin:0 auto;">
+    <div style="display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:60px; padding-bottom:60px; border-bottom:1px solid #2A342D;">
+      <div>
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:24px;">
+          <img src="assets/isotype.png" alt="" style="width:44px; height:44px; filter:brightness(0) invert(1);">
+          <div>
+            <div style="font-weight:800; font-size:14px;">SEGURIDAD ALIMENTARIA</div>
+            <div style="font-size:9px; color:#8DBF28; letter-spacing:.28em; font-weight:500; margin-top:4px;">· ENSURING FOOD INTEGRITY ·</div>
+          </div>
+        </div>
+        <p style="font-size:14px; color:#B9C0BA; line-height:1.55; margin:0 0 20px; max-width:340px;">Productos detectables, insumos y herramientas para higiene, control y trazabilidad en industrias alimentarias y farmacéuticas.</p>
+        <div style="display:flex; gap:8px;">
+          <a style="display:flex; align-items:center; justify-content:center; width:38px; height:38px; background:#2A342D; border-radius:10px; cursor:pointer;" style-hover="background:#3DAB38;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a onClick="{{ requestQuote }}" style="display:flex; align-items:center; justify-content:center; width:38px; height:38px; background:#3DAB38; border-radius:10px; cursor:pointer;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#8DBF28; margin-bottom:20px;">Navegación</div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <a onClick="{{ goHome }}" style="cursor:pointer; font-size:13px;">Inicio</a>
+          <a onClick="{{ goCatalog }}" style="cursor:pointer; font-size:13px;">Todos los productos</a>
+          <a onClick="{{ goCategories }}" style="cursor:pointer; font-size:13px;">Categorías</a>
+          <a onClick="{{ goAbout }}" style="cursor:pointer; font-size:13px;">Nosotros</a>
+          <a onClick="{{ goSafety }}" style="cursor:pointer; font-size:13px;">Seguridad alimentaria</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#8DBF28; margin-bottom:20px;">Contacto</div>
+        <div style="display:flex; flex-direction:column; gap:10px; font-size:13px;">
+          <span>+595 982 296 371</span>
+          <span>info@laseguridadalimentaria.com</span>
+          <span>Cap. Rigoberto Fontao 335<br>Asunción, Paraguay</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#8DBF28; margin-bottom:20px;">Newsletter</div>
+        <p style="font-size:13px; color:#B9C0BA; line-height:1.5; margin:0 0 14px;">Novedades del catálogo y buenas prácticas de inocuidad.</p>
+        <div style="display:flex; gap:6px;">
+          <input placeholder="tu@empresa.com" style="flex:1; border:1px solid #2A342D; background:#1a2620; color:#fff; border-radius:8px; padding:10px 12px; font-size:12px;">
+          <button style="border:0; background:#3DAB38; color:#fff; padding:0 14px; border-radius:8px; font-size:12px; font-weight:700;">→</button>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex; justify-content:space-between; align-items:center; padding-top:32px; font-size:11px; color:#78827B; letter-spacing:.02em;">
+      <div>© 2026 Seguridad Alimentaria PY · Todos los derechos reservados.</div>
+      <div style="display:flex; gap:20px;">
+        <a style="cursor:pointer;">Términos y condiciones</a>
+        <a style="cursor:pointer;">Política de privacidad</a>
+        <a onClick="{{ goAdminLogin }}" style="cursor:pointer; color:#8DBF28;">Admin →</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</sc-if>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1440, &quot;height&quot;: 3200}}">
+const WA_NUMBER = '595982296371';
+const ICONS = {
+  chain: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>',
+  detect: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/><line x1="11" y1="8" x2="11" y2="14"/></svg>',
+  knife: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2 6 14l4 4L22 6z"/><path d="M6 14 2 22l8-4"/></svg>',
+  pack: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
+  clean: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>',
+  industry: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M2 20V8l6 4V8l6 4V8l6 4v8"/></svg>',
+};
+
+class Component extends DCLogic {
+  state = {
+    view: 'home',
+    cartOpen: false,
+    cart: [
+      { id:'p1', sku:'SA-CIN-002', name:'Cintillos de seguridad detectables', qty:2, priceLabel:'Consultar', visual:this.miniViz('cintillo') },
+      { id:'p2', sku:'SA-CAD-014', name:'Cadena de seguridad con soporte', qty:1, priceLabel:'Consultar', visual:this.miniViz('cadena') },
+    ],
+    activeProductId: 'p1',
+  };
+
+  miniViz(kind) {
+    if (kind === 'cintillo') return '<div style="width:70%; height:24px; background:repeating-linear-gradient(90deg,#1E5FA8 0 6px,#2A6FBB 6px 12px); border-radius:4px;"></div>';
+    if (kind === 'cadena') return '<div style="display:flex; gap:2px;"><div style="width:14px; height:14px; border:2px solid #78827B; border-radius:999px;"></div><div style="width:14px; height:14px; border:2px solid #78827B; border-radius:999px;"></div><div style="width:14px; height:14px; border:2px solid #78827B; border-radius:999px;"></div></div>';
+    return '';
+  }
+
+  goto = (v) => () => this.setState({ view: v, cartOpen: false });
+
+  visualFor(kind) {
+    // Return SVG string sized to fill parent
+    switch (kind) {
+      case 'cintillo': return '<svg viewBox="0 0 200 100" style="width:100%;height:100%"><rect x="10" y="30" width="180" height="40" rx="6" fill="#1E5FA8"/><rect x="20" y="40" width="160" height="20" fill="url(#stripes)" style="fill:repeating-linear-gradient(90deg,#1E5FA8 0 10px,#2A6FBB 10px 20px)"/><circle cx="170" cy="50" r="12" fill="#0E1712"/><circle cx="170" cy="50" r="4" fill="#8DBF28"/></svg>';
+      case 'cadena': return '<svg viewBox="0 0 200 100" style="width:100%;height:100%"><g stroke="#4A5348" stroke-width="4" fill="none"><ellipse cx="40" cy="50" rx="18" ry="10"/><ellipse cx="70" cy="50" rx="18" ry="10"/><ellipse cx="100" cy="50" rx="18" ry="10"/><ellipse cx="130" cy="50" rx="18" ry="10"/><ellipse cx="160" cy="50" rx="18" ry="10"/></g><rect x="30" y="20" width="20" height="60" rx="3" fill="#F19100"/></svg>';
+      case 'papel': return '<svg viewBox="0 0 200 200" style="width:100%;height:100%"><path d="M40 30 L160 30 L170 50 L170 170 L40 170 Z" fill="#F5E6C8" stroke="#B85E00" stroke-width="2"/><path d="M160 30 L160 50 L170 50" fill="#EBD5A8" stroke="#B85E00" stroke-width="2"/><text x="100" y="110" text-anchor="middle" font-family="Montserrat" font-weight="900" font-size="18" fill="#0E1712">SA·PY</text><text x="100" y="130" text-anchor="middle" font-family="Montserrat" font-size="10" fill="#4A5348">personalizado</text></svg>';
+      case 'cuchillo': return '<svg viewBox="0 0 200 200" style="width:100%;height:100%"><path d="M30 60 L140 60 L160 80 L140 100 L30 100 Z" fill="#D0D5CE" stroke="#4A5348" stroke-width="2"/><rect x="140" y="55" width="40" height="50" rx="6" fill="#1E5FA8"/><rect x="146" y="75" width="6" height="12" fill="#F19100" rx="1"/></svg>';
+      case 'guante': return '<svg viewBox="0 0 200 200" style="width:100%;height:100%"><path d="M60 80 Q60 40 90 40 Q120 40 120 80 L120 130 Q120 160 90 160 Q60 160 60 130 Z" fill="#1E5FA8"/><path d="M70 90 L110 90 L110 140 L70 140 Z" fill="#2A6FBB"/><circle cx="90" cy="60" r="4" fill="#F19100"/></svg>';
+      case 'boligrafo': return '<svg viewBox="0 0 200 100" style="width:100%;height:100%"><rect x="20" y="42" width="140" height="16" rx="4" fill="#1E5FA8"/><polygon points="160,42 180,50 160,58" fill="#0E1712"/><rect x="30" y="42" width="8" height="16" fill="#F19100"/><rect x="120" y="38" width="10" height="24" rx="2" fill="#8DBF28"/></svg>';
+      case 'termometro': return '<svg viewBox="0 0 200 200" style="width:100%;height:100%"><rect x="90" y="30" width="20" height="120" rx="10" fill="#F5F7F2" stroke="#4A5348" stroke-width="2"/><circle cx="100" cy="160" r="20" fill="#F19100"/><rect x="94" y="60" width="12" height="90" fill="#F19100"/><line x1="115" y1="60" x2="130" y2="60" stroke="#4A5348" stroke-width="2"/><line x1="115" y1="90" x2="125" y2="90" stroke="#4A5348" stroke-width="2"/><line x1="115" y1="120" x2="130" y2="120" stroke="#4A5348" stroke-width="2"/></svg>';
+      case 'curita': return '<svg viewBox="0 0 200 100" style="width:100%;height:100%"><rect x="30" y="35" width="140" height="30" rx="15" fill="#1E5FA8" transform="rotate(-15 100 50)"/><g transform="rotate(-15 100 50)"><circle cx="60" cy="50" r="2.5" fill="#0E1712"/><circle cx="70" cy="50" r="2.5" fill="#0E1712"/><circle cx="130" cy="50" r="2.5" fill="#0E1712"/><circle cx="140" cy="50" r="2.5" fill="#0E1712"/><rect x="82" y="42" width="36" height="16" fill="#2A6FBB"/></g></svg>';
+      case 'bandeja': return '<svg viewBox="0 0 200 200" style="width:100%;height:100%"><rect x="30" y="50" width="140" height="110" rx="8" fill="#F5F7F2" stroke="#4A5348" stroke-width="2"/><rect x="40" y="60" width="120" height="90" rx="4" fill="#FFFFFF" stroke="#C7CDC2" stroke-width="1"/><rect x="50" y="70" width="45" height="70" fill="#F0F2ED"/><rect x="105" y="70" width="45" height="70" fill="#F0F2ED"/></svg>';
+      case 'jabonera': return '<svg viewBox="0 0 200 200" style="width:100%;height:100%"><rect x="70" y="30" width="60" height="120" rx="8" fill="#1E5FA8"/><rect x="80" y="45" width="40" height="80" fill="#8DBF28" opacity=".3"/><path d="M100 130 L100 150" stroke="#F19100" stroke-width="4" stroke-linecap="round"/><rect x="60" y="150" width="80" height="12" rx="4" fill="#4A5348"/></svg>';
+      case 'caja': return '<svg viewBox="0 0 200 200" style="width:100%;height:100%"><path d="M40 70 L100 40 L160 70 L160 150 L100 180 L40 150 Z" fill="#B85E00" opacity=".85"/><path d="M40 70 L100 100 L160 70" stroke="#8B4400" stroke-width="2" fill="none"/><path d="M100 100 L100 180" stroke="#8B4400" stroke-width="2"/><rect x="80" y="115" width="40" height="20" fill="#F5F7F2" stroke="#0E1712" stroke-width="1"/><text x="100" y="129" text-anchor="middle" font-family="Montserrat" font-weight="900" font-size="10" fill="#0E1712">SA·PY</text></svg>';
+      case 'delantal': return '<svg viewBox="0 0 200 200" style="width:100%;height:100%"><path d="M70 30 Q100 40 130 30 L140 60 L160 80 L150 170 L50 170 L40 80 L60 60 Z" fill="#1E5FA8"/><rect x="85" y="35" width="30" height="18" fill="#2A6FBB"/><line x1="60" y1="60" x2="30" y2="40" stroke="#1E5FA8" stroke-width="4"/><line x1="140" y1="60" x2="170" y2="40" stroke="#1E5FA8" stroke-width="4"/></svg>';
+      default: return '<svg viewBox="0 0 200 200" style="width:100%;height:100%"><rect x="60" y="60" width="80" height="80" rx="12" fill="#3DAB38"/></svg>';
+    }
+  }
+
+  productData() {
+    return [
+      { id:'p1', sku:'SA-CIN-002', kind:'cintillo', category:'Cintillos y cadenas', name:'Cintillos detectables', short:'Bandas de cierre para bolsas y calzado, reutilizables y detectables por metales / rayos X.', long:'Cintillos de seguridad fabricados en material detectable por metales y rayos X. Diseñados para el cierre de bolsas, delantales y calzado en plantas HACCP. Su color azul contrasta con la mayoría de alimentos y permite identificación visual inmediata.', priceLabel:'Consultar', tags:[{label:'Detectable',bg:'#E4EDF7',fg:'#1E5FA8'},{label:'Reutilizable',bg:'#E7F5E4',fg:'#2E8A2C'}] },
+      { id:'p2', sku:'SA-CAD-014', kind:'cadena', category:'Cintillos y cadenas', name:'Cadena de seguridad con soporte', short:'Cadena delimitadora detectable con soporte industrial para separar áreas críticas.', long:'Sistema de delimitación de áreas críticas de producción. Cadenas y soportes detectables por metales, ideales para señalizar zonas restringidas y flujos de circulación en plantas alimentarias.', priceLabel:'Consultar', tags:[{label:'Industria',bg:'#FDE7CC',fg:'#B85E00'}] },
+      { id:'p3', sku:'SA-BOL-014', kind:'boligrafo', category:'Productos detectables', name:'Bolígrafo Elephant detectable', short:'Bolígrafo de trabajo con cuerpo, resorte y tinta detectables por metales.', long:'Bolígrafo profesional con todos sus componentes (cuerpo, resorte, punta y tinta) detectables por metales y rayos X. Diseñado para uso en salas de producción, laboratorios y áreas de manipulación.', priceLabel:'Consultar', tags:[{label:'FDA · UE',bg:'#FDE7CC',fg:'#B85E00'},{label:'Detectable',bg:'#E4EDF7',fg:'#1E5FA8'}] },
+      { id:'p4', sku:'SA-CUR-007', kind:'curita', category:'Higiene y control', name:'Curitas azules detectables', short:'Vendas adhesivas azules con capa de aluminio, detectables por metales.', long:'Curitas detectables con capa de metal integrada, color azul de alta visibilidad. Cumplen con requisitos de plantas HACCP y BRCGS. Presentación en caja individual, resistentes al agua.', priceLabel:'Consultar', tags:[{label:'Detectable',bg:'#E4EDF7',fg:'#1E5FA8'},{label:'HACCP',bg:'#E7F5E4',fg:'#2E8A2C'}] },
+      { id:'p5', sku:'SA-CUC-021', kind:'cuchillo', category:'Corte y manipulación', name:'Cuchillo de carnicería profesional', short:'Cuchillo forjado con mango detectable y hoja de acero inoxidable AISI 420.', long:'Cuchillo de corte profesional con hoja de acero inoxidable AISI 420, mango ergonómico azul detectable por metales. Ideal para carnicerías, plantas cárnicas y salas de despiece.', priceLabel:'Consultar', tags:[{label:'Apto industria',bg:'#FDE7CC',fg:'#B85E00'}] },
+      { id:'p6', sku:'SA-PAP-030', kind:'papel', category:'Packaging gastronómico', name:'Papel manteca personalizado', short:'Papel manteca con impresión de marca, apto para contacto directo con alimentos.', long:'Papel manteca siliconado con impresión personalizada de tu marca. Apto para contacto con alimentos, resistente a grasas y temperatura. Presentación en resmas o rollos.', priceLabel:'Consultar', tags:[{label:'Personalizable',bg:'#FDE7CC',fg:'#B85E00'},{label:'Higiénico',bg:'#E7F5E4',fg:'#2E8A2C'}] },
+      { id:'p7', sku:'SA-GUA-045', kind:'guante', category:'Higiene y control', name:'Guantes de nitrilo azul detectables', short:'Guantes de nitrilo azul con partículas detectables, sin polvo, uso alimentario.', long:'Guantes de nitrilo azul, sin polvo, con partículas detectables por metales. Alta resistencia mecánica y química. Aprobados para contacto con alimentos según FDA y UE. Caja de 100 unidades.', priceLabel:'Consultar', tags:[{label:'Detectable',bg:'#E4EDF7',fg:'#1E5FA8'},{label:'FDA · UE',bg:'#FDE7CC',fg:'#B85E00'}] },
+      { id:'p8', sku:'SA-BAN-052', kind:'bandeja', category:'Packaging gastronómico', name:'Bandejas para take away', short:'Bandejas y contenedores termosellables para locales gastronómicos.', long:'Bandejas rígidas con tapa, aptas para take away, delivery y venta directa. Materiales aprobados para contacto con alimentos calientes y fríos. Personalizables con impresión de marca.', priceLabel:'Consultar', tags:[{label:'Take away',bg:'#FDE7CC',fg:'#B85E00'}] },
+      { id:'p9', sku:'SA-TMP-001', kind:'termometro', category:'Higiene y control', name:'Termómetro sonda detectable', short:'Termómetro digital con sonda detectable, rango -50 a 300°C.', long:'Termómetro digital de sonda para control de cocción y cadena de frío. Sonda con recubrimiento detectable por metales. Precisión ±1°C. Rango operativo -50 a 300°C.', priceLabel:'Consultar', tags:[{label:'Control',bg:'#E4EDF7',fg:'#1E5FA8'}] },
+      { id:'p10', sku:'SA-JAB-063', kind:'jabonera', category:'Higiene y control', name:'Dosificador de jabón industrial', short:'Dosificador mural de acero inoxidable para gel sanitizante o jabón.', long:'Dosificador de pared para jabón líquido o alcohol en gel. Acero inoxidable, capacidad 1L, sistema de codo o pulsador. Instalación en zonas de lavado y sanitización.', priceLabel:'Consultar', tags:[{label:'Higiene',bg:'#E7F5E4',fg:'#2E8A2C'}] },
+      { id:'p11', sku:'SA-CAJ-078', kind:'caja', category:'Soluciones industria', name:'Cajas kraft personalizadas', short:'Cajas de cartón kraft con impresión de marca para packaging gastronómico.', long:'Cajas de cartón kraft para hamburguesas, sushi, wraps y productos de panadería. Impresión personalizada de marca. Interior con recubrimiento apto para alimentos grasos.', priceLabel:'Consultar', tags:[{label:'Personalizable',bg:'#FDE7CC',fg:'#B85E00'}] },
+      { id:'p12', sku:'SA-DEL-091', kind:'delantal', category:'Higiene y control', name:'Delantal azul detectable', short:'Delantal de trabajo azul con broches detectables por metales.', long:'Delantal industrial en PVC azul de alta resistencia, con broches y cordones detectables por metales. Reutilizable, fácil de higienizar. Talles S/M/L/XL.', priceLabel:'Consultar', tags:[{label:'Detectable',bg:'#E4EDF7',fg:'#1E5FA8'}] },
+    ];
+  }
+
+  categoryData() {
+    return [
+      { slug:'cintillos', name:'Cintillos y cadenas de seguridad', code:'SA·01', count:14, desc:'Bandas, cierres y sistemas de delimitación detectables para áreas críticas de producción.', icon:ICONS.chain },
+      { slug:'detectables', name:'Productos detectables', code:'SA·02', count:38, desc:'Bolígrafos, marcadores, herramientas y accesorios de trabajo con materiales detectables por metales.', icon:ICONS.detect },
+      { slug:'corte', name:'Corte y manipulación', code:'SA·03', count:22, desc:'Cuchillería profesional, chairas y utensilios de corte con mangos detectables.', icon:ICONS.knife },
+      { slug:'packaging', name:'Packaging gastronómico', code:'SA·04', count:47, desc:'Bandejas, cajas kraft, papel manteca personalizado y contenedores para take away.', icon:ICONS.pack },
+      { slug:'higiene', name:'Higiene y control', code:'SA·05', count:31, desc:'Guantes, curitas, dosificadores, delantales, termómetros y kits de sanitización.', icon:ICONS.clean },
+      { slug:'industria', name:'Soluciones para industrias', code:'SA·06', count:19, desc:'Insumos técnicos, equipamiento y consultoría para plantas HACCP, ISO y BRCGS.', icon:ICONS.industry },
+    ];
+  }
+
+  renderVals() {
+    const view = this.state.view;
+    const products = this.productData();
+    const categories = this.categoryData().map(c => ({ ...c, go: () => this.setState({ view:'catalog' }) }));
+
+    const withActions = p => ({
+      ...p,
+      visual: this.visualFor(p.kind),
+      view: () => this.setState({ view:'product', activeProductId:p.id }),
+      addToCart: (e) => { e && e.stopPropagation && e.stopPropagation(); this.addToCart(p.id); },
+    });
+
+    const featured = products.slice(0,4).map(withActions);
+    const all = products.map(withActions);
+    const active = withActions(products.find(p => p.id === this.state.activeProductId) || products[0]);
+    active.benefits = [
+      'Detectable por metales y rayos X en línea de producción.',
+      'Color azul de alta visibilidad, ausente en la mayoría de alimentos.',
+      'Cumple con FDA y regulación UE para contacto directo con alimentos.',
+      'Reutilizable · higienizable con detergentes industriales.',
+    ];
+    active.usage = 'Recomendado para plantas cárnicas, panificadoras, lácteas, farmacéuticas y cualquier operación con puntos críticos HACCP. Compatible con detectores de metales industriales estándar.';
+    active.specs = [
+      { label:'Material', value:'Polímero detectable' },
+      { label:'Color', value:'Azul técnico #1E5FA8' },
+      { label:'Certificación', value:'FDA · UE 10/2011' },
+      { label:'Origen', value:'Importado' },
+    ];
+
+    const gallery = [
+      { label:'FRONT', border:'#0E1712' },
+      { label:'DETAIL', border:'#E3E7E1' },
+      { label:'USE', border:'#E3E7E1' },
+      { label:'PACK', border:'#E3E7E1' },
+    ];
+
+    const cart = this.state.cart.map(item => ({
+      ...item,
+      increment: () => this.setCartQty(item.id, item.qty + 1),
+      decrement: () => this.setCartQty(item.id, Math.max(1, item.qty - 1)),
+      remove: () => this.removeFromCart(item.id),
+    }));
+
+    return {
+      // routing flags
+      isPublic: !['adminLogin','admin'].includes(view),
+      isHome: view === 'home',
+      isCatalog: view === 'catalog',
+      isProduct: view === 'product',
+      isContact: view === 'contact',
+      isAbout: view === 'about',
+      isSafety: view === 'safety',
+      isCategories: view === 'categories',
+      isAdminLogin: view === 'adminLogin',
+      isAdmin: view === 'admin',
+      isAdminDashboard: this.state.adminSection === 'dashboard' || !this.state.adminSection,
+
+      // nav
+      goHome: this.goto('home'),
+      goCatalog: this.goto('catalog'),
+      goCategories: this.goto('categories'),
+      goAbout: this.goto('about'),
+      goSafety: this.goto('safety'),
+      goContact: this.goto('contact'),
+      goAdmin: this.goto('admin'),
+      goAdminLogin: this.goto('adminLogin'),
+      requestQuote: () => this.sendWhatsApp(),
+      toggleCart: () => this.setState({ cartOpen: !this.state.cartOpen }),
+      sendWhatsApp: () => this.sendWhatsApp(),
+      addActiveToCart: () => this.addToCart(this.state.activeProductId),
+      downloadCatalog: () => window.open('#'),
+
+      navLinks: [
+        { label:'Inicio', go:this.goto('home'), color: view==='home'?'#3DAB38':'#0E1712' },
+        { label:'Productos', go:this.goto('catalog'), color: view==='catalog'?'#3DAB38':'#0E1712' },
+        { label:'Categorías', go:this.goto('categories'), color: view==='categories'?'#3DAB38':'#0E1712' },
+        { label:'Nosotros', go:this.goto('about'), color: view==='about'?'#3DAB38':'#0E1712' },
+        { label:'Seguridad alimentaria', go:this.goto('safety'), color: view==='safety'?'#3DAB38':'#0E1712' },
+        { label:'Contacto', go:this.goto('contact'), color: view==='contact'?'#3DAB38':'#0E1712' },
+      ],
+
+      views: [
+        { label:'Home', go:this.goto('home'), bg: view==='home'?'#3DAB38':'transparent', fg:'#fff' },
+        { label:'Categorías', go:this.goto('categories'), bg: view==='categories'?'#3DAB38':'transparent', fg:'#fff' },
+        { label:'Catálogo', go:this.goto('catalog'), bg: view==='catalog'?'#3DAB38':'transparent', fg:'#fff' },
+        { label:'Producto', go:this.goto('product'), bg: view==='product'?'#3DAB38':'transparent', fg:'#fff' },
+        { label:'Carrito', go:() => this.setState({ cartOpen:true }), bg:'transparent', fg:'#fff' },
+        { label:'Nosotros', go:this.goto('about'), bg: view==='about'?'#3DAB38':'transparent', fg:'#fff' },
+        { label:'Seguridad', go:this.goto('safety'), bg: view==='safety'?'#3DAB38':'transparent', fg:'#fff' },
+        { label:'Contacto', go:this.goto('contact'), bg: view==='contact'?'#3DAB38':'transparent', fg:'#fff' },
+        { label:'Admin Login', go:this.goto('adminLogin'), bg: view==='adminLogin'?'#F19100':'transparent', fg:'#fff' },
+        { label:'Admin', go:this.goto('admin'), bg: view==='admin'?'#F19100':'transparent', fg:'#fff' },
+      ],
+
+      cartCount: this.state.cart.reduce((s,i) => s + i.qty, 0),
+      cartOpen: this.state.cartOpen,
+      cart,
+
+      categories,
+      featuredProducts: featured,
+      allProducts: all,
+      productsCount: all.length,
+      activeProduct: active,
+      gallery,
+
+      marqueeItems: [
+        'Detectables por metales', 'HACCP · ISO · BRCGS', 'FDA · UE contacto directo',
+        'Envíos a todo Paraguay', 'Facturación empresarial', 'Cotización en 24hs',
+        'Detectables por metales', 'HACCP · ISO · BRCGS', 'FDA · UE contacto directo',
+        'Envíos a todo Paraguay', 'Facturación empresarial', 'Cotización en 24hs',
+      ],
+
+      whyUs: [
+        { n:'01', title:'Diseñados para inocuidad', desc:'Materiales aprobados para contacto directo con alimentos según FDA y regulación UE 10/2011.', icon:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>' },
+        { n:'02', title:'Control y trazabilidad', desc:'Cada producto está pensado para reforzar puntos críticos HACCP y auditorías BRCGS.', icon:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>' },
+        { n:'03', title:'Atención técnica personalizada', desc:'Te asesoramos según el rubro, tamaño de operación y punto crítico específico.', icon:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>' },
+        { n:'04', title:'Ideal gastronomía & industria', desc:'Trabajamos con carnicerías, panaderías, plantas cárnicas, lácteas y farmacéuticas.', icon:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M2 20V8l6 4V8l6 4V8l6 4v8"/></svg>' },
+        { n:'05', title:'Cotización rápida por WhatsApp', desc:'Enviás tu pedido y recibís cotización con stock y tiempos de entrega en menos de 24hs.', icon:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>' },
+        { n:'06', title:'Stock permanente', desc:'Reponemos categorías críticas de forma constante para evitar quiebres en tu operación.', icon:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/></svg>' },
+      ],
+
+      safetyPillars: [
+        { n:1, title:'Higiene', desc:'Guantes, curitas detectables, delantales, dosificadores y kits de sanitización para el equipo.', bg:'#E4EDF7', fg:'#1E5FA8', productsLine:'Guantes · Curitas · Dosificadores', icon:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"/></svg>' },
+        { n:2, title:'Manipulación', desc:'Cuchillería, herramientas de corte y utensilios con mangos detectables por metales.', bg:'#E7F5E4', fg:'#2E8A2C', productsLine:'Cuchillos · Chairas · Utensilios', icon:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2 6 14l4 4L22 6z"/></svg>' },
+        { n:3, title:'Contaminación cruzada', desc:'Bandejas, contenedores y colores diferenciados por área evitan traspaso entre productos.', bg:'#FDE7CC', fg:'#B85E00', productsLine:'Bandejas · Cajas · Delimitadores', icon:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><circle cx="16" cy="16" r="6"/></svg>' },
+        { n:4, title:'Trazabilidad', desc:'Cintillos, cadenas de seguridad y etiquetado permiten seguir cada lote desde su origen.', bg:'#F5F7F2', fg:'#0E1712', productsLine:'Cintillos · Cadenas · Sellos', icon:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="7" y1="7" x2="7" y2="17"/><line x1="12" y1="7" x2="12" y2="17"/><line x1="17" y1="7" x2="17" y2="17"/></svg>' },
+        { n:5, title:'Buenas prácticas', desc:'Bolígrafos, marcadores, planillas: todo lo que entra a planta debe ser detectable.', bg:'#FEF3D7', fg:'#B77A00', productsLine:'Bolígrafos · Marcadores · Planillas', icon:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' },
+      ],
+
+      territory: [
+        { n:1, title:'Confianza', desc:'Cada producto llega con documentación técnica y certificaciones que respaldan tu operación.', icon:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>' },
+        { n:2, title:'Precisión', desc:'Especificaciones técnicas claras: material, tolerancia, certificación, uso recomendado.', icon:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></svg>' },
+        { n:3, title:'Cercanía', desc:'Atención personal por WhatsApp, showroom en Asunción, tiempos de respuesta cortos.', icon:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>' },
+        { n:4, title:'Compromiso', desc:'Buscamos ser aliados de tu operación, no un proveedor más. Reponemos, avisamos, mejoramos.', icon:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>' },
+      ],
+
+      tagFilters: [
+        { label:'Detectable', bg:'#E4EDF7', fg:'#1E5FA8', border:'#B8CEE8' },
+        { label:'Reutilizable', bg:'#E7F5E4', fg:'#2E8A2C', border:'#B7DAB4' },
+        { label:'Higiénico', bg:'#F5F7F2', fg:'#0E1712', border:'#D0D5CE' },
+        { label:'Apto industria', bg:'#FDE7CC', fg:'#B85E00', border:'#F4C892' },
+        { label:'FDA · UE', bg:'#FEF3D7', fg:'#B77A00', border:'#F0DC98' },
+        { label:'HACCP', bg:'#E4EDF7', fg:'#1E5FA8', border:'#B8CEE8' },
+      ],
+
+      // Admin data
+      adminNav: this.buildAdminNav(),
+      adminTitleEyebrow: this.adminEyebrow(),
+      adminTitle: this.adminTitleText(),
+      adminCta: this.adminCta(),
+      kpis: [
+        { label:'Pedidos pendientes', value:'12', delta:'+3 hoy', deltaBg:'#E7F5E4', deltaFg:'#2E8A2C', bg:'#E7F5E4', fg:'#2E8A2C', sub:'Requieren cotización', icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>' },
+        { label:'Productos activos', value:'171', delta:'+8 este mes', deltaBg:'#E4EDF7', deltaFg:'#1E5FA8', bg:'#E4EDF7', fg:'#1E5FA8', sub:'de 189 totales', icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>' },
+        { label:'Consultas Contacto', value:'34', delta:'nuevo', deltaBg:'#FDE7CC', deltaFg:'#B85E00', bg:'#FDE7CC', fg:'#B85E00', sub:'últimas 7 días', icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>' },
+        { label:'Cotizaciones cerradas', value:'₲184M', delta:'+22%', deltaBg:'#E7F5E4', deltaFg:'#2E8A2C', bg:'#F5F7F2', fg:'#0E1712', sub:'último mes', icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>' },
+      ],
+    };
+  }
+
+  buildAdminNav() {
+    const section = this.state.adminSection || 'dashboard';
+    const items = [
+      { key:'dashboard', label:'Dashboard', badge:null, icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>' },
+      { key:'products', label:'Productos', badge:null, icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>' },
+      { key:'categories', label:'Categorías', badge:null, icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>' },
+      { key:'orders', label:'Pedidos', badge:'12', icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>' },
+      { key:'contacts', label:'Contactos', badge:'3', icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>' },
+      { key:'settings', label:'Site settings', badge:null, icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>' },
+    ];
+    return items.map(it => ({
+      ...it,
+      go: () => this.setState({ adminSection: it.key }),
+      color: section === it.key ? '#fff' : '#B9C0BA',
+      bg: section === it.key ? '#3DAB38' : 'transparent',
+    }));
+  }
+
+  adminEyebrow() {
+    const s = this.state.adminSection || 'dashboard';
+    return { dashboard:'Panel general', products:'Catálogo', categories:'Catálogo', orders:'Pedidos', contacts:'Bandeja de entrada', settings:'Configuración' }[s] || 'Panel';
+  }
+  adminTitleText() {
+    const s = this.state.adminSection || 'dashboard';
+    return { dashboard:'Buen día, Admin.', products:'Productos', categories:'Categorías', orders:'Pedidos recibidos', contacts:'Consultas de contacto', settings:'Ajustes del sitio' }[s] || '';
+  }
+  adminCta() {
+    const s = this.state.adminSection || 'dashboard';
+    return { dashboard:'Nuevo producto', products:'Nuevo producto', categories:'Nueva categoría', orders:'Exportar CSV', contacts:'Exportar CSV', settings:'Guardar cambios' }[s] || 'Nuevo';
+  }
+
+  addToCart(id) {
+    const p = this.productData().find(x => x.id === id);
+    if (!p) return;
+    const existing = this.state.cart.find(i => i.id === id);
+    if (existing) {
+      this.setCartQty(id, existing.qty + 1);
+    } else {
+      this.setState({ cart: [...this.state.cart, { id:p.id, sku:p.sku, name:p.name, qty:1, priceLabel:p.priceLabel, visual:this.miniViz(p.kind) }], cartOpen:true });
+    }
+  }
+  setCartQty(id, qty) { this.setState({ cart: this.state.cart.map(i => i.id === id ? {...i, qty} : i) }); }
+  removeFromCart(id) { this.setState({ cart: this.state.cart.filter(i => i.id !== id) }); }
+
+  sendWhatsApp() {
+    const lines = ['Hola, quiero solicitar una cotización de Seguridad Alimentaria PY:'];
+    this.state.cart.forEach(i => lines.push(`• ${i.name} x ${i.qty}`));
+    lines.push('', 'Nombre:', 'Empresa:', 'Ciudad:', 'Observaciones:');
+    const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
+    window.open(url, '_blank');
+  }
+}
+</script>
+</body>
+</html>
