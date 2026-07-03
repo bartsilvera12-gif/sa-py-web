@@ -27,6 +27,11 @@
   @keyframes sa-pulse { 0%,100%{transform:scale(1); opacity:1} 50%{transform:scale(1.15); opacity:.7} }
   @keyframes sa-float { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-14px) rotate(-2deg)} }
   @keyframes sa-glow { 0%,100%{opacity:.7; transform:scale(1)} 50%{opacity:1; transform:scale(1.12)} }
+  @keyframes slideInRight { from{transform:translateX(100%)} to{transform:translateX(0)} }
+  .mobile-menu-panel.open { display:flex !important; }
+  #mobile-nav a { display:flex; align-items:center; gap:12px; padding:14px 16px; font-size:15px; font-weight:600; color:var(--sa-ink); text-decoration:none; border-radius:10px; }
+  #mobile-nav a:active, #mobile-nav a.active { background:var(--sa-gray-50); color:var(--sa-green); }
+  #mobile-nav .mobile-nav-cat-item { font-size:14px; padding:12px 16px 12px 24px; color:var(--sa-gray-700); }
   .btn-hover-green:hover { background:var(--sa-green-dark) !important; }
   .btn-hover-dark:hover { background:var(--sa-ink) !important; color:#fff !important; }
   .btn-hover-lift:hover { border-color:var(--sa-ink) !important; transform:translateY(-4px); box-shadow:0 16px 40px rgba(14,23,18,.08); }
@@ -53,19 +58,76 @@
   .icon-btn:hover { background:var(--sa-green) !important; }
   .page { display:none; }
   .page.active { display:block; }
+  .mobile-menu-btn { display:none; }
+  .mobile-menu-panel { display:none; }
   @media (max-width: 900px) {
-    .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr !important; }
-    h1 { font-size:44px !important; }
-    h2 { font-size:34px !important; }
-    section { padding-left:20px !important; padding-right:20px !important; }
-    header .inner { padding: 0 20px !important; }
+    /* Grids → 1 columna */
+    .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr !important; gap:16px !important; }
+    /* Tipografía */
+    h1 { font-size:32px !important; line-height:1.1 !important; }
+    h2 { font-size:26px !important; line-height:1.15 !important; }
+    h3 { font-size:18px !important; }
+    /* Spacing */
+    section { padding-left:20px !important; padding-right:20px !important; padding-top:56px !important; padding-bottom:56px !important; }
+    /* Header */
+    header .inner { padding: 0 16px !important; height:64px !important; gap:8px !important; }
+    header .inner > a > div { display:none !important; }
+    header .inner > a > img { width:38px !important; height:38px !important; }
+    header .inner > div:last-child { gap:6px !important; }
+    header .inner > div:last-child button { padding:9px 12px !important; font-size:11px !important; }
+    header .inner > div:last-child button svg { width:12px !important; height:12px !important; }
     nav.desktop-nav { display:none !important; }
     .mobile-menu-btn { display:flex !important; }
-    .hero-grid { grid-template-columns: 1fr !important; }
-    .hero-visual { height:420px !important; }
-    .catalog-grid { grid-template-columns: 240px 1fr !important; }
+    header > div:last-child > div { padding: 0 16px !important; height:auto !important; min-height:28px !important; padding-top:6px !important; padding-bottom:6px !important; flex-wrap:wrap !important; gap:8px !important; font-size:9px !important; letter-spacing:.1em !important; }
+    header > div:last-child > div > div:first-child span:nth-child(2), header > div:last-child > div > div:first-child span:nth-child(3) { display:none !important; }
+    /* Hero */
+    .hero-grid { grid-template-columns: 1fr !important; gap:32px !important; }
+    .hero-visual { height:auto !important; min-height:380px !important; }
+    /* Catálogo */
+    .catalog-grid { grid-template-columns: 1fr !important; gap:20px !important; padding-top:24px !important; }
+    .catalog-grid aside { position:relative !important; top:auto !important; padding:20px !important; }
+    /* Admin */
     .admin-shell { grid-template-columns: 1fr !important; }
-    .admin-sidebar { position:relative !important; height:auto !important; }
+    .admin-sidebar { position:relative !important; height:auto !important; padding:16px !important; }
+    .admin-sidebar > a[href="#/"] { margin-bottom:8px !important; }
+    /* Footer */
+    footer > div > div:first-child { padding-bottom:32px !important; gap:32px !important; }
+    /* Cart drawer */
+    #cart-drawer > div:last-child { width:100% !important; }
+    /* Hero product carousel */
+    #hero-carousel > div { flex-direction:column !important; padding:16px !important; gap:16px !important; text-align:center !important; }
+    #hero-carousel > div > div:first-child { width:140px !important; height:140px !important; margin:0 auto !important; }
+    /* Featured carousel arrows */
+    .featured-arrow { width:42px !important; height:42px !important; }
+    /* Contact hero logo */
+    #page-contacto section > div img[src*="isotype"] { width:120px !important; height:120px !important; }
+    /* Editorial categorías */
+    .cat-editorial { grid-template-columns:1fr !important; gap:32px !important; }
+    .cat-editorial > div:first-child { position:relative !important; top:auto !important; }
+    .cat-row { padding:20px 4px !important; }
+    .cat-row > div { grid-template-columns:44px 1fr auto !important; gap:12px !important; }
+    .cat-row > div > div:nth-child(3) { display:none; }
+    .cat-row h3 { font-size:16px !important; }
+    /* Pillars grid */
+    #pillars-grid { grid-template-columns:1fr !important; }
+    /* Hide dev nav dots */
+    footer > div > div:first-child > div:first-child p { display:none !important; }
+    /* Product detail */
+    #page-producto section > div { grid-template-columns:1fr !important; gap:24px !important; }
+    #page-producto h1 { font-size:28px !important; }
+    /* Hero section h1 */
+    #page-home section:first-of-type h1 { font-size:36px !important; }
+    /* Stats row */
+    #page-home section:first-of-type div[style*="border-top"] { flex-direction:column !important; gap:12px !important; }
+    #page-home section:first-of-type div[style*="border-top"] > div[style*="width:1px"] { width:100% !important; height:1px !important; }
+  }
+  @media (max-width: 480px) {
+    section { padding-top:40px !important; padding-bottom:40px !important; }
+    h1 { font-size:26px !important; }
+    h2 { font-size:22px !important; }
+    #page-home section:first-of-type h1 { font-size:30px !important; }
+    .hero-visual { min-height:340px !important; }
+    #hero-carousel > div > div:first-child { width:120px !important; height:120px !important; }
   }
 </style>
 </head>
@@ -93,6 +155,9 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
         <span id="cart-count-badge" style="font-size:12px; font-weight:700;">0</span>
       </button>
+      <button onclick="toggleMobileMenu()" class="mobile-menu-btn" aria-label="Menú" style="border:1px solid var(--sa-gray-100); background:#fff; width:42px; height:42px; border-radius:999px; align-items:center; justify-content:center;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
     </div>
   </div>
   <div style="background:var(--sa-ink); color:#EDEFEA;">
@@ -109,6 +174,30 @@
     </div>
   </div>
 </header>
+
+<!-- Mobile menu panel -->
+<div id="mobile-menu" class="mobile-menu-panel" style="position:fixed; inset:0; z-index:200; justify-content:flex-end;">
+  <div onclick="toggleMobileMenu()" style="position:absolute; inset:0; background:rgba(14,23,18,.5); backdrop-filter:blur(4px);"></div>
+  <div style="position:relative; width:320px; max-width:100%; background:#fff; height:100vh; display:flex; flex-direction:column; box-shadow:-30px 0 60px rgba(0,0,0,.15); animation:slideInRight .3s ease-out;">
+    <div style="padding:20px 24px; border-bottom:1px solid var(--sa-gray-100); display:flex; align-items:center; justify-content:space-between;">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <img src="assets/isotype.png" alt="" style="width:32px; height:32px; object-fit:contain;">
+        <div style="font-size:12px; font-weight:800; letter-spacing:.02em;">MENÚ</div>
+      </div>
+      <button onclick="toggleMobileMenu()" style="border:1px solid var(--sa-gray-100); background:#fff; width:36px; height:36px; border-radius:999px; display:flex; align-items:center; justify-content:center;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <nav id="mobile-nav" style="flex:1; overflow-y:auto; padding:16px 12px; display:flex; flex-direction:column; gap:2px;"></nav>
+    <div style="padding:16px 24px 24px; border-top:1px solid var(--sa-gray-100); display:flex; flex-direction:column; gap:10px;">
+      <a href="https://wa.me/595982296371" target="_blank" style="display:flex; align-items:center; gap:10px; padding:12px 16px; background:#25D366; color:#fff; border-radius:12px; font-size:13px; font-weight:700; text-decoration:none;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        +595 982 296 371
+      </a>
+      <a href="mailto:info@laseguridadalimentaria.com" style="font-size:12px; color:var(--sa-gray-700); text-align:center;">info@laseguridadalimentaria.com</a>
+    </div>
+  </div>
+</div>
 
 <!-- ===================== HOME ===================== -->
 <div id="page-home" class="page">
@@ -958,6 +1047,29 @@ function updateNav(current){
     ? l.html
     : `<a href="${l.href}" class="nav-link" style="padding:10px 16px; font-size:13px; font-weight:600; cursor:pointer; border-radius:6px; color:${current===l.key?'#3DAB38':'#0E1712'};">${l.label}</a>`
   ).join('');
+
+  // Mobile menu
+  const mobileNav = document.getElementById('mobile-nav');
+  if (mobileNav) {
+    const mobileLinks = [
+      { href:'#/', label:'Inicio', key:'home', icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>' },
+      { href:'#/catalogo', label:'Productos', key:'catalogo', icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>' },
+      { href:'#/categorias', label:'Categorías', key:'categorias', icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>' },
+      { href:'#/nosotros', label:'Nosotros', key:'nosotros', icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>' },
+      { href:'#/seguridad', label:'Seguridad', key:'seguridad', icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>' },
+      { href:'#/contacto', label:'Contacto', key:'contacto', icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>' },
+    ];
+    mobileNav.innerHTML = mobileLinks.map(l =>
+      `<a href="${l.href}" onclick="toggleMobileMenu()" class="${current===l.key?'active':''}">${l.icon}${l.label}</a>`
+    ).join('');
+  }
+}
+
+function toggleMobileMenu(){
+  const menu = document.getElementById('mobile-menu');
+  if (!menu) return;
+  menu.classList.toggle('open');
+  document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
 }
 
 function filterByCategory(name){
