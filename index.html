@@ -37,7 +37,8 @@
   .btn-hover-lift:hover { border-color:var(--sa-ink) !important; transform:translateY(-4px); box-shadow:0 16px 40px rgba(14,23,18,.08); }
   .nav-link:hover { background:var(--sa-gray-50); }
   .nav-cat-wrap:hover .nav-cat-menu { opacity:1 !important; visibility:visible !important; transform:translateY(0) !important; }
-  .nav-cat-menu a:hover { background:var(--sa-gray-50); }
+  .nav-cat-menu a.nav-cat-item:hover { background:var(--sa-gray-50); }
+  .nav-cat-menu a.nav-cat-item:hover span:first-child { background:#E7F5E4 !important; color:var(--sa-green-dark) !important; transform:scale(1.06); }
   .cat-card:hover { transform:translateY(-6px); box-shadow:0 20px 44px rgba(14,23,18,.10); border-color:transparent; }
   .cat-card:hover .cat-cta span:last-child { transform:translateX(4px); }
   .cat-row:hover { padding-left:20px; }
@@ -1041,19 +1042,24 @@ function updateNav(current){
         Categorías
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
-      <div class="nav-cat-menu" style="position:absolute; top:calc(100% + 8px); left:0; min-width:320px; background:#fff; border:1px solid var(--sa-gray-100); border-radius:14px; box-shadow:0 20px 50px rgba(14,23,18,.12); padding:10px; opacity:0; visibility:hidden; transform:translateY(-6px); transition:all .2s; z-index:70;">
-        <a onclick="filterByCategory('')" style="display:flex; align-items:center; gap:12px; padding:10px 12px; border-radius:8px; cursor:pointer; font-size:13px; font-weight:700;">
-          <span style="width:8px; height:8px; background:var(--sa-orange); border-radius:999px;"></span>
-          Ver todo el catálogo
-        </a>
-        <div style="height:1px; background:var(--sa-gray-100); margin:6px 0;"></div>
-        ${CATEGORIES.map(c => `
-          <a onclick="filterByCategory('${c.name.replace(/'/g,"\\'")}')" style="display:flex; align-items:center; gap:12px; padding:10px 12px; border-radius:8px; cursor:pointer; font-size:13px;">
-            <span style="width:32px; height:32px; border-radius:8px; background:var(--sa-gray-50); display:flex; align-items:center; justify-content:center; color:var(--sa-green); flex-shrink:0;">${c.icon.replace('width="26" height="26"','width="16" height="16"')}</span>
-            <span style="flex:1; font-weight:600;">${c.name}</span>
-            <span style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--sa-gray-500);">${c.count}</span>
-          </a>
-        `).join('')}
+      <div class="nav-cat-menu" style="position:fixed; top:78px; left:0; right:0; width:100%; background:#fff; border-top:1px solid var(--sa-gray-100); border-bottom:1px solid var(--sa-gray-100); box-shadow:0 20px 50px rgba(14,23,18,.12); padding:32px 40px; opacity:0; visibility:hidden; transform:translateY(-8px); transition:all .25s; z-index:70;">
+        <div style="max-width:1440px; margin:0 auto;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:22px; padding-bottom:14px; border-bottom:1px solid var(--sa-gray-100);">
+            <div style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--sa-gray-500);">Explorar por categoría</div>
+            <a onclick="filterByCategory('')" style="font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--sa-green); cursor:pointer; display:inline-flex; align-items:center; gap:6px;">Ver catálogo completo <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:10px 22px;">
+            ${CATEGORIES.map(c => `
+              <a onclick="filterByCategory('${c.name.replace(/'/g,"\\'")}')" class="nav-cat-item" style="display:flex; align-items:center; gap:14px; padding:12px 14px; border-radius:12px; cursor:pointer; transition:background .2s;">
+                <span style="width:44px; height:44px; border-radius:10px; background:var(--sa-gray-50); display:flex; align-items:center; justify-content:center; color:var(--sa-green); flex-shrink:0; transition:all .2s;">${c.icon.replace('width="26" height="26"','width="20" height="20"')}</span>
+                <div style="display:flex; flex-direction:column; gap:2px; flex:1; min-width:0;">
+                  <span style="font-size:14px; font-weight:700; color:var(--sa-ink); line-height:1.2;">${c.name}</span>
+                  <span style="font-size:11px; font-weight:500; color:var(--sa-gray-500); font-family:'JetBrains Mono',monospace;">${c.count} productos</span>
+                </div>
+              </a>
+            `).join('')}
+          </div>
+        </div>
       </div>
     </div>
   `;
