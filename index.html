@@ -387,9 +387,10 @@
     <p style="font-size:16px; color:var(--sa-gray-700); max-width:640px; line-height:1.55; margin:0;">Filtrá por categoría, etiqueta o palabra clave. Todos los ítems están disponibles bajo pedido; consultá stock y precios por WhatsApp.</p>
   </div>
 </section>
-<section style="padding:0 40px 120px; position:relative; background:linear-gradient(180deg, #F5F7F2 0%, #FBFCF9 260px, #FBFCF9 100%); overflow:hidden;">
-  <div style="position:absolute; top:60px; right:-140px; width:520px; height:520px; border-radius:999px; background:radial-gradient(circle, rgba(61,171,56,.10) 0%, transparent 65%); pointer-events:none;"></div>
-  <div style="position:absolute; top:400px; left:-180px; width:520px; height:520px; border-radius:999px; background:radial-gradient(circle, rgba(241,145,0,.08) 0%, transparent 65%); pointer-events:none;"></div>
+<section style="padding:0 40px 120px; position:relative; background:linear-gradient(180deg, #E7F5E4 0%, #F5F9F0 320px, #F5F9F0 100%); overflow:hidden;">
+  <div style="position:absolute; top:40px; right:-140px; width:600px; height:600px; border-radius:999px; background:radial-gradient(circle, rgba(61,171,56,.22) 0%, transparent 65%); pointer-events:none;"></div>
+  <div style="position:absolute; top:420px; left:-180px; width:600px; height:600px; border-radius:999px; background:radial-gradient(circle, rgba(241,145,0,.16) 0%, transparent 65%); pointer-events:none;"></div>
+  <div style="position:absolute; top:900px; right:-100px; width:480px; height:480px; border-radius:999px; background:radial-gradient(circle, rgba(141,191,40,.16) 0%, transparent 65%); pointer-events:none;"></div>
   <div class="catalog-grid" style="max-width:1440px; margin:0 auto; display:grid; grid-template-columns:300px 1fr; gap:32px; padding-top:12px; position:relative; z-index:2;">
     <aside style="position:sticky; top:130px; height:fit-content; padding:0; background:#fff; border:1px solid var(--sa-gray-100); border-radius:24px; box-shadow:0 20px 40px rgba(14,23,18,.05); overflow:hidden;">
       <div style="padding:22px 24px 20px; background:linear-gradient(135deg, var(--sa-ink) 0%, #1a2620 100%); color:#fff; display:flex; align-items:center; justify-content:space-between;">
@@ -1109,14 +1110,8 @@ function filterByCategory(name){
 
 function productCardHTML(p, dark=false){
   const tagsHTML = p.tags.map(t=>`<span style="font-size:9px; font-weight:700; padding:4px 8px; border-radius:999px; background:${t.bg}; color:${t.fg}; letter-spacing:.06em; text-transform:uppercase;">${t.label}</span>`).join('');
-  // Alternar acento de color por producto (verde / naranja / lima)
-  const accentPalette = [
-    { bar:'#3DAB38', bg:'linear-gradient(135deg, #FBFFF9 0%, #E7F5E4 100%)', dot:'#3DAB38' },
-    { bar:'#F19100', bg:'linear-gradient(135deg, #FFFBF5 0%, #FDE7CC 100%)', dot:'#F19100' },
-    { bar:'#8DBF28', bg:'linear-gradient(135deg, #FBFEF3 0%, #EEF7D8 100%)', dot:'#8DBF28' },
-  ];
-  const idx = parseInt((p.id || 'p1').replace(/\D/g,''), 10) || 0;
-  const a = accentPalette[idx % accentPalette.length];
+  // Verde unificado en todas las cards
+  const a = { bar:'#3DAB38', bg:'linear-gradient(135deg, #FBFFF9 0%, #E7F5E4 100%)' };
   return `<div style="background:#fff; border-radius:20px; overflow:hidden; border:1px solid var(--sa-gray-100); color:#0E1712; display:flex; flex-direction:column; width:100%; position:relative;" class="card-hover">
     <div style="position:absolute; top:0; left:0; right:0; height:4px; background:${a.bar}; z-index:3;"></div>
     <a href="#/producto/${p.id}" style="position:relative; aspect-ratio:1/1; background:${a.bg}; overflow:hidden; display:flex; align-items:center; justify-content:center; cursor:pointer;">
