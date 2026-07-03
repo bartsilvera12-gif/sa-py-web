@@ -67,19 +67,23 @@
     h1 { font-size:32px !important; line-height:1.1 !important; }
     h2 { font-size:26px !important; line-height:1.15 !important; }
     h3 { font-size:18px !important; }
+    p { font-size:14px !important; }
     /* Spacing */
     section { padding-left:20px !important; padding-right:20px !important; padding-top:56px !important; padding-bottom:56px !important; }
-    /* Header */
-    header .inner { padding: 0 16px !important; height:64px !important; gap:8px !important; }
+    /* Header — todo compacto */
+    header .inner { padding: 0 14px !important; height:60px !important; gap:8px !important; }
     header .inner > a > div { display:none !important; }
-    header .inner > a > img { width:38px !important; height:38px !important; }
+    header .inner > a > img { width:36px !important; height:36px !important; }
     header .inner > div:last-child { gap:6px !important; }
-    header .inner > div:last-child button { padding:9px 12px !important; font-size:11px !important; }
+    header .inner > div:last-child button { padding:8px 10px !important; font-size:10px !important; letter-spacing:.02em !important; }
     header .inner > div:last-child button svg { width:12px !important; height:12px !important; }
+    header .inner > div:last-child > button:first-child { padding:8px 12px !important; }
+    header .inner > div:last-child > button:nth-child(2) { padding:8px !important; }
+    header .inner > div:last-child > button:nth-child(2) > span { display:none !important; }
     nav.desktop-nav { display:none !important; }
     .mobile-menu-btn { display:flex !important; }
-    header > div:last-child > div { padding: 0 16px !important; height:auto !important; min-height:28px !important; padding-top:6px !important; padding-bottom:6px !important; flex-wrap:wrap !important; gap:8px !important; font-size:9px !important; letter-spacing:.1em !important; }
-    header > div:last-child > div > div:first-child span:nth-child(2), header > div:last-child > div > div:first-child span:nth-child(3) { display:none !important; }
+    /* Ocultar completamente la barra oscura superior en móvil (info ya está en el menú) */
+    header > div:last-of-type { display:none !important; }
     /* Hero */
     .hero-grid { grid-template-columns: 1fr !important; gap:32px !important; }
     .hero-visual { height:auto !important; min-height:380px !important; }
