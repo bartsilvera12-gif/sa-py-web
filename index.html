@@ -121,16 +121,24 @@
     #page-producto h1 { font-size:28px !important; }
     /* Hero section h1 */
     #page-home section:first-of-type h1 { font-size:36px !important; }
-    /* Stats row */
-    #page-home section:first-of-type div[style*="border-top"] { flex-direction:column !important; gap:12px !important; }
-    #page-home section:first-of-type div[style*="border-top"] > div[style*="width:1px"] { width:100% !important; height:1px !important; }
+    /* Stats row compacto — 3 columnas en fila */
+    #page-home section:first-of-type div[style*="border-top"] { display:grid !important; grid-template-columns:1fr 1fr 1fr !important; gap:12px !important; margin-top:32px !important; padding-top:20px !important; }
+    #page-home section:first-of-type div[style*="border-top"] > div[style*="width:1px"] { display:none !important; }
+    #page-home section:first-of-type div[style*="border-top"] > div { min-width:0 !important; }
+    #page-home section:first-of-type div[style*="border-top"] > div > div:first-child { font-size:16px !important; }
+    #page-home section:first-of-type div[style*="border-top"] > div > div:last-child { font-size:9px !important; letter-spacing:.06em !important; margin-top:4px !important; }
+    /* Hero visual — ocultar carrusel de producto, mantener HACCP Ready */
+    .hero-visual > div:nth-child(2) > div:nth-child(3),  /* header dots+flechas */
+    .hero-visual > div:nth-child(2) > div:nth-child(4) { display:none !important; } /* carrusel card */
+    .hero-visual { min-height:auto !important; height:180px !important; }
+    .hero-visual > div:nth-child(2) { position:absolute !important; inset:20px !important; }
   }
   @media (max-width: 480px) {
     section { padding-top:40px !important; padding-bottom:40px !important; }
     h1 { font-size:26px !important; }
     h2 { font-size:22px !important; }
     #page-home section:first-of-type h1 { font-size:30px !important; }
-    .hero-visual { min-height:340px !important; }
+    .hero-visual { min-height:auto !important; height:160px !important; }
     #hero-carousel > div > div:first-child { width:120px !important; height:120px !important; }
   }
 </style>
