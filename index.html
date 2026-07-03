@@ -390,7 +390,7 @@
 <section style="padding:0 40px 120px; position:relative; background:linear-gradient(180deg, #F5F7F2 0%, #FBFCF9 260px, #FBFCF9 100%); overflow:hidden;">
   <div style="position:absolute; top:60px; right:-140px; width:520px; height:520px; border-radius:999px; background:radial-gradient(circle, rgba(61,171,56,.10) 0%, transparent 65%); pointer-events:none;"></div>
   <div style="position:absolute; top:400px; left:-180px; width:520px; height:520px; border-radius:999px; background:radial-gradient(circle, rgba(241,145,0,.08) 0%, transparent 65%); pointer-events:none;"></div>
-  <div class="catalog-grid" style="max-width:1440px; margin:0 auto; display:grid; grid-template-columns:300px 1fr; gap:32px; padding-top:40px; position:relative; z-index:2;">
+  <div class="catalog-grid" style="max-width:1440px; margin:0 auto; display:grid; grid-template-columns:300px 1fr; gap:32px; padding-top:12px; position:relative; z-index:2;">
     <aside style="position:sticky; top:130px; height:fit-content; padding:0; background:#fff; border:1px solid var(--sa-gray-100); border-radius:24px; box-shadow:0 20px 40px rgba(14,23,18,.05); overflow:hidden;">
       <div style="padding:22px 24px 20px; background:linear-gradient(135deg, var(--sa-ink) 0%, #1a2620 100%); color:#fff; display:flex; align-items:center; justify-content:space-between;">
         <div style="display:flex; align-items:center; gap:10px;">
@@ -1109,8 +1109,17 @@ function filterByCategory(name){
 
 function productCardHTML(p, dark=false){
   const tagsHTML = p.tags.map(t=>`<span style="font-size:9px; font-weight:700; padding:4px 8px; border-radius:999px; background:${t.bg}; color:${t.fg}; letter-spacing:.06em; text-transform:uppercase;">${t.label}</span>`).join('');
-  return `<div style="background:#fff; border-radius:20px; overflow:hidden; border:1px solid var(--sa-gray-100); color:#0E1712; display:flex; flex-direction:column; width:100%;" class="card-hover">
-    <a href="#/producto/${p.id}" style="position:relative; aspect-ratio:1/1; background:#fff; overflow:hidden; display:flex; align-items:center; justify-content:center; cursor:pointer;">
+  // Alternar acento de color por producto (verde / naranja / lima)
+  const accentPalette = [
+    { bar:'#3DAB38', bg:'linear-gradient(135deg, #FBFFF9 0%, #E7F5E4 100%)', dot:'#3DAB38' },
+    { bar:'#F19100', bg:'linear-gradient(135deg, #FFFBF5 0%, #FDE7CC 100%)', dot:'#F19100' },
+    { bar:'#8DBF28', bg:'linear-gradient(135deg, #FBFEF3 0%, #EEF7D8 100%)', dot:'#8DBF28' },
+  ];
+  const idx = parseInt((p.id || 'p1').replace(/\D/g,''), 10) || 0;
+  const a = accentPalette[idx % accentPalette.length];
+  return `<div style="background:#fff; border-radius:20px; overflow:hidden; border:1px solid var(--sa-gray-100); color:#0E1712; display:flex; flex-direction:column; width:100%; position:relative;" class="card-hover">
+    <div style="position:absolute; top:0; left:0; right:0; height:4px; background:${a.bar}; z-index:3;"></div>
+    <a href="#/producto/${p.id}" style="position:relative; aspect-ratio:1/1; background:${a.bg}; overflow:hidden; display:flex; align-items:center; justify-content:center; cursor:pointer;">
       <div style="position:absolute; inset:0; z-index:2; display:flex; align-items:center; justify-content:center; padding:24px;">${p.image ? `<img src="${p.image}" alt="${p.name}" loading="lazy" style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; mix-blend-mode:multiply;">` : `<div style="width:70%; height:60%; display:flex; align-items:center; justify-content:center;">${visualFor(p.kind)}</div>`}</div>
       <div style="position:absolute; top:14px; left:14px; display:flex; gap:6px; flex-wrap:wrap;">${tagsHTML}</div>
       <div style="position:absolute; top:14px; right:14px; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--sa-gray-500); letter-spacing:.14em; background:#fff; padding:4px 8px; border-radius:6px;">${p.sku}</div>
